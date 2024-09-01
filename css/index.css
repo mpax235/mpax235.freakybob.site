@@ -20,6 +20,16 @@ button {
     text-align: center;
 }
 
+button:hover {
+    background-color: #00ffff84;
+    border: none;
+    padding: 5px 10px;
+    color: #000000;
+    font-family: 'Montserrat';
+    text-decoration: none;
+    text-align: center;
+}
+
 input {
     background-color: #161616;
     color: #00ffff;
