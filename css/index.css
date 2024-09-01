@@ -115,6 +115,15 @@ p {
     margin: 0px;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, table {
     color: #00ffff;
+}
+
+table {
+    height: 150px;
+    text-align: left;
+    color: #00ffff;
+    border: #00ffff;
+    border: #00ffff;
+    width: 950px;
 }
