@@ -10,35 +10,6 @@ body {
     color: #00ffff;
 }
 
-button {
-    background-color: #161616;
-    border: none;
-    padding: 5px 10px;
-    color: #00ffff;
-    font-family: 'Montserrat';
-    text-decoration: none;
-    text-align: center;
-}
-
-input {
-    background-color: #161616;
-    color: #00ffff;
-    border: none;
-    padding: 5px 10px;
-    font-family: 'Montserrat';
-    text-decoration: none;
-    text-align: left;
-}
-
-.test-animation {
-    display: block;
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    border: 2px solid #00ffff;
-    border-radius: 25px;
-}
-
 a {
     color: #00ffff;
     text-decoration: none;
@@ -58,10 +29,16 @@ a {
 .navigationbar li {
     border-right:1px solid #00ffff;
     text-align: center;
+    color: #00ffff
 }
 
 .navigationbar li:last-child {
     border-right: none;
+}
+
+.active {
+    background-color: #00ffff;
+    color: #000000;
 }
 
 .navigationbar li a {
@@ -74,15 +51,6 @@ a {
 .navigationbar li a:hover:not(.active) {
     background-color: #00ffff;
     color: #000000;
-}
-
-.active {
-    background-color: #00ffff;
-    color: #000000;
-}
-
-.homepage {
-    margin: 5px 0px;
 }
 
 #logo {
@@ -98,7 +66,7 @@ a {
 }
 
 p {
-    color: #00ffff;
+    color: red;
 }
 
 @media (min-width: 600px) {
@@ -116,7 +84,7 @@ p {
 }
 
 h1, h2, h3, h4, h5, h6, table {
-    color: #00ffff;
+    color: #ff0000;
 }
 
 table {
@@ -129,5 +97,15 @@ table {
 }
 
 .notfound {
+    text-align: center;
+}
+
+button {
+    background-color: #161616;
+    border: none;
+    padding: 5px 10px;
+    color: #00ffff;
+    font-family: 'Montserrat';
+    text-decoration: none;
     text-align: center;
 }
