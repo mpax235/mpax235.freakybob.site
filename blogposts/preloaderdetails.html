@@ -178,11 +178,6 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td>CMD_GET_BL_VER</td>
-                    <td>0xfe</td>
-                    <td>Gets the Preloader version</td>
-                  </tr>
-                  <tr>
                     <td>CMD_GET_HW_SW_VER</td>
                     <td>0xfc</td>
                     <td>Return hardware subcode, hardware/software version</td>
@@ -193,39 +188,44 @@
                     <td>Return hardware code/status</td>
                   </tr>
                   <tr>
-                    <td>CMD_SEND_DA</td>
-                    <td>0xd7</td>
-                    <td>Sends a "Download Agent" binary to the SoC signed with a key</td>
+                    <td>CMD_GET_BL_VER</td>
+                    <td>0xfe</td>
+                    <td>Gets the Preloader version</td>
                   </tr>
                   <tr>
-                    <td>CMD_JUMP_DA</td>
-                    <td>0xd5</td>
-                    <td>Sets boot mode to DOWNLOAD_BOOT and starts execution of the Download Agent sent to the SoC</td>
+                    <td>CMD_LEGACY_WRITE</td>
+                    <td>0xa1</td>
+                    <td>Write data to the SoC memory (legacy)</td>
                   </tr>
                   <tr>
-                    <td>CMD_GET_TARGET_CONFIG</td>
-                    <td>0xd8</td>
-                    <td>Gets supported Preloader config flags</td>
-                  </tr>
-                  <tr>
-                    <td>CMD_READ16</td>
+                    <td>CMD_LEGACY_READ</td>
                     <td>0xa2</td>
-                    <td>Read data from the SoC memory (16 bit length)</td>
+                    <td>Read data from the SoC memory (legacy)</td>
                   </tr>
                   <tr>
-                    <td>CMD_WRITE16</td>
-                    <td>0xd2</td>
-                    <td>Write data to the SoC memory (16 bit length)</td>
+                    <td>CMD_I2C_INIT</td>
+                    <td>0xb0</td>
+                    <td>Initializes the I2C</td>
                   </tr>
                   <tr>
-                    <td>CMD_READ32</td>
-                    <td>0xd1</td>
-                    <td>Read data from the SoC memory (32 bit length)</td>
+                    <td>CMD_I2C_DEINIT</td>
+                    <td>0xb1</td>
+                    <td>Shuts down the I2C</td>
                   </tr>
                   <tr>
-                    <td>CMD_WRITE32</td>
-                    <td>0xd4</td>
-                    <td>Write data to the SoC memory (32 bit length)</td>
+                    <td>CMD_I2C_WRITE8</td>
+                    <td>0xb2</td>
+                    <td>Write data to the I2C (8 bit length)</td>
+                  </tr>
+                  <tr>
+                    <td>CMD_I2C_READ8</td>
+                    <td>0xb3</td>
+                    <td>Read data from the I2C (8 bit length)</td>
+                  </tr>
+                  <tr>
+                    <td>CMD_I2C_SET_SPEED</td>
+                    <td>0xb4</td>
+                    <td>Sets the I2C speed</td>
                   </tr>
                   <tr>
                     <td>CMD_PWR_INIT</td>
@@ -240,12 +240,62 @@
                   <tr>
                     <td>CMD_PWR_READ16</td>
                     <td>0xc6</td>
-                    <td>Read 16 bit data from the PMC interface memory</td>
+                    <td>Read 16 bit data from the PMC interface memory (16 bit length)</td>
                   </tr>
                   <tr>
                     <td>CMD_PWR_WRITE16</td>
                     <td>0xc7</td>
-                    <td>Write 16 bit data to the PMC interface memory</td>
+                    <td>Write 16 bit data to the PMC interface memory (16 bit length)</td>
+                  </tr>
+                  <tr>
+                    <td>CMD_READ16</td>
+                    <td>0xd0</td>
+                    <td>Read data from the SoC memory (16 bit length)</td>
+                  </tr>
+                  <tr>
+                    <td>CMD_READ32</td>
+                    <td>0xd1</td>
+                    <td>Read data from the SoC memory (32 bit length)</td>
+                  </tr>
+                  <tr>
+                    <td>CMD_WRITE16</td>
+                    <td>0xd2</td>
+                    <td>Write data to the SoC memory (16 bit length)</td>
+                  </tr>
+                  <tr>
+                    <td>CMD_WRITE16_NO_ECHO</td>
+                    <td>0xd3</td>
+                    <td>Write data to the SoC memory without echoing (16 bit length)</td>
+                  </tr>
+                  <tr>
+                    <td>CMD_WRITE32</td>
+                    <td>0xd4</td>
+                    <td>Write data to the SoC memory (32 bit length)</td>
+                  </tr>
+                  <tr>
+                    <td>CMD_JUMP_DA</td>
+                    <td>0xd5</td>
+                    <td>Sets boot mode to DOWNLOAD_BOOT and starts execution of the Download Agent sent to the SoC</td>
+                  </tr>
+                  <tr>
+                    <td>CMD_JUMP_BL</td>
+                    <td>0xd6</td>
+                    <td>Starts execution of the Preloader on eMMC/NAND flash</td>
+                  </tr>
+                  <tr>
+                    <td>CMD_SEND_DA</td>
+                    <td>0xd7</td>
+                    <td>Sends a "Download Agent" binary to the SoC signed with a key</td>
+                  </tr>
+                  <tr>
+                    <td>CMD_GET_TARGET_CONFIG</td>
+                    <td>0xd8</td>
+                    <td>Gets supported Preloader config flags</td>
+                  </tr>
+                  <tr>
+                    <td>CMD_UART1_LOG_EN</td>
+                    <td>0xdb</td>
+                    <td>Not sure what this command does</td>
                   </tr>
                 </tbody>
             </table>
@@ -269,39 +319,94 @@
                 </thead>
                 <tbody>
                   <tr>
+                    <td>HSNK_COM_READY</td>
+                    <td>READY</td>
+                    <td>If sent, will wait for a 8 byte token before switching to BROM</td>
+                  </tr>
+                  <tr>
+                    <td>META_STR_REQ</td>
+                    <td>METAMETA</td>
+                    <td>Switches into META_BOOT mode</td>
+                  </tr>
+                  <tr>
+                    <td>META_STR_ACK</td>
+                    <td>ATEMATEM</td>
+                    <td>Used for response from META_BOOT mode</td>
+                  </tr>
+                  <tr>
+                    <td>META_LOCK</td>
+                    <td>LOCK</td>
+                    <td>Not sure what this command does</td>
+                  </tr>
+                  <tr>
+                    <td>META_FORBIDDEN_ACK</td>
+                    <td>METAFORB</td>
+                    <td>Not sure what this command does</td>
+                  </tr>
+                  <tr>
+                    <td>META_ADV_REQ</td>
+                    <td>ADVEMETA</td>
+                    <td>Switches into ADVMETA_BOOT mode</td>
+                  </tr>
+                  <tr>
+                    <td>META_ADV_ACK</td>
+                    <td>ATEMEVDA</td>
+                    <td>Used for response from ADVMETA_BOOT mode</td>
+                  </tr>
+                  <tr>
+                    <td>FACTORY_STR_REQ</td>
+                    <td>FACTFACT</td>
+                    <td>Switches into FACTORY_BOOT mode</td>
+                  </tr>
+                  <tr>
+                    <td>FACTORY_STR_ACK</td>
+                    <td>TCAFTCAF</td>
+                    <td>Used for response from FACTORY_BOOT mode</td>
+                  </tr>
+                  <tr>
+                    <td>ATE_STR_REQ</td>
+                    <td>FACTORYM</td>
+                    <td>Switches into ATE_FACTORY_BOOT mode</td>
+                  </tr>
+                  <tr>
+                    <td>FACTORY_STR_ACK</td>
+                    <td>MYROTCAF</td>
+                    <td>Used for response from ATE_FACTORY_BOOT mode</td>
+                  </tr>
+                  <tr>
                     <td>SWITCH_MD_REQ</td>
                     <td>SWITCHMD</td>
                     <td>Switches the modem into firmware download mode</td>
                   </tr>
                   <tr>
+                    <td>SWITCH_MD_ACK</td>
+                    <td>DMHCTIWS</td>
+                    <td>Used for response from modem in firmware download mode</td>
+                  </tr>
+                  <tr>
                     <td>ATCMD_NBOOT_REQ</td>
                     <td>AT+NBOOT</td>
-                    <td>Switches to NORMAL_BOOT mode</td>
+                    <td>Switches into NORMAL_BOOT mode</td>
                   </tr>
                   <tr>
-                    <td>META_STR_REQ</td>
-                    <td>METAMETA</td>
-                    <td>Switches to META_BOOT mode</td>
+                    <td>ATCMD_OK</td>
+                    <td>AT+OK</td>
+                    <td>Not sure what this command does</td>
                   </tr>
                   <tr>
-                    <td>FACTORY_STR_REQ</td>
-                    <td>FACTFACT</td>
-                    <td>Switches to FACTORY_BOOT mode</td>
+                    <td>ATCMD_UNKNOWN</td>
+                    <td>AT+UNKNOWN</td>
+                    <td>Not sure what this command does</td>
                   </tr>
                   <tr>
-                    <td>META_ADV_REQ</td>
-                    <td>ADVEMETA</td>
-                    <td>Switches to ADVMETA_BOOT mode</td>
-                  </tr>
-                  <tr>
-                    <td>ATE_STR_REQ</td>
-                    <td>FACTORYM</td>
-                    <td>Switches to ATE_FACTORY_BOOT mode</td>
+                    <td>FB_STR_REQ</td>
+                    <td>FASTBOOT</td>
+                    <td>Switches into FASTBOOT mode</td>
                   </tr>
                   <tr>
                     <td>FB_STR_ACK</td>
-                    <td>FASTBOOT</td>
-                    <td>Switches to FASTBOOT mode</td>
+                    <td>TOOBTSAF</td>
+                    <td>Used for response from FASTBOOT mode</td>
                   </tr>
             </table>
             <h2>Secure boot stage (part 2)</h2>
