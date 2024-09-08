@@ -1,0 +1,34 @@
+body {
+    margin: 10px;
+    padding: 0px;
+    font-family: 'Montserrat';
+    background-color: #000000;
+}
+
+h1, h2, h3, h4, h5, h6, table {
+    color: #00ffff;
+    text-align: center;
+}
+
+p {
+    color: #00ffff;
+}
+
+p {
+    margin: 0px;
+    text-align: center;
+}
+
+a {
+    color: #00ffff;
+    text-decoration: none;
+    text-align: center;
+}
+
+.homepage {
+    margin: 5px 0px;
+}
+
+a {
+    text-align: center;
+}
