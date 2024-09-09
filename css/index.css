@@ -18,6 +18,7 @@ button {
     font-family: 'Montserrat';
     text-decoration: none;
     text-align: center;
+    border-radius: 8px;
 }
 
 button:hover {
@@ -63,6 +64,7 @@ a {
     text-align: center;
     display: flex;
     flex-direction: column;
+    border-radius: 16px;
 }
 
 .navigationbar li {
@@ -79,6 +81,7 @@ a {
     padding: 12px;
     text-align: center;
     text-decoration: none;
+    border-radius: 1px;
 }
 
 .navigationbar li a:hover:not(.active) {
@@ -135,7 +138,13 @@ table {
     color: #00ffff;
     border: #00ffff;
     border: #00ffff;
-    width: 950px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 4px;
+    border: 1px solid #00ffff;
 }
 
 .notfound {

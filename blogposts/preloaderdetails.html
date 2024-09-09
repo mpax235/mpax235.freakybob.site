@@ -49,12 +49,12 @@
             <br></br>
             <a>Based on the lightning72_wet_l source code for the MT6572 SoC, the preloader is made up of the following parts:</a>
             <br></br>
-            <p>&#9679; SoC-specific stuff in mediatek/platform/${platform}/preloader, this contains the core, drivers, init and security code.</p>
+            <p>&#9679; SoC-specific stuff in mediatek/platform/${platform}/preloader, this contains the core, drivers, initalizing and security code.</p>
             <a>&#9679; Device-specific stuff in mediatek/custom/${device}/preloader, this contains the Device-specific code.</a>
             <br></br>
             <a>Now it's time to dive deeper!</a>
             <h2>SoC initializing</h2>
-            <a>When the Preloader gets executed, many stuff are in a random state so to initialize them, there is some assembly code in</a>
+            <a>When the Preloader gets executed, many stuff are in a random state so to initialize them, there is some Assembly code located in</a>
             <a>mediatek/platform/${platform}/preloader/src/init/init.s which performs the following steps:</a>
             <br></br>
             <p>1. Clear all registers.</p>
@@ -73,7 +73,8 @@
             <br></br>
             <a>There is something special in the Preloader if enabled: after the flash storage has been initialized, the Preloader offers a early "Download" mode</a>
             <a>which the manufacturer can define a hardware key that if pressed in 1000 ms, it will trigger a Assert which will cause the Preloader</a>
-            <a>to error out and then reboots back into the Boot ROM in Download Mode.</a>
+            <a>to error out and then reboots back into the Boot ROM in Download Mode. However there is a timeout of 5 seconds before being brought back to the Preloader</a>
+            <a>that can be extended by sending the Start command sequence, to disable the timeout the Watchdog will have to be disabled.</a>
             <br></br>
             <a>The Preloader also records why the system was booted:</a>
             <br></br>
@@ -464,7 +465,7 @@
             <br></br>
             <a>After this, the Preloader goes inactive until the BROM starts again.</a>
             <h2>Sources</h2>
-            <p>&#9679; <a href="https://github.com/li127832919/MTK6572">PE900s</a></p>
+            <p>&#9679; <a href="https://github.com/li127832919/MTK6572">MT6572 source code for PE900s and lightning72_wet_l</a></p>
             <p>&#9679; <a href="https://wenku.baidu.com/view/d44d5cd9ad51f01dc281f129.html?_wkts_=1725153461138&needWelcomeRecommand=1">Introduction of MTK Tools</a></p>
         </div>
     </body>

@@ -24,6 +24,7 @@ a {
     text-align: center;
     display: flex;
     flex-direction: column;
+    border-radius: 16px;
 }
 
 .navigationbar li {
@@ -108,6 +109,7 @@ button {
     font-family: 'Montserrat';
     text-decoration: none;
     text-align: center;
+    border-radius: 8px;
 }
 
 button:hover {
