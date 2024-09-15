@@ -11,14 +11,17 @@
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
         <link rel="icon" href="../sources/favicon.gif">
         <style>
-            .code {
-                font-family: "Source Code Pro", monospace;
+            .partition img {
+              width: 100%;
             }
         </style>
         </script>
     </head>
     <body>
         <a href="../index.html"><img id="logo" alt="mpax235" src="../sources/logo.png"></a>
+        <div class="social" style="text-align: center;">
+          <a href="https://github.com/mpax235"><img id="github" alt="github" src="../sources/github.png"></a>
+        </div>
         <nav>
             <ul class="navigationbar">
                 <li><a href="../index.html">Home</a></li>
@@ -97,7 +100,9 @@
             <a>It is generated during a Preloader generation session from a real Excel file in</a>
             <a>mediatek/build/tools/ptgen/${platform}/partition_table_${platform}.xls by the command ./makeMtk -t ${device} ptgen. (here is a example of the partition table for a device named PE900s)</a>
             <br></br>
-            <img src="../sources/blog/preloaderdetails/partition_table.png">
+            <div class="partition">
+              <img src="../sources/blog/preloaderdetails/partition_table.png">
+            </div>
             <br></br>
             <a>The partition table structure is stored into (for PE900s) mediatek/custom/pe900s/preloader/cust_part.c and looks like this:</a>
             <br></br>

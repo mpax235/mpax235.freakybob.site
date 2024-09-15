@@ -104,6 +104,13 @@ a {
     display: block;
 }
 
+#github {
+    height: 40px;
+    margin: 0 auto;
+    display: inline-block;
+    padding: 5px;
+}
+
 .homepage button:hover {
     cursor: pointer;
     background-color: #00ffff;
@@ -149,4 +156,18 @@ td, th {
 
 .notfound {
     text-align: center;
+}
+
+.code {
+    font-family: "Source Code Pro", monospace;
+}
+
+.social {
+    background-color: #161616;
+    margin: 10px 0px;
+    border-radius: 16px;
+}
+
+.social a {
+    padding: 5px;
 }
