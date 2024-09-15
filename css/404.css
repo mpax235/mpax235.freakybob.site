@@ -121,3 +121,20 @@ button:hover {
     text-decoration: none;
     text-align: center;
 }
+
+#github {
+    height: 40px;
+    margin: 0 auto;
+    display: inline-block;
+    padding: 5px;
+}
+
+.social {
+    background-color: #161616;
+    margin: 10px 0px;
+    border-radius: 16px;
+}
+
+.social a {
+    padding: 5px;
+}
