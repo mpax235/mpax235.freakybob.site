@@ -32,3 +32,10 @@ a {
 a {
     text-align: center;
 }
+
+#github {
+    height: 40px;
+    margin: 0 auto;
+    display: inline-block;
+    padding: 5px;
+}
