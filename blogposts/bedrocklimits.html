@@ -142,21 +142,21 @@
                     <tr>
                         <td>X/Z 2,097,152 (2^21)</td>
                         <td>The coordinates of every entity are slices of 4 blocks.
-                        <br>The minimum speed is now 2.5 blocks. (maybe)
+                        <br>The minimum speed is now 2.5 blocks per second. (maybe)
                         <br>It is no longer possible to walk while sneaking from this point.<br>
                     Doors and Trapdoors gets stretched.</td>
                     </tr>
                     <tr>
                         <td>X/Z 4,194,304 (2^22)</td>
                         <td>The coordinates of every entity are slices of 2 blocks.<br>
-                        The minimum speed is now 5 blocks.<br>
+                        The minimum speed is now 5 blocks per second.<br>
                         It is impossible to walk on here as you'll fall through the World.
                         <br>Ender Pearls, Chorus Fruit, Elytra with Fireworks, Horseback, Boats, Riptide Trident and Creative flying are now only possible movements.</td>
                     </tr>
                     <tr>
                         <td>X/Z 8,388,608 (2^23)</td>
                         <td>The coordinates of every entity are integers of 1 blocks.<br>
-                        The minimum speed is now 10 blocks.
+                        The minimum speed is now 10 blocks per second.
                         <br>Most entities less than 1 block will now fall through the World (including Players).
                         <br>The only mobs that can stand on here is Ravagers, Boats, Spiders (non-cave), Iron Golems, Shulkers, Polar Bears, Horses (grown only) and Mnecrafts (if placed correctly).<br>
                         Large Slimes and Large Magma Cubes can even stand on here.</td>
@@ -164,7 +164,7 @@
                     <tr>
                         <td>X/Z 16,777,216 (2^24)</td>
                         <td>The coordinates of every entity are multiples of 2.<br>
-                        The minimum speed is now 20 blocks.
+                        The minimum speed is now 20 blocks per second.
                         <br>Every second block is now "Invalid", the camera breaks in those "Invalid" spaces but not on the "Valid" spaces.
                         <br>This does not affect the way maps are generated.
                         <br>The blocks are stretched to be 2 blocks wide.</td>
@@ -172,7 +172,7 @@
                     <tr>
                         <td>X/Z 33,554,432 (2^25)<br>
                         <td>The coordinates of every entity are multiples of 4.
-                        <br>The minimum speed is now 40 blocks.
+                        <br>The minimum speed is now 40 blocks per second.
                         <br>The gaps changes to be 4 blocks wide.
                         <br>Horizontal rendering stops completely, leaving only vertical rendering, making terrain look like 2D.
                         <br>Block rendering is 1D in the Corner Slice Lands so it almost entirely stops.
@@ -181,9 +181,55 @@
                     <tr>
                         <td>X/Z 67,108,864 (2^26)</td>
                         <td>The coordinates of every entity are multiples of 8.
-                        <br>The minimum speed is now 80 blocks.
+                        <br>The minimum speed is now 80 blocks per second.
                         <br>The gaps changes to be 8 blocks wide.
                         <br>The world crashed here below 1.18 without the Caves and Cliffs experiment on.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>X/Z 134,217,728 (2^27)</td>
+                        <td>The coordinates of every entity are multiples of 16.
+                        <br>The minimum speed is now 160 blocks per second.
+                        <br>The gaps changes to be 16 blocks wide.
+                        <br>Teleportation using Chorus Fruit is no longer possible.
+                        <br>Riptide I becomes less usuable.</td>
+                    </tr>
+                    <tr>
+                        <td>X/Z 268,435,456 (2^28)</td>
+                        <td>The coordinates of every entity are multiples of 32.
+                        <br>The minimum speed is now 320 blocks per second.
+                        <br>The gaps changes to be 32 blocks wide.
+                        <br>Riptide I no longer works.
+                        <br>Riptide II becomes less usuable.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>X/Z 536,870,912 (2^29)</td>
+                        <td>The coordinates of every entity are mutliples of 64.
+                        <br>The minimum speed is now 640 blocks per second.
+                        <br>The gaps changes to be 64 blocks wide.
+                        <br>Some low and mid-end devices here crash at this point since beta 1.17.30.24. Only high-end devices (like the iPhone 13) can survive beyond this point.
+                        <br>Riptide III no longer works. Making vanilla movement impossible.
+                        <br>In versions older than 1.18, frustum culling lost its precision.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>X/Z 1,073,741,824 (2^30)</td>
+                        <td>The coordinates of every entity are multiples of 128.
+                        <br>The minimum speed is now 1280 blocks per second.
+                        <br>The gaps changes to 128 blocks wide.
+                        <br>The world is invisible with render distance of 7 chunks or less.
+                        <br>Riptide levels below IX no longer works.</td>
+                    </tr>
+                    <tr>
+                        <td>X/Z 2,147,483,647 (2^31 - 1 )</td>
+                        <td>The game crashes here due to this being the maximum value for a signed 32-bit integer in C++.</td>
+                    </tr>
+                    <tr>
+                        <td>X/Z 2,147,483,648 (2^31)</td>
+                        <td>The coordinates of every entity are multiples of 256.
+                        <br>The minimum speed is now 2560 blocks per second.
+                        <br>The gaps changes to 256 blocks wide.
                         </td>
                     </tr>
             </tbody>
