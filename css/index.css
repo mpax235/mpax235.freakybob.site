@@ -38,6 +38,7 @@ input {
     font-family: 'Montserrat';
     text-decoration: none;
     text-align: left;
+    border-radius: 12px;
 }
 
 .test-animation {
