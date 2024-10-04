@@ -6,25 +6,24 @@ body {
 }
 
 .logo {
-    text-align: center;
     color: #00ffff;
 }
 
 button {
     background-color: #161616;
     border: none;
-    padding: 5px 10px;
+    padding: 10px 15px;
     color: #00ffff;
     font-family: 'Montserrat';
     text-decoration: none;
     text-align: center;
-    border-radius: 8px;
+    border-radius: 12px;
 }
 
 button:hover {
     background-color: #00ffff;
     border: none;
-    padding: 5px 10px;
+    padding: 10px 15px;
     color: #000000;
     font-family: 'Montserrat';
     text-decoration: none;
@@ -99,16 +98,16 @@ a {
 }
 
 #logo {
-    height: 100px;
-    margin: 0 auto;
-    display: block;
+    height: 45px;
+    margin: 10px;
+    margin-left: 10px;
+    display: flex;
 }
 
 #github {
     height: 40px;
-    margin: 0 auto;
-    display: inline-block;
-    padding: 5px;
+    margin-right: 10px;
+    display: flex;
 }
 
 .homepage button:hover {
@@ -174,4 +173,16 @@ td, th {
 
 #smalltext {
     font-size: 11px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #111111;
+    align-items: center;
+}
+
+.invisible {
+    height: 10px;
 }
