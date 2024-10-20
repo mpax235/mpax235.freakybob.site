@@ -26,6 +26,9 @@
             .slicelands4x img {
                 width: 100%;
             }
+            .slicelands128x img {
+                width: 100%;
+            }
         </style>
     </head>
     <body>
@@ -112,7 +115,12 @@
             <a>Something strange is that when I teleported to 2^30, the terrain beyond this point was invisible due to the gaps</a>
             <a>being 128 blocks. But when I increased the Render Distance, I can now see the terrain.</a>
             <br></br>
-            <a>Sadly I cant show you more on whats beyond 2^31 as thats the 32-Bit Integer Limit and when I try to pass it,</a>
+            <div class="slicelands128x">
+                <img src="../sources/blog/bedrocklimits/slicelands128.png">
+            </div>
+            <a id="smalltext">1,073,741,824 blocks away into the Slice Lands with a render distance set to 9 chunks.</a>
+            <br></br>
+            <a>Sadly I can't show you more on whats beyond 2^31 as thats the 32-Bit Integer Limit and when I try to go to it,</a>
             <a>the game will just crash.</a>
             <h2>Conclusion</h2>
             <a>Now that I showed you all the limits, I will show the table below that lists the Distance Effects.</a>
@@ -181,10 +189,18 @@
                         Large Slimes and Large Magma Cubes can even stand on here.</td>
                     </tr>
                     <tr>
+                        <td>X/Z 12,550,821</td>
+                        <td>The old location where the Far Lands used to generate.<br>
+                        This happens because the Perlin Noise overflows.<br>
+                        This generates Nothingness instead for PlayStation, Windows and Xbox.<br>
+                        This no longer happens starting with Beta 1.17.20.20.<br>
+                        If you try to go to this coordinate in 1.17.30 and later, you will just see normal terrain.</td>
+                    </tr>
+                    <tr>
                         <td>X/Z 16,777,216 (2^24)</td>
                         <td>The coordinates of every entity are multiples of 2.<br>
                         The minimum speed is now 20 blocks per second.
-                        <br>Every second block is now "Invalid", the camera breaks in those "Invalid" spaces but not on the "Valid" spaces.
+                        <br>Every other block is now considered "Invalid", the camera breaks in those "Invalid" spaces but not on the "Valid" spaces.
                         <br>This does not affect the way maps are generated.
                         <br>The blocks are stretched to be 2 blocks wide.</td>
                     </tr>
@@ -235,7 +251,7 @@
                     <tr>
                         <td>X/Z 1,073,741,824 (2^30)</td>
                         <td>The coordinates of every entity are multiples of 128.
-                        <br>The minimum speed is now 1280 blocks per second.
+                        <br>The minimum speed is now 1,280 blocks per second.
                         <br>The gaps changes to 128 blocks wide.
                         <br>The world is invisible with render distance of 7 chunks or less.
                         <br>Riptide levels below IX no longer works.</td>
@@ -263,6 +279,13 @@
                         <td>The coordinates of every entity are multiples of 1,024.<br>
                         The minimum speed is now 10,240 blocks per second.<br>
                         The gaps changes to 1,024 blocks wide.</td>
+                    </tr>
+                    <tr>
+                        <td>X/Z 36,028,797,018,963,968 (2^55)</td>
+                        <td>The coordinates of every entity are multiples of 4,294,967,296.
+                        <br>The minimum speed is now 42,949,672,960 blocks per second.
+                        <br>The gaps changes to 4,294,967,296 blocks wide.
+                        </td>
                     </tr>
                     <tr>
                         <td>X/Z 53,905,378,846,979,747</td>
@@ -368,16 +391,36 @@
             </tbody>
         </table>
         <h2>Nothingness</h2>
-        <a>In the negative X Far Lands, after the X/Z coords degrade and in all the Far Lands in Windows, Xbox, Playstation, only Nothingness generates.
+        <a>In the negative X Far Lands, after the X/Z coords degrade and in all the Far Lands in Windows, Xbox, PlayStation, only Nothingness generates.
             <br><br>
             Nothingness generates as a Ocean with only the Bedrock layer underneath. Biomes and Structures stil exist and the Water can still freeze.
             This goes on all the way until 2^128 blocks away. 
             <br>
+            <br>
+            Desert Temples and Woodland Mansions generate with foundation, but Jungle Temples do not. Villages generate on a floating platform. Fossils generate underwater without touching the Bedrock.
+            Igloos generate underwater on the Bedrock floor. Pillager Outposts only generate the Watchtower and has a foundation. Underwater ruins and shipwrecks generate on the Bedrock layer always. Buried Treasure sometimes generate up in mid-air.
+            Seagrass and Kelp still generate on Bedrock and Strongholds generate underwater (?).
+            <br>
+            <br>
+            Desert Wells, Mineshafts and Dungeons are unable to generate here.
         </a>
-        <br>
+        <h2>Skygrid</h2>
+        <a>In the Corner Far Lands, Far Lands in negative Z coordinates and past the normal positive Z Far Lands, a Skygrid generates containing a 3D Grid of Blocks in a Pattern, the Blocks there depends on the Biome, Trees and Tall Grass are able to generate on the Skygrid-based Blocks. This results in perfect 3D Blocks above the Ocean. The blocks extends from Y=128 all the way to the Bedrock floor.
+            <br>
+            <br>
+            Structures generated in the Skygrid follow the same rules as Nothingness. But with a few differences.
+            <br>
+            <a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#9679; Tall Ice Spikes are able to generate from Sea Level. Causing it to reach Y = 128.</a><br>
+            <a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#9679; Igloos instead generate on Y = 64.</a><br>
+            <a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#9679; Prior to Village and Pillage, villages generated at high altitudes between 64 and 128 have tall foundations extending from the Bedrock layer to the main Building.</a><br>
+            <a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#9679;After Village and Pillage, they now generate at Sea Level with a floating platform underneath. This is similar to Nothingness.</a><br>
+            <a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#9679; Woodland Mansions are able to generate in the Skygrid.</a>
+        </a>
+        <br></br>
         <a>More will be coming soon so stay tuned!</a>
         <h2>Sources</h2>
         <p>&#9679; <a href="https://www.youtube.com/watch?v=wurHDkvIKhQ">The AntVenom video that helped bypass the Teleportation limit</a></p>
         <p>&#9679; <a href="https://minecraft.wiki/w/Bedrock_Edition_distance_effects">The Minecraft Wiki Distance Effects page</a></p>
+        <p>&#9679; <a href="https://minecraft.wiki/w/Bedrock_Edition_Far_Lands">The Minecraft Wiki Far Lands page for Bedrock Edition</a></p>
     </body>
 </html>
