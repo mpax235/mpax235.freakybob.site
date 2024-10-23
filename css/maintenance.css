@@ -32,3 +32,12 @@ a {
 a {
     text-align: center;
 }
+
+#reason {
+    text-align: center;
+}
+
+.reason {
+    text-align: center;
+    margin: 20px;
+}
