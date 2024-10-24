@@ -230,3 +230,25 @@ td, th {
 .footer a {
     margin-left: 15px;
 }
+
+.galleryitem {
+    background-color: #111111;
+    width: 231px;
+    margin: 5px;
+}
+
+.gallerycontainer {
+    padding: 3px;
+}
+
+.gallerycontainer img {
+    width: 225px;
+}
+
+.gallerycontainer a {
+    font-size: 12px;
+}
+
+.gallerystuff {
+    display: flex;
+}
