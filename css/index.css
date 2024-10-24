@@ -1,7 +1,12 @@
 body {
-    margin: 10px;
+    margin: 0px;
     padding: 0px;
     font-family: 'Montserrat';
+    background-color: #000000;
+}
+
+.homepage {
+    padding: 10px;
     background-color: #000000;
 }
 
@@ -61,10 +66,8 @@ a {
     padding: 0;
     overflow: hidden;
     background-color: #161616;
-    text-align: center;
     display: flex;
     flex-direction: column;
-    border-radius: 16px;
 }
 
 .navigationbar li {
@@ -124,6 +127,7 @@ p {
 @media (min-width: 600px) {
     .navigationbar {
         flex-direction: row;
+        justify-content: center;
     }
     .navigationbar li {
         font-size: 14px;
@@ -184,6 +188,45 @@ td, th {
     align-items: center;
 }
 
+#errortext {
+    color: red;
+}
+
+#errorred {
+    color: red;
+}
+
 .invisible {
     height: 10px;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #111111;
+    align-items: center;
+    padding: 10px 0px;
+    width: 100%;
+    position: fixed;
+    bottom: 6px;
+    z-index: -5;
+}
+
+.footer2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #111111;
+    align-items: center;
+    padding: 10px 0px;
+    width: 100%;
+}
+
+.footer2 a {
+    margin-left: 15px;
+}
+
+.footer a {
+    margin-left: 15px;
 }

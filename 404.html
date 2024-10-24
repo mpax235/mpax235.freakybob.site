@@ -4,7 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Page Not Found</title>
-        <link rel="stylesheet" href="/website/css/404.css">
+        <link rel="stylesheet" href="/website/css/index.css">
+        <link rel="stylesheet" href="css/index.css">
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
         <script src="/website/js/index.js"></script>
         <link rel="icon" href="/website/sources/favicon.gif">
@@ -13,26 +14,31 @@
     <body>
         <!--header insert-->
         <div class="header">
-            <a href="/website/index.html"><img id="logo" alt="mpax235" src="/website/sources/logo.png"></a>
-            <a href="https://github.com/mpax235"><img id="github" alt="github" src="/website/sources/github.png"></a>
+            <a href="index.html"><img id="logo" alt="mpax235" src="sources/logo.png"></a>
         </div>
-        <div class="invisible"></div>
         <nav>
             <ul class="navigationbar">
-                <li><a href="/website/index.html">Home</a></li>
-                <li><a href="/website/blog.html">Blog</a></li>
-                <li><a class="active" href="/website/projects.html">Projects</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="projects.html">Projects</a></li>
                 <li><a href="">Wiki (Does not Work)</a></li>
             </ul>
         </nav>
         <!--header end-->
         
         <div class="notfound">
-            <h2>404</h2>
-            <p>This page cannot be found. It may have moved or it no longer exists.</p>
-            <p>To go home, click the button below.</p>
+            <h2 id="errortext">404</h2>
+            <p id="errorred">This page cannot be found. It may have moved or it no longer exists.</p>
+            <p id="errorred">To go home, click the button below.</p>
             <br></br>
             <button onclick="document.location='/website/index.html'">Go home</button>
         </div>
+
+        <!--footer insert-->
+        <div class="footer">
+            <a>2024 mpax235</a>
+            <a href="https://github.com/mpax235"><img id="github" alt="github" src="sources/github.png"></a>
+        </div>
+        <!--footer end-->
     </body>
 </html>
