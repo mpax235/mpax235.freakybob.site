@@ -252,3 +252,18 @@ td, th {
 .gallerystuff {
     display: flex;
 }
+
+.visitorstats {
+    text-align: center;
+}
+
+.stats {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+#createddate {
+    font-size: 24px;
+}
