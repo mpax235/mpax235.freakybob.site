@@ -124,14 +124,23 @@ p {
     color: #00ffff;
 }
 
+.gallerystuff {
+    display: block;
+}
+
 @media (min-width: 600px) {
     .navigationbar {
         flex-direction: row;
         justify-content: center;
     }
+
     .navigationbar li {
         font-size: 14px;
         text-align: left;
+    }
+
+    .gallerystuff {
+        display: flex;
     }
 }
 
@@ -150,6 +159,7 @@ table {
     border: #00ffff;
     border: #00ffff;
     width: 100%;
+    font-size: 14px;
     border-collapse: collapse;
 }
 
@@ -249,10 +259,6 @@ td, th {
     font-size: 12px;
 }
 
-.gallerystuff {
-    display: flex;
-}
-
 .visitorstats {
     text-align: center;
 }
@@ -266,4 +272,17 @@ td, th {
 
 #createddate {
     font-size: 24px;
+}
+
+.column1project {
+    background-color: #222222;
+}
+
+.column2project {
+    background-color: #101010;
+}
+
+.columninnertext {
+    margin: 10px;
+    padding: 1px;
 }
