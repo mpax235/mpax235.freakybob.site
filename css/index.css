@@ -177,6 +177,7 @@ table {
     width: 100%;
     font-size: 14px;
     border-collapse: collapse;
+    backdrop-filter: blur(7px);
 }
 
 td, th {
