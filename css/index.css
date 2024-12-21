@@ -229,7 +229,7 @@ td, th {
 }
 
 .footer2 {
-    display: flex;
+    display: none;
     justify-content: space-between;
     align-items: center;
     background-color: #111111;
