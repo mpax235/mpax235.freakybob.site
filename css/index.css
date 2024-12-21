@@ -1,5 +1,5 @@
 /*
-// This is the old CSS used before the transparency update.
+// This is the new CSS used after the transparency update.
 // As a result of the new CSS, the 3DS no longer loads this website.
 // However, it will hopefully still work with the old CSS.
 */
@@ -9,11 +9,16 @@ body {
     padding: 0px;
     font-family: 'Montserrat';
     background-color: #000000;
+    background-image: url('../sources/websitebackground.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    background-attachment: fixed;
+    background-position: center;
 }
 
 .homepage {
     padding: 10px;
-    background-color: #000000;
 }
 
 .logo {
@@ -71,7 +76,7 @@ a {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #161616;
+    background-color: #161616ae;
     display: flex;
     flex-direction: column;
 }
@@ -116,8 +121,6 @@ a {
 
 #github {
     height: 40px;
-    margin-right: 10px;
-    display: flex;
 }
 
 .homepage button:hover {
@@ -200,7 +203,7 @@ td, th {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #111111;
+    background-color: #111111ae;
     align-items: center;
 }
 
@@ -217,7 +220,7 @@ td, th {
 }
 
 .footer {
-    display: flex;
+    display: none;
     justify-content: space-between;
     align-items: center;
     background-color: #111111;
@@ -230,7 +233,7 @@ td, th {
 }
 
 .footer2 {
-    display: flex;
+    display: none;
     justify-content: space-between;
     align-items: center;
     background-color: #111111;
@@ -248,7 +251,7 @@ td, th {
 }
 
 .galleryitem {
-    background-color: #111111;
+    background-color: #111111ae;
     width: 231px;
     margin: 5px;
 }
@@ -281,14 +284,33 @@ td, th {
 }
 
 .column1project {
-    background-color: #222222;
+    background-color: #222222ae;
 }
 
 .column2project {
-    background-color: #101010;
+    background-color: #101010ae;
 }
 
 .columninnertext {
     margin: 10px;
     padding: 1px;
+}
+
+.socials {
+    margin-top: 10px;
+    background-color: #161616ae;
+    padding: 10px;
+    text-align: center;
+}
+
+#socialstext {
+    font-size: 24px;
+}
+
+.socialslinks {
+    margin-top: 10px;
+}
+
+#sociallink {
+    padding: 5px;
 }
