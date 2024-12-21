@@ -3,11 +3,16 @@ body {
     padding: 0px;
     font-family: 'Montserrat';
     background-color: #000000;
+    background-image: url('../sources/websitebackground.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    background-attachment: fixed;
+    background-position: center;
 }
 
 .homepage {
     padding: 10px;
-    background-color: #000000;
 }
 
 .logo {
@@ -211,7 +216,7 @@ td, th {
 }
 
 .footer {
-    display: flex;
+    display: none;
     justify-content: space-between;
     align-items: center;
     background-color: #111111;
