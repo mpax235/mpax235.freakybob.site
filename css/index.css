@@ -76,7 +76,8 @@ a {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #161616ae;
+    background-color: #1616165e;
+    backdrop-filter: blur(7px);
     display: flex;
     flex-direction: column;
 }
@@ -96,11 +97,13 @@ a {
     text-align: center;
     text-decoration: none;
     border-radius: 1px;
+    transition: 0.2s ease-in-out;
 }
 
 .navigationbar li a:hover:not(.active) {
     background-color: #00ffff;
     color: #000000;
+    transition: 0.2s ease-in-out;
 }
 
 .active {
@@ -150,6 +153,10 @@ p {
 
     .gallerystuff {
         display: flex;
+    }
+
+    .header {
+        justify-content: left !important;
     }
 }
 
@@ -203,8 +210,10 @@ td, th {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #111111ae;
+    background-color: #1111115e;
+    backdrop-filter: blur(7px);
     align-items: center;
+    justify-content: center;
 }
 
 #errortext {
@@ -251,17 +260,27 @@ td, th {
 }
 
 .galleryitem {
-    background-color: #111111ae;
+    background-color: #1111115e;
     width: 231px;
     margin: 5px;
+    backdrop-filter: blur(7px);
+    border: 1px solid rgba(0, 255, 255, 0.18);
+    border-radius: 12px;
+    display: flex;
+    transition: 0.2s ease-in-out;
+}
+
+.galleryitem:hover {
+    transform: scale(1.05);
+    background-color: #2222225e;
 }
 
 .gallerycontainer {
-    padding: 3px;
+    padding: 12px 10px;
 }
 
 .gallerycontainer img {
-    width: 225px;
+    width: 211px;
 }
 
 .gallerycontainer a {
@@ -284,23 +303,46 @@ td, th {
 }
 
 .column1project {
-    background-color: #222222ae;
+    background-color: #2222225e;
+    backdrop-filter: blur(7px);
+    border: 1px solid rgba(0, 255, 255, 0.18);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    transition: 0.2s ease-in-out;
+}
+
+.column1project:hover {
+    transform: scale(1.02);
+    background-color: #2c2c2c5e;
 }
 
 .column2project {
-    background-color: #101010ae;
+    background-color: #1010105e;
+    backdrop-filter: blur(7px);
+    border: 1px solid rgba(0, 255, 255, 0.18);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    transition: 0.2s ease-in-out;
+}
+
+.column2project:hover {
+    transform: scale(1.02);
+    background-color: #1e1e1e5e;
 }
 
 .columninnertext {
-    margin: 10px;
+    margin: -5px 10px;
     padding: 1px;
 }
 
 .socials {
     margin-top: 10px;
-    background-color: #161616ae;
+    background-color: #1616165e;
     padding: 10px;
     text-align: center;
+    border: 1px solid rgba(0, 255, 255, 0.18);
+    backdrop-filter: blur(7px);
+    border-radius: 12px;
 }
 
 #socialstext {
@@ -313,4 +355,21 @@ td, th {
 
 #sociallink {
     padding: 5px;
+}
+
+#sociallink img {
+    transition: 0.2s ease-in-out;
+}
+
+#sociallink img:hover {
+    transform: scale(1.25);
+}
+
+#writtentext {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.columninnertext h5 {
+    font-weight: normal;
 }
