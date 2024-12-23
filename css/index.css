@@ -4,6 +4,10 @@
 // However, it will hopefully still work with the old CSS.
 */
 
+html, body {
+    height: 100%;
+}
+
 body {
     margin: 0px;
     padding: 0px;
@@ -19,6 +23,7 @@ body {
 
 .homepage {
     padding: 10px;
+    min-height: 100%;
 }
 
 .logo {
@@ -172,8 +177,6 @@ table {
     height: 150px;
     text-align: left;
     color: #00ffff;
-    border: #00ffff;
-    border: #00ffff;
     width: 100%;
     font-size: 14px;
     border-collapse: collapse;
@@ -182,7 +185,8 @@ table {
 
 td, th {
     padding: 4px;
-    border: 1px solid #00ffff;
+    border: 1px solid rgba(0, 255, 255, 0.18);
+    background-color: #1111115e;
 }
 
 .notfound {
@@ -230,26 +234,28 @@ td, th {
 }
 
 .footer {
-    display: none;
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #111111;
+    background-color: #1111115e;
+    backdrop-filter: blur(7px);
     align-items: center;
     padding: 10px 0px;
     width: 100%;
-    position: fixed;
-    bottom: 6px;
     z-index: -5;
+    height: 50px;
 }
 
 .footer2 {
-    display: none;
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #111111;
+    background-color: #1111115e;
+    backdrop-filter: blur(7px);
     align-items: center;
     padding: 10px 0px;
     width: 100%;
+    height: 50px;
 }
 
 .footer2 a {
@@ -274,6 +280,10 @@ td, th {
 .galleryitem:hover {
     transform: scale(1.05);
     background-color: #2222225e;
+}
+
+#counter {
+    padding-right: 10px;
 }
 
 .gallerycontainer {
