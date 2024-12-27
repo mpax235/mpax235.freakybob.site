@@ -26,6 +26,10 @@ body {
     min-height: 100%;
 }
 
+.notfound {
+    min-height: 100%;
+}
+
 .logo {
     color: #00ffff;
 }
