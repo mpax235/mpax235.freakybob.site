@@ -19,7 +19,7 @@ function updateCountdown() {
     const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000).toString().padStart(2, '0');
 
     document.getElementById('time').innerHTML = `
-        <div>${days}:${hours}:${minutes}:${seconds}</div>
+        <div>${days}d ${hours}h ${minutes}m ${seconds}s</div>
     `;
 }
 
