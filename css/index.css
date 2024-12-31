@@ -34,6 +34,33 @@ body {
     color: #00ffff;
 }
 
+#time {
+    font-size: 35px;
+}
+
+#happynewyear {
+    background-color: #ff000015;
+    backdrop-filter: blur(7px);
+    color: #ff0000;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 0, 0, 0.18);
+    animation: newyear 1.5s ease-in-out infinite;
+}
+
+@keyframes newyear {
+    0% {
+        color: #ff0000;
+    }
+
+    50% {
+        color: #ff000000;
+    }
+
+    100% {
+        color: #ff0000;
+    }
+}
+
 button {
     background-color: #161616;
     border: none;
@@ -388,3 +415,4 @@ td, th {
 .columninnertext h5 {
     font-weight: normal;
 }
+
