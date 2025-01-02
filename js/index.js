@@ -2,7 +2,7 @@
 //    window.location.href = "https://mpax235.github.io/maintenance.html";
 //}, 0);
 
-function updateCountdown() {
+/*function updateCountdown() {
     const now = new Date();
     const targetDate = new Date('January 1, 2025 00:00:00');
     const timeDifference = targetDate - now;
@@ -24,4 +24,4 @@ function updateCountdown() {
 }
 
 const interval = setInterval(updateCountdown, 1000);
-updateCountdown();
+updateCountdown();*/
