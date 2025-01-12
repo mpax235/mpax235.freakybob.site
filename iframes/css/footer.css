@@ -1,0 +1,31 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Montserrat';
+}
+
+a {
+    color: #00ffff;
+    text-decoration: none;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1111115e;
+    backdrop-filter: blur(7px);
+    align-items: center;
+    padding: 10px 0px;
+    width: 100%;
+    z-index: -5;
+    height: 50px;
+}
+
+.footer a {
+    margin-left: 15px;
+}
+
+#counter {
+    padding-right: 10px;
+}
