@@ -1,8 +1,17 @@
 /*
 // This is the new CSS used after the transparency update.
-// As a result of the new CSS, the 3DS no longer loads this website.
-// However, it will hopefully still work with the old CSS.
+// As a result of the new CSS, the 3DS will still load the website, albeit slowly.
+// However, it will still work with the old CSS.
+// 2024-2025 mpax235.
 */
+
+/*
+//////////////////
+// CORE
+//////////////////
+*/
+
+/* MAIN CORE */
 
 html, body {
     height: 100%;
@@ -21,89 +30,62 @@ body {
     background-position: center;
 }
 
-.homepage {
-    padding: 10px;
-    min-height: 100%;
-}
+/* SCROLLBAR */
 
-.notfound {
-    min-height: 100%;
-}
-
-.logo {
-    color: #00ffff;
-}
-
-#time {
-    font-size: 35px;
-}
-
-#happynewyear {
-    background-color: #ff000015;
+::-webkit-scrollbar {
+    background-color: #000000;
     backdrop-filter: blur(7px);
-    color: #ff0000;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 0, 0, 0.18);
-    animation: newyear 1.5s ease-in-out infinite;
 }
 
-@keyframes newyear {
-    0% {
-        color: #ff0000;
-    }
-
-    50% {
-        color: #ff000000;
-    }
-
-    100% {
-        color: #ff0000;
-    }
-}
-
-button {
-    background-color: #1616165e;
+::-webkit-scrollbar-thumb {
+    background-color: #0063635e;
     border: 1px solid rgba(0, 255, 255, 0.18);
-    padding: 10px 15px;
-    color: #00ffff;
-    font-family: 'Montserrat';
-    text-decoration: none;
-    text-align: center;
     border-radius: 12px;
-    transition: 0.2s ease-in-out;
     backdrop-filter: blur(7px);
 }
 
-button:hover {
-    background-color: #00ffff5e;
-    transform: scale(1.1);
-    color: #000000;
+::-webkit-scrollbar-thumb:hover {
+    background-color: #0083835e;
 }
 
-input {
-    background-color: #161616;
-    color: #00ffff;
-    border: none;
-    padding: 5px 10px;
-    font-family: 'Montserrat';
-    text-decoration: none;
-    text-align: left;
-    border-radius: 12px;
+::-webkit-scrollbar-track {
+    background: #0000005e;
 }
 
-.test-animation {
-    display: block;
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    border: 2px solid #00ffff;
-    border-radius: 25px;
+::-webkit-scrollbar-button {
+    background-color: #0063635e;
+    border: 1px solid rgba(0, 255, 255, 0.18);
 }
 
-a {
-    color: #00ffff;
-    text-decoration: none;
+::-webkit-scrollbar-button:hover {
+    background-color: #0083835e;
 }
+
+::-webkit-scrollbar-button:single-button:vertical:decrement {
+    background-image: url('../sources/scrollbar/scrollbar_up_arrow.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+::-webkit-scrollbar-button:single-button:vertical:increment {
+    background-image: url('../sources/scrollbar/scrollbar_down_arrow.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+::-webkit-scrollbar-button:single-button:horizontal:decrement,
+::-webkit-scrollbar-button:single-button:horizontal:increment {
+    display: none;
+}
+
+
+/*
+//////////////////
+// HEADER
+//////////////////
+*/
+
+/* NAVIGATION BAR */
 
 .navigationbar {
     list-style-type: none;
@@ -140,13 +122,33 @@ a {
     transition: 0.2s ease-in-out;
 }
 
+@media (min-width: 600px) {
+    .navigationbar {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .navigationbar li {
+        font-size: 14px;
+        text-align: left;
+    }
+}
+
+/* MAIN HEADER */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1111115e;
+    backdrop-filter: blur(7px);
+    align-items: center;
+    justify-content: center;
+}
+
 .active {
     background-color: #00ffff;
     color: #000000;
-}
-
-.homepage {
-    margin: 5px 0px;
 }
 
 #logo {
@@ -156,14 +158,99 @@ a {
     display: flex;
 }
 
+@media (min-width: 600px) {
+    .header {
+        justify-content: left !important;
+    }
+}
+
+
+/*
+//////////////////
+// FOOTER
+//////////////////
+*/
+
+#footer-iframe {
+    border: none;
+    height: 70px;
+    width: 100%;
+    vertical-align: bottom;
+}
+
+
+/*
+//////////////////
+// MAIN
+//////////////////
+*/
+
+/* CORE ELEMENTS */
+
+button {
+    background-color: #1616165e;
+    border: 1px solid rgba(0, 255, 255, 0.18);
+    padding: 10px 15px;
+    color: #00ffff;
+    font-family: 'Montserrat';
+    text-decoration: none;
+    text-align: center;
+    border-radius: 12px;
+    transition: 0.2s ease-in-out;
+    backdrop-filter: blur(7px);
+}
+
+button:hover {
+    background-color: #00ffff5e;
+    transform: scale(1.1);
+    color: #000000;
+}
+
+input {
+    background-color: #161616;
+    color: #00ffff;
+    border: none;
+    padding: 5px 10px;
+    font-family: 'Montserrat';
+    text-decoration: none;
+    text-align: left;
+    border-radius: 12px;
+}
+
 #github {
     height: 40px;
 }
 
-.homepage button:hover {
-    cursor: pointer;
-    background-color: #00ffff;
-    color: #000000;
+#happynewyear {
+    background-color: #ff000015;
+    backdrop-filter: blur(7px);
+    color: #ff0000;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 0, 0, 0.18);
+    animation: newyear 1.5s ease-in-out infinite;
+}
+
+#time {
+    font-size: 35px;
+}
+
+@keyframes newyear {
+    0% {
+        color: #ff0000;
+    }
+
+    50% {
+        color: #ff000000;
+    }
+
+    100% {
+        color: #ff0000;
+    }
+}
+
+a {
+    color: #00ffff;
+    text-decoration: none;
 }
 
 p {
@@ -175,22 +262,8 @@ p {
 }
 
 @media (min-width: 600px) {
-    .navigationbar {
-        flex-direction: row;
-        justify-content: center;
-    }
-
-    .navigationbar li {
-        font-size: 14px;
-        text-align: left;
-    }
-
     .gallerystuff {
         display: flex;
-    }
-
-    .header {
-        justify-content: left !important;
     }
 }
 
@@ -218,12 +291,12 @@ td, th {
     background-color: #1111115e;
 }
 
-.notfound {
-    text-align: center;
-}
-
 .code {
     font-family: "Source Code Pro", monospace;
+    background-color: #1616165e;
+    backdrop-filter: blur(7px);
+    border-radius: 12px;
+    padding: 5px;
 }
 
 .social {
@@ -240,16 +313,6 @@ td, th {
     font-size: 11px;
 }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #1111115e;
-    backdrop-filter: blur(7px);
-    align-items: center;
-    justify-content: center;
-}
-
 #errortext {
     color: red;
 }
@@ -260,39 +323,6 @@ td, th {
 
 .invisible {
     height: 10px;
-}
-
-.footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #1111115e;
-    backdrop-filter: blur(7px);
-    align-items: center;
-    padding: 10px 0px;
-    width: 100%;
-    z-index: -5;
-    height: 50px;
-}
-
-.footer2 {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #1111115e;
-    backdrop-filter: blur(7px);
-    align-items: center;
-    padding: 10px 0px;
-    width: 100%;
-    height: 50px;
-}
-
-.footer2 a {
-    margin-left: 15px;
-}
-
-.footer a {
-    margin-left: 15px;
 }
 
 .galleryitem {
@@ -414,9 +444,15 @@ td, th {
     font-weight: normal;
 }
 
-#footer-iframe {
-    border: none;
-    height: 70px;
-    width: 100%;
-    vertical-align: bottom;
+/* PAGES */
+
+.homepage {
+    padding: 10px;
+    min-height: 100%;
+    margin: 5px 0px;
+}
+
+.notfound {
+    min-height: 100%;
+    text-align: center;
 }
