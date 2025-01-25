@@ -22,7 +22,7 @@ body {
     padding: 0px;
     font-family: 'Montserrat';
     background-color: #000000;
-    background-image: url('../sources/websitebackground.png');
+    background-image: url('../images/websitebackground.png');
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%;
@@ -62,13 +62,13 @@ body {
 }
 
 ::-webkit-scrollbar-button:single-button:vertical:decrement {
-    background-image: url('../sources/scrollbar/scrollbar_up_arrow.png');
+    background-image: url('../images/scrollbar/scrollbar_up_arrow.png');
     background-size: contain;
     background-repeat: no-repeat;
 }
 
 ::-webkit-scrollbar-button:single-button:vertical:increment {
-    background-image: url('../sources/scrollbar/scrollbar_down_arrow.png');
+    background-image: url('../images/scrollbar/scrollbar_down_arrow.png');
     background-size: contain;
     background-repeat: no-repeat;
 }
