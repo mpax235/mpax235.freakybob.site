@@ -1,9 +1,7 @@
 <div class="header">
-  <h3 align="center">The</h3>
   <p align="center">
     <img style="height: 64px" src="assets/images/thempax235website.png">
   </p>
-  <h3 align="center">Website</h3>
 </div>
 <hr>
 The official website of mpax235!

@@ -265,6 +265,10 @@ p {
     .gallerystuff {
         display: flex;
     }
+
+    .stats {
+        display: flex !important;
+    }
 }
 
 p {
@@ -329,10 +333,10 @@ td, th {
     background-color: #1111115e;
     width: 231px;
     margin: 5px;
+    display: flex;
     backdrop-filter: blur(7px);
     border: 1px solid rgba(0, 255, 255, 0.18);
     border-radius: 12px;
-    display: flex;
     transition: 0.2s ease-in-out;
 }
 
@@ -363,7 +367,7 @@ td, th {
 
 .stats {
     text-align: center;
-    display: flex;
+    display: block;
     justify-content: center;
     gap: 20px;
 }
@@ -442,6 +446,18 @@ td, th {
 
 .columninnertext h5 {
     font-weight: normal;
+}
+
+.createdon {
+    padding-bottom: 10px;
+}
+
+.publishedon {
+    padding-bottom: 10px;
+}
+
+.visits {
+    padding-bottom: 10px;
 }
 
 /* PAGES */
