@@ -1,0 +1,99 @@
+body {
+    margin: 10px;
+    padding: 0px;
+    font-family: 'Montserrat';
+    background-color: #000000;
+}
+
+h1, h2, h3, h4, h5, h6, table {
+    color: #00ffff;
+    text-align: center;
+}
+
+p {
+    color: #00ffff;
+}
+
+p {
+    margin: 0px;
+    text-align: center;
+}
+
+a {
+    color: #00ffff;
+    text-decoration: none;
+    text-align: center;
+}
+
+.homepage {
+    margin: 5px 0px;
+}
+
+a {
+    text-align: center;
+}
+
+.browserscontainer {
+    display: flex;
+    justify-content: center;
+}
+
+.browsers {
+    padding-top: 20px;
+    display: block;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.browseritem {
+    width: 220px;
+    padding-top: 10px;
+    justify-content: center;
+    align-items: center;
+    background-color: #161616;
+    border: 1px solid #00ffff;
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    transition: 0.2s ease-in-out;
+}
+
+.owners {
+    display: block;
+    text-align: center;
+}
+
+#browserlogo {
+    width: 70px;
+    height: 70px;
+    padding-bottom: 10px;
+}
+
+@media (min-width: 600px) {
+    .browsers {
+        display: flex;
+    }
+
+    .owners {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.browseritem:hover {
+    background-color: #222222;
+    transform: scale(1.05);
+}
+
+#browsername {
+    font-size: 20px;
+    padding-bottom: 10px;
+    display: inline;
+}
+
+.owners a {
+    text-decoration: underline;
+}
