@@ -217,6 +217,41 @@ input {
     border-radius: 12px;
 }
 
+a {
+    color: #00ffff;
+    text-decoration: none;
+}
+
+p {
+    color: #00ffff;
+}
+
+p {
+    margin: 0px;
+}
+
+h1, h2, h3, h4, h5, h6, table {
+    color: #00ffff;
+}
+
+table {
+    height: 150px;
+    text-align: left;
+    color: #00ffff;
+    width: 100%;
+    font-size: 14px;
+    border-collapse: collapse;
+    backdrop-filter: blur(7px);
+}
+
+td, th {
+    padding: 4px;
+    border: 1px solid rgba(0, 255, 255, 0.18);
+    background-color: #1111115e;
+}
+
+/* IDS */
+
 #github {
     height: 40px;
 }
@@ -248,14 +283,48 @@ input {
     }
 }
 
-a {
-    color: #00ffff;
-    text-decoration: none;
+#smalltext {
+    font-size: 11px;
 }
 
-p {
-    color: #00ffff;
+#errortext {
+    color: red;
 }
+
+#errorred {
+    color: red;
+}
+
+#counter {
+    padding-right: 10px;
+}
+
+#createddate {
+    font-size: 24px;
+}
+
+#sociallink {
+    padding: 5px;
+}
+
+#socialstext {
+    font-size: 24px;
+}
+
+#sociallink img {
+    transition: 0.2s ease-in-out;
+}
+
+#sociallink img:hover {
+    transform: scale(1.25);
+}
+
+#writtentext {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* CLASSES */
 
 .gallerystuff {
     display: block;
@@ -269,30 +338,6 @@ p {
     .stats {
         display: flex !important;
     }
-}
-
-p {
-    margin: 0px;
-}
-
-h1, h2, h3, h4, h5, h6, table {
-    color: #00ffff;
-}
-
-table {
-    height: 150px;
-    text-align: left;
-    color: #00ffff;
-    width: 100%;
-    font-size: 14px;
-    border-collapse: collapse;
-    backdrop-filter: blur(7px);
-}
-
-td, th {
-    padding: 4px;
-    border: 1px solid rgba(0, 255, 255, 0.18);
-    background-color: #1111115e;
 }
 
 .code {
@@ -313,18 +358,6 @@ td, th {
     padding: 5px;
 }
 
-#smalltext {
-    font-size: 11px;
-}
-
-#errortext {
-    color: red;
-}
-
-#errorred {
-    color: red;
-}
-
 .invisible {
     height: 10px;
 }
@@ -343,10 +376,6 @@ td, th {
 .galleryitem:hover {
     transform: scale(1.05);
     background-color: #2222225e;
-}
-
-#counter {
-    padding-right: 10px;
 }
 
 .gallerycontainer {
@@ -370,10 +399,6 @@ td, th {
     display: block;
     justify-content: center;
     gap: 20px;
-}
-
-#createddate {
-    font-size: 24px;
 }
 
 .column1project {
@@ -419,29 +444,8 @@ td, th {
     border-radius: 12px;
 }
 
-#socialstext {
-    font-size: 24px;
-}
-
 .socialslinks {
     margin-top: 10px;
-}
-
-#sociallink {
-    padding: 5px;
-}
-
-#sociallink img {
-    transition: 0.2s ease-in-out;
-}
-
-#sociallink img:hover {
-    transform: scale(1.25);
-}
-
-#writtentext {
-    font-size: 16px;
-    font-weight: 500;
 }
 
 .columninnertext h5 {
