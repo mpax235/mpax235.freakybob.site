@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="The official website of mpax235">
+        <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'self' https://www.twitch.tv https://mpax235.github.io;">
         <meta content="mpax235" property="og:title" />
         <meta content="The official website of mpax235!" property="og:description" />
         <meta content="https://mpax235.github.io" property="og:url" />
@@ -34,32 +35,22 @@
         <!--header end-->
 
         <div class="homepage">
-            <div class="stats">
-                <div class="createdon">
-                    <a>Site created on</a>
-                    <br>
-                    <a id="createddate">July 16th, 2024</a>
-                </div>
-                <div class="publishedon">
-                    <a>Site published on</a>
-                    <br>
-                    <a id="createddate">September 1st, 2024</a>
-                </div>
-                <div class="visits">
-                    <a>Visits since November 16th, 2024</a>
-                    <br>
-                    <div align='center'>
-                        <a id="createddate" href='https://www.free-website-hit-counter.com'>
-                            <img src='https://www.free-website-hit-counter.com/zc.php?d=9&id=1497&s=8' border='0' alt='Free Website Hit Counter'>
-                        </a>
-                        <br>
-                    </div>
+            <div class="twitchpage">
+                <h1 id="twitchpagetitle">Live from mpax235 on Twitch</h1>
+                <div class="twitchcontainer">
+                    <div id="twitch-embed"></div>
+                    <iframe id="twitch-chat-embed"
+                        src="https://www.twitch.tv/embed/mpax235/chat?parent=mpax235.github.io"
+                        height="500"
+                        width="350">
+                    </iframe>
                 </div>
             </div>
         </div>
-
+        <script src="https://player.twitch.tv/js/embed/v1.js"></script>
         <iframe id="footer-iframe" src="assets/iframes/footer2.html"></iframe>
         <script src="assets/js/browsercheck.js"></script>
+        <script src="assets/js/twitch.js"></script>
         <!--<script src="js/index.js"></script>-->
     </body>
 </html>

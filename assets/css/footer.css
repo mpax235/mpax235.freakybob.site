@@ -1,0 +1,12 @@
+/*
+//////////////////
+// FOOTER
+//////////////////
+*/
+
+#footer-iframe {
+    border: none;
+    height: 70px;
+    width: 100%;
+    vertical-align: bottom;
+}

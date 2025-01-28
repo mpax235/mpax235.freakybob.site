@@ -1,0 +1,72 @@
+/*
+//////////////////
+// CORE
+//////////////////
+*/
+
+/* MAIN CORE */
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Montserrat';
+    background-color: #000000;
+    background-image: url('../images/websitebackground.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar {
+    background-color: #000000;
+    backdrop-filter: blur(7px);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #0063635e;
+    border: 1px solid rgba(0, 255, 255, 0.18);
+    border-radius: 12px;
+    backdrop-filter: blur(7px);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #0083835e;
+}
+
+::-webkit-scrollbar-track {
+    background: #0000005e;
+}
+
+::-webkit-scrollbar-button {
+    background-color: #0063635e;
+    border: 1px solid rgba(0, 255, 255, 0.18);
+}
+
+::-webkit-scrollbar-button:hover {
+    background-color: #0083835e;
+}
+
+::-webkit-scrollbar-button:single-button:vertical:decrement {
+    background-image: url('../images/scrollbar/scrollbar_up_arrow.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+::-webkit-scrollbar-button:single-button:vertical:increment {
+    background-image: url('../images/scrollbar/scrollbar_down_arrow.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+::-webkit-scrollbar-button:single-button:horizontal:decrement,
+::-webkit-scrollbar-button:single-button:horizontal:increment {
+    display: none;
+}

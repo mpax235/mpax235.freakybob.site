@@ -7,7 +7,10 @@
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>mpax235 - Blog</title>
-        <link rel="stylesheet" href="../assets/css/index.css">
+        <link rel="stylesheet" href="../assets/css/core.css">
+        <link rel="stylesheet" href="../assets/css/header.css">
+        <link rel="stylesheet" href="../assets/css/footer.css">
+        <link rel="stylesheet" href="../assets/css/main.css">
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
         <link rel="icon" href="../assets/images/favicon.gif">
         <!--<script src="../js/index.js"></script>-->
@@ -37,15 +40,15 @@
     </head>
     <body>
         <!--header insert-->
-        <div class="header">
-            <a href="../index.html"><img id="logo" alt="mpax235" src="../assets/images/logo.png"></a>
-        </div>
+        <iframe id="header-iframe" src="../assets/iframes/header.html"></iframe>
         <nav>
             <ul class="navigationbar">
                 <li><a href="../index.html">Home</a></li>
                 <li><a class="active" href="../blog.html">Blog</a></li>
                 <li><a href="../projects.html">Projects</a></li>
                 <li><a href="../stats.html">Stats</a></li>
+                <li><a href="../live.html">Live</a></li>
+                <li><a href="../versions.html">Versions</a></li>
                 <li><a href="">Wiki (Does not Work)</a></li>
             </ul>
         </nav>
@@ -87,7 +90,7 @@
             <a>5 blocks. More than the speed of 4.3 blocks for the Player.</a>
             <br></br>
             <a>Now at 8,388,608 blocks, it is 8,388,608 blocks away before the Game's block rendering breaks.</a>
-            <a>Entities less than 1 block will fall through the Blocks (includes Players). Entities will also fall through the Void barrier which is not what they are supposed to do. The only mobs that can stand on the terrain in this point are Minecarts (if rails are placed correctly), Ravagers, Boats, Spiders (normal only), Iron Golems, Shulkers, Polar Bears and Horses (grown only).</a>
+            <a>Entities less than 1 block will fall through the Blocks (includes Players). Entities will also fall through the Void barrier which is not what they are supposed to do. The only mobs that can stand on the terrain in this point are Minecarts (if rails are placed correctly), Ravagers, Boats, Spiders (normal only), Iron Golems, Shulkers, Polar Bears, and Horses (grown only).</a>
             <a>Badlands generation also breaks by Terracotta Strata being distorted and more blocky.</a>
             <h2>Game-breaking effects</h2>
             <a>16,777,216 blocks marks the start of the Stripe Lands, every second block is now considered "Invalid", the camera breaks</a>
@@ -180,7 +183,7 @@
                         <td>The coordinates of every entity are slices of 2 blocks.<br>
                         The minimum speed is now 5 blocks per second.<br>
                         It is impossible to walk on here as you'll fall through the World.
-                        <br>Ender Pearls, Chorus Fruit, Elytra with Fireworks, Horseback, Boats, Riptide Trident and Creative flying are now only possible movements.</td>
+                        <br>Ender Pearls, Chorus Fruit, Elytra with Fireworks, Horseback, Boats, Riptide Trident, and Creative flying are now only possible movements.</td>
                     </tr>
                     <tr>
                         <td>X/Z 8,388,608 (2^23)</td>
