@@ -1,0 +1,177 @@
+body {
+    margin: 10px;
+    padding: 0px;
+    font-family: 'Montserrat';
+    background-color: #000000;
+}
+
+.logo {
+    text-align: center;
+    color: #00ffff;
+}
+
+button {
+    background-color: #161616;
+    border: none;
+    padding: 5px 10px;
+    color: #00ffff;
+    font-family: 'Montserrat';
+    text-decoration: none;
+    text-align: center;
+    border-radius: 8px;
+}
+
+button:hover {
+    background-color: #00ffff;
+    border: none;
+    padding: 5px 10px;
+    color: #000000;
+    font-family: 'Montserrat';
+    text-decoration: none;
+    text-align: center;
+}
+
+input {
+    background-color: #161616;
+    color: #00ffff;
+    border: none;
+    padding: 5px 10px;
+    font-family: 'Montserrat';
+    text-decoration: none;
+    text-align: left;
+}
+
+.test-animation {
+    display: block;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border: 2px solid #00ffff;
+    border-radius: 25px;
+}
+
+a {
+    color: #00ffff;
+    text-decoration: none;
+}
+
+.navigationbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #161616;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+}
+
+.navigationbar li {
+    border-right: 1px solid #00ffff;
+    text-align: center;
+}
+
+.navigationbar li:last-child {
+    border-right: none;
+}
+
+.navigationbar li a {
+    display: block;
+    padding: 12px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 1px;
+}
+
+.navigationbar li a:hover:not(.active) {
+    background-color: #00ffff;
+    color: #000000;
+}
+
+.active {
+    background-color: #00ffff;
+    color: #000000;
+}
+
+.homepage {
+    margin: 5px 0px;
+}
+
+#logo {
+    height: 100px;
+    margin: 0 auto;
+    display: block;
+}
+
+#github {
+    height: 40px;
+    margin: 0 auto;
+    display: inline-block;
+    padding: 5px;
+}
+
+.homepage button:hover {
+    cursor: pointer;
+    background-color: #00ffff;
+    color: #000000;
+}
+
+p {
+    color: #00ffff;
+}
+
+@media (min-width: 600px) {
+    .navigationbar {
+        flex-direction: row;
+    }
+
+    .navigationbar li {
+        font-size: 14px;
+        text-align: left;
+    }
+}
+
+p {
+    margin: 0px;
+}
+
+h1, h2, h3, h4, h5, h6, table {
+    color: #00ffff;
+}
+
+table {
+    height: 150px;
+    text-align: left;
+    color: #00ffff;
+    border: #00ffff;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 4px;
+    border: 1px solid #00ffff;
+}
+
+.notfound {
+    text-align: center;
+}
+
+.code {
+    font-family: "Source Code Pro", monospace;
+}
+
+.social {
+    background-color: #161616;
+    margin: 10px 0px;
+    border-radius: 16px;
+}
+
+.social a {
+    padding: 5px;
+}
+
+#smalltext {
+    font-size: 11px;
+}

@@ -155,12 +155,19 @@ td, th {
 }
 
 #twitch-embed {
-    width: 100% !important;
+    width: 100%;
     padding-right: 10px;
 }
 
 #twitch-chat-embed {
     border: none;
+    width: 100%;
+}
+
+@media (min-width: 600px) {
+    #twitch-chat-embed {
+        width: 350px;
+    }
 }
 
 /* CLASSES */
@@ -304,7 +311,20 @@ td, th {
 }
 
 .twitchcontainer {
+    display: block;
+}
+
+.versions {
     display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+@media (min-width: 600px) {
+    .twitchcontainer {
+        display: flex;
+    }
 }
 
 /* PAGES */

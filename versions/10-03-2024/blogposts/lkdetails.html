@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>mpax235 - Blog</title>
+        <link rel="stylesheet" href="../css/index.css">
+        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+        <link rel="icon" href="../sources/favicon.gif">
+        <style>
+            .code {
+                font-family: "Source Code Pro", monospace;
+            }
+        </style>
+    </head>
+    <body>
+        <a href="../index.html"><img id="logo" alt="mpax235" src="../sources/logo.png"></a>
+        <div class="social" style="text-align: center;">
+            <a href="https://github.com/mpax235"><img id="github" alt="github" src="../sources/github.png"></a>
+        </div>
+        <nav>
+            <ul class="navigationbar">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="">Devices</a></li>
+                <li><a class="active" href="../blog.html">Blog</a></li>
+                <li><a href="">Downloads</a></li>
+                <li><a href="../projects.html">Projects</a></li>
+                <li style="float:right"><a href="">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="homepage">
+            <!--### BLOG POST HEADER GOES HERE ####-->
+            <h1>MediaTek Details: Little Kernel</h1>
+            <!--###################################-->
+            <!--### BLOG POST CONTENT GOES HERE ###-->
+            <!--###################################-->
+            <h4>NOTE: The information was gathered through reverse engineering.</h4>
+            <a>After the Preloader finishes initalizing the hardware, it loads the LK image of the eMMC/NAND flash into the SDRAM and starts executing it.</a>
+            <a>This would be the main bootloader but on MediaTek devices, the Preloader has to load it first.</a>
+            <a>This is response for loading the Linux Kernel to load Android and offers some features such as</a>
+            <a>entering Fastboot Mode, entering Meta Mode if supported, entering Factory Mode if supported, unlocking the Bootloader to load a custom Kernel if supported and read/write parts of the flash</a>
+            <a>via USB.</a>
+            <h2>The overview</h2>
+            <a>Usually when MediaTek ships a source package to a manufacturer, it also contains the entire</a>
+            <a>source code for the Little Kernel bootloader. It is not easy to come up with a generic description of what the bootloader does</a>
+            <a>because the manufacturer can modify it, so it does different things on different SoCs</a>
+            <a>and Devices.</a>
+            <br></br>
+            <a>Based on the lightning72_wet_l source code for the MT6572 SoC, the bootloader is made up of the following parts:</a>
+            <br></br>
+            <p>&#9679; SoC-specific stuff in mediatek/platform/${platform}/lk, this contains the core and init code.</p>
+            <a>&#9679; Device-specific stuff in mediatek/custom/${device}/lk, this contains the Device-specific code.</a>
+            <br></br>
+            <a>Now it's time to dive deeper!</a>
+            <h3>Blog post is W.I.P, come back later!</h3>
+        </div>
+    </body>
+    <script src="../../../assets/js/browsercheck.js"></script>
+</html>

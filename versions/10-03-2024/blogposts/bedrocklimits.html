@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>mpax235 - Blog</title>
+        <link rel="stylesheet" href="../css/index.css">
+        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+        <link rel="icon" href="../sources/favicon.gif">
+        <style>
+            .code {
+                font-family: "Source Code Pro", monospace;
+            }
+            #code {
+                font-family: "Source Code Pro", monospace;
+            }
+            .doorvsthenafter img {
+                height: 500px;
+            }
+            .stripelands img {
+                height: 500px;
+            }
+        </style>
+    </head>
+    <body>
+        <a href="../index.html"><img id="logo" alt="mpax235" src="../sources/logo.png"></a>
+        <div class="social" style="text-align: center;">
+            <a href="https://github.com/mpax235"><img id="github" alt="github" src="../sources/github.png"></a>
+        </div>
+        <nav>
+            <ul class="navigationbar">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="">Devices</a></li>
+                <li><a class="active" href="../blog.html">Blog</a></li>
+                <li><a href="">Downloads</a></li>
+                <li><a href="../projects.html">Projects</a></li>
+                <li style="float:right"><a href="">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="homepage">
+            <!--### BLOG POST HEADER GOES HERE ####-->
+            <h1>Exploring the limits of Minecraft: Bedrock Edition</h1>
+            <!--###################################-->
+            <!--### BLOG POST CONTENT GOES HERE ###-->
+            <!--###################################-->
+            <h4>NOTE: The information was gathered by teleporting to far distances in Minecraft: Bedrock Edition.</h4>
+            <a>While you may think Minecraft is really infinite, it is but due to Computer limitations, it stops at the 32-Bit Floating Point limit.</a>
+            <br></br>
+            <a>The distance effects of Bedrock Edition also happens on Java Edition but much far far away due to it using</a>
+            <a>64-Bit values instead.</a>
+            <br></br>
+            <a>So now its time to explore the limits!</a>
+            <h2>Exploring the limits</h2>
+            <a>Usually the first limit happens 16,384 blocks away from origin but I am unable to notice the minor jittering,</a>
+            <a>so I went to 32,768 blocks and noticed that it was a little bit jitterly.</a>
+            <br></br>
+            <a>Then I noticed at 65,536 blocks, that when I sneak in and out, it was jitterly too but a little bit.</a>
+            <h3>Medium effects</h3>
+            <a>I decided to go to 131,072 blocks, it was more jitterly and it turns out that each power makes more jitter from this point.</a>
+            <a>262,144 blocks is also jitterly so I went to 524,288 blocks and the jitter effect was more visible.</a>
+            </div>
+            <h3>Major effects</h3>
+            <a>When I went to 1,048,576 blocks, it got even more jitterly so much that the Player can actually</a>
+            <a>walk a bit faster now. When I also placed a Lantern, it was stretched but when I placed a Door, it was normal.</a>
+            <br></br>
+            <a>But when I went to 2,097,152 blocks, I can no longer walk while sneaking, also the Door was now wider on the side.</a>
+            <br></br>
+            <div class="doorvsthenafter">
+                <img src="../sources/blog/bedrocklimits/doorvsthenafter.png">
+            </div>
+            <a id="smalltext">Door before 2,097,152 blocks (right) and after 2,097,152 blocks (left)</a>
+            <br></br>
+            <a>At 4,194,304 blocks, your journey ends here on Survival if you don't have Ender Pearls, Elytra with Fireworks, Riptide Trident, Horseback, Boats or Chorus Fruit as the minimum speed is now changed to</a>
+            <a>5 blocks. More than the speed of 4.3 blocks for the Player.</a>
+            <br></br>
+            <a>Now at 8,388,608 blocks, it is 8,388,608 blocks away before the Game's block rendering breaks.</a>
+            <a>Entities less than 1 block will fall through the Blocks (includes Players). Entities will also fall through the Void barrier which is not what they are supposed to do. The only mobs that can stand on the terrain in this point are Minecarts (if rails are placed correctly), Ravagers, Boats, Spiders (normal only), Iron Golems, Shulkers, Polar Bears and Horses (grown only).</a>
+            <a>Badlands generation also breaks by Terracotta Strata being distorted and more blocky.</a>
+            <h2>Game-breaking effects</h2>
+            <a>16,777,216 blocks marks the start of the Stripe Lands, every second block is now considered "Invalid", the camera breaks</a>
+            <a>if you are in those "Invalid" spaces. Sadly this is how far I can go due to the Teleportation limit of 30,000,000 blocks.</a>
+            <br></br>
+            <div class="stripelands">
+                <img src="../sources/blog/bedrocklimits/stripelands.png">
+            </div>
+            <a id="smalltext">Stripe Lands rendering beyond 16,777,216 blocks. Looks broken huh? The "Sky" color stripes are "Invalid" spaces while the "Grass" spaces are "Valid" spaces.</a>
+            <br></br>
+            <a>However it does not end here. Thanks to AntVenom's video, I figured that using PocketMine lets me teleport beyond 30,000,000 blocks.</a>
+            <a>When i tried it with
+            <a id="code">tp mpax235 33554432 100 0</a><a>, it did not work but going to 30,000,000 blocks and then running</a>
+            <a id="code">tp mpax235 ~3554432 100 0</a><a>, it actually did teleport me to 33,554,432 blocks.</a>
+            <br></br>
+            <a>At 33,554,432 blocks, horizontal rendering no longer works, only leaving the vertical rendering which makes terrain 2D on vertical sides. This is the Slice Lands.</a>
+            <a>In the Corner Slice Lands however, rendering almost stops entirely due to it being 1D. However entities still generate</a>
+            <a>in the Corner Slice Lands.</a>
+            <br></br>
+            <a>I also noticed the gaps doubled from 2 blocks to 4 blocks, this continues with each double of coordinates like changing gaps to 8 blocks, 16 blocks, 32 blocks, 64 blocks and so on.</a>
+            <br></br>
+            <a>Something strange is that when I teleported to 2^30, the terrain beyond this point was invisible due to the gaps</a>
+            <a>being 128 blocks. But when I increased the Render Distance, I can now see the terrain.</a>
+            <br></br>
+            <a>Sadly I cant show you more on whats beyond 2^31 as thats the 32-Bit Integer Limit and when I try to pass it,</a>
+            <a>the game will just crash.</a>
+            <h2>Conclusion</h2>
+            <a>Now that I showed you all the limits, I will show the table below that lists the Distance Effects.</a>
+            <br></br>
+            <table border="1">
+                <thead>
+                  <tr>
+                    <th>Coordinates</th>
+                    <th>Effects</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>X/Z 16,384 (2^14)</td>
+                        <td>
+                            The coordinates of every entity are slices of 512 blocks.<br>Minor jittering happens.</td>
+                    </tr>
+                    <tr>
+                        <td>X/Z 32,768 (2^15)</td>
+                        <td>
+                            The coordinates of every entity are slices of 256 blocks.<br>The jitter gets more noticeable when sneaking.</td>
+                    </tr>
+                    <tr>
+                        <td>X/Z 65,536 (2^16)</td>
+                        <td>The coordinates of every entity are slices of 128 blocks.<br>The jitter even gets more noticeable.</td>
+                    </tr>
+                    <tr>
+                        <td>X/Z 131,072 (2^17)</td>
+                        <td>The coordinates of every entity are slices of 64 blocks.<br>Jitter now becoes noticeable and gets worser when the coordinates doubles each power.</td>
+                    </tr>
+                    <tr>
+                        <td>X/Z 262,144 (2^18)</td>
+                        <td>The coordinates of every entity are slices of 32 blocks.</td>
+                    </tr>
+                    <tr>
+                        <td>X/Z 524,288 (2^19)</td>
+                        <td>The coordinates of every entity are slices of 16 blocks.</td>
+                    </tr>
+                    <tr>
+                        <td>X/Z 1,048,576 (2^20)</td>
+                        <td>The coordinates of every entity are slices of 8 blocks.<br>
+                        Lanterns gets stretched.<br>
+                        The player is kinda more faster now.</td>
+                    </tr>
+                    <tr>
+                        <td>X/Z 2,097,152 (2^21)</td>
+                        <td>The coordinates of every entity are slices of 4 blocks.
+                        <br>The minimum speed is now 2.5 blocks per second. (maybe)
+                        <br>It is no longer possible to walk while sneaking from this point.<br>
+                    Doors and Trapdoors gets stretched.</td>
+                    </tr>
+                    <tr>
+                        <td>X/Z 4,194,304 (2^22)</td>
+                        <td>The coordinates of every entity are slices of 2 blocks.<br>
+                        The minimum speed is now 5 blocks per second.<br>
+                        It is impossible to walk on here as you'll fall through the World.
+                        <br>Ender Pearls, Chorus Fruit, Elytra with Fireworks, Horseback, Boats, Riptide Trident and Creative flying are now only possible movements.</td>
+                    </tr>
+                    <tr>
+                        <td>X/Z 8,388,608 (2^23)</td>
+                        <td>The coordinates of every entity are integers of 1 blocks.<br>
+                        The minimum speed is now 10 blocks per second.
+                        <br>Most entities less than 1 block will now fall through the World (including Players).
+                        <br>The only mobs that can stand on here is Ravagers, Boats, Spiders (non-cave), Iron Golems, Shulkers, Polar Bears, Horses (grown only) and Mnecrafts (if placed correctly).<br>
+                        Large Slimes and Large Magma Cubes can even stand on here.</td>
+                    </tr>
+                    <tr>
+                        <td>X/Z 16,777,216 (2^24)</td>
+                        <td>The coordinates of every entity are multiples of 2.<br>
+                        The minimum speed is now 20 blocks per second.
+                        <br>Every second block is now "Invalid", the camera breaks in those "Invalid" spaces but not on the "Valid" spaces.
+                        <br>This does not affect the way maps are generated.
+                        <br>The blocks are stretched to be 2 blocks wide.</td>
+                    </tr>
+                    <tr>
+                        <td>X/Z 33,554,432 (2^25)<br>
+                        <td>The coordinates of every entity are multiples of 4.
+                        <br>The minimum speed is now 40 blocks per second.
+                        <br>The gaps changes to be 4 blocks wide.
+                        <br>Horizontal rendering stops completely, leaving only vertical rendering, making terrain look like 2D.
+                        <br>Block rendering is 1D in the Corner Slice Lands so it almost entirely stops.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>X/Z 67,108,864 (2^26)</td>
+                        <td>The coordinates of every entity are multiples of 8.
+                        <br>The minimum speed is now 80 blocks per second.
+                        <br>The gaps changes to be 8 blocks wide.
+                        <br>The world crashed here below 1.18 without the Caves and Cliffs experiment on.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>X/Z 134,217,728 (2^27)</td>
+                        <td>The coordinates of every entity are multiples of 16.
+                        <br>The minimum speed is now 160 blocks per second.
+                        <br>The gaps changes to be 16 blocks wide.
+                        <br>Teleportation using Chorus Fruit is no longer possible.
+                        <br>Riptide I becomes less usuable.</td>
+                    </tr>
+                    <tr>
+                        <td>X/Z 268,435,456 (2^28)</td>
+                        <td>The coordinates of every entity are multiples of 32.
+                        <br>The minimum speed is now 320 blocks per second.
+                        <br>The gaps changes to be 32 blocks wide.
+                        <br>Riptide I no longer works.
+                        <br>Riptide II becomes less usuable.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>X/Z 536,870,912 (2^29)</td>
+                        <td>The coordinates of every entity are mutliples of 64.
+                        <br>The minimum speed is now 640 blocks per second.
+                        <br>The gaps changes to be 64 blocks wide.
+                        <br>Some low and mid-end devices here crash at this point since beta 1.17.30.24. Only high-end devices (like the iPhone 13 and iPad 7th Generation) can survive beyond this point.
+                        <br>Riptide III no longer works. Making vanilla movement impossible.
+                        <br>In versions older than 1.18, frustum culling lost its precision. Making areas directly in front of the Player invisible.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>X/Z 1,073,741,824 (2^30)</td>
+                        <td>The coordinates of every entity are multiples of 128.
+                        <br>The minimum speed is now 1280 blocks per second.
+                        <br>The gaps changes to 128 blocks wide.
+                        <br>The world is invisible with render distance of 7 chunks or less.
+                        <br>Riptide levels below IX no longer works.</td>
+                    </tr>
+                    <tr>
+                        <td>X/Z 2,147,483,647 (2^31 - 1 )</td>
+                        <td>The game crashes here due to this being the maximum value for a signed 32-bit integer in C++.</td>
+                    </tr>
+                    <tr>
+                        <td>X/Z 2,147,483,648 (2^31)</td>
+                        <td>The coordinates of every entity are multiples of 256.
+                        <br>The minimum speed is now 2560 blocks per second.
+                        <br>The gaps changes to 256 blocks wide.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>X/Z 4,294,967,296 (2^32)</td>
+                        <td>The coordinates of every entity are multiples of 512.
+                            <br>The minimum speed is now 5120 blocks per second.
+                            <br>The gaps changes to be 512 blocks wide.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>X/Z 53,905,378,846,979,747</td>
+                        <td>The Far Lands would probably start here since 2^63 / 171.103 = 53,905,378,846,979,747. But since the Source Code is unaccessible, it will be impossible to determine.<br>
+                        It is unknown if the Corner Far Lands will look like The Stack from Java Edition or keep being the Skygrid.<br>
+                        It is also unknown if the Farther, Farthest and Fartherer Lands would exist.</td>
+                    </tr>
+                    <tr>
+                        <td>X/Z 9,223,372,036,854,775,807<br>
+                        (2^63 - 1)</td>
+                        <td>The game crashes here due to this being the maximum value for a signed 64-bit integer in C++. Happens if the game was patched to use 64-bit long values.</td>
+                    </tr>
+                    <tr>
+                        <td>X/Z 9,223,372,036,854,775,808<br>
+                        (2^63)</td>
+                        <td>The coordinates of every entiry are multiples of 1,099,511,627,776.<br>
+                        The minimum speed is now 10,995,116,277,760 blocks per second.<br>
+                        The gaps changes to be 1,099,511,627,776 blocks wide.</td>
+                    </tr>
+                    <tr>
+                        <td>X/Z 3.4028237e+38<br>
+                        (2^128)
+                        <td>This is the maximum value for a signed 32-bit floating-point number in C++.
+                        <br>The coordinates will roll over to say "Infinity" since it has run out of numbers to display.
+                        <br>It is impossible to go further since this breaks rendering code in Bedrock Edition.
+                        <br>It can even display as "NaN", which again will break rendering code.
+                        <br>This will result in unpredictable behavior, such as visual glitches, invalid position and even the Game crashing.
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <br>
+        <a>More will be coming soon so stay tuned!</a>
+        <h2>Sources</h2>
+        <p>&#9679; <a href="https://www.youtube.com/watch?v=wurHDkvIKhQ">The AntVenom video that helped bypass the Teleportation limit</a></p>
+        <p>&#9679; <a href="https://minecraft.wiki/w/Bedrock_Edition_distance_effects">The Minecraft Wiki Distance Effects page</a></p>
+    </body>
+    <script src="../../../assets/js/browsercheck.js"></script>
+</html>
