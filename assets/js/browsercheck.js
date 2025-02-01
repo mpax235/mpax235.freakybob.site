@@ -11,6 +11,17 @@ function detectBrowser() {
 
     if (userAgent.includes('Waterfox/56.6.2022.11')) {
         window.location.replace('https://mpax235.github.io/unsupported.html');
+        return;
+    }
+
+    if (userAgent.includes('Nintendo 3DS')) {
+        window.location.replace('https://mpax235.github.io/unsupported.html');
+        return;
+    }
+
+    if (userAgent.includes("Nintendo WiiU")) {
+        window.location.replace('https://mpax235.github.io/unsupported.html');
+        return;
     }
 }
 
