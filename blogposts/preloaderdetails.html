@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="../assets/css/header.css">
         <link rel="stylesheet" href="../assets/css/footer.css">
         <link rel="stylesheet" href="../assets/css/main.css">
+        <link rel="stylesheet" href="../assets/css/pages.css">
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
         <link rel="icon" href="../assets/images/favicon.gif">
         <!--<script src="../js/index.js"></script>-->
@@ -21,19 +22,21 @@
         </style>
     </head>
     <body>
+        <div id="menu">
+            <div id="menucontainer">
+                <a href="#" onclick="onclosebuttonpressed()"><img id="closeicon" class="icon" src="../assets/images/icons/close.png"></a>
+                <div class="menubuttoncontainer">
+                    <a href="../index.html"><button>Home</button></a>
+                    <a href="../blog.html"><button>Blog</button></a>
+                    <a href="../projects.html"><button>Projects</button></a>
+                    <a href="../stats.html"><button>Stats</button></a>
+                    <a href="../live.html"><button>Live</button></a>
+                    <a href="../versions.html"><button>Versions</button></a>
+                </div>
+            </div>
+        </div>
         <!--header insert-->
         <iframe id="header-iframe" src="../assets/iframes/header.html"></iframe>
-        <nav>
-            <ul class="navigationbar">
-                <li><a href="../index.html">Home</a></li>
-                <li><a class="active" href="../blog.html">Blog</a></li>
-                <li><a href="../projects.html">Projects</a></li>
-                <li><a href="../stats.html">Stats</a></li>
-                <li><a href="../live.html">Live</a></li>
-                <li><a href="../versions.html">Versions</a></li>
-                <li><a href="">Wiki (Does not Work)</a></li>
-            </ul>
-        </nav>
         <!--header end-->
         
         <div class="homepage">
@@ -86,18 +89,18 @@
             <a>The Preloader also records why the system was booted:</a>
             <br></br>
             <div class="code">
-                <p>typedef enum {</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;BR_POWER_KEY = 0,</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;BR_USB,</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;BR_RTC,</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;BR_WDT,</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;BR_WDT_BY_PASS_PWK,</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;BR_TOOL_BY_PASS_PWK,</p>
-                <p>#ifdef RTC_2SEC_REBOOT_ENABLE</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;BR_2SEC_REBOOT,</p>
-                <p>#endif</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;BR_UNKNOWN</p>
-                <p>} boot_reason_t;</p>
+                <p><a id="vscodeblue">typedef enum</a> <a id="vscodeyellow">{</a></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;<a id="vscodeblue2">BR_POWER_KEY</a> = <a id="vscodelightgreen">0,</a></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;<a id="vscodeblue2">BR_USB</a>,</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;<a id="vscodeblue2">BR_RTC</a>,</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;<a id="vscodeblue2">BR_WDT</a>,</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;<a id="vscodeblue2">BR_WDT_BY_PASS_PWK</a>,</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;<a id="vscodeblue2">BR_TOOL_BY_PASS_PWK</a>,</p>
+                <p><a id="vscodepurple">#ifdef</a> <a id="vscodeblue">RTC_2SEC_REBOOT_ENABLE</a></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;<a id="vscodeblue2">BR_2SEC_REBOOT</a>,</p>
+                <p id="vscodepurple">#endif</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;<a id="vscodeblue2">BR_UNKNOWN</a></p>
+                <p><a id="vscodeyellow">}</a> <a id="vscodebluegreen">boot_reason_t</a>;</p>
             </div>
             <h2>Partition table</h2>
             <a>After initializing the platform, the Preloader now has entire full access to the eMMC/NAND flash. MediaTek decided to partition the flash, but the table is hardcoded.</a>
@@ -111,29 +114,29 @@
             <a>The partition table structure is stored into (for PE900s) mediatek/custom/pe900s/preloader/cust_part.c and looks like this:</a>
             <br></br>
             <div class="code">
-                <p>static part_t platform_parts[PART_MAX_COUNT] = {</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{PART_PRELOADER, 0, PART_SIZE_PRELOADER, 0,PART_FLAG_NONE},</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{PART_MBR, 0, PART_SIZE_MBR, 0,PART_FLAG_NONE},</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{PART_EBR1, 0, PART_SIZE_EBR1, 0,PART_FLAG_NONE},</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{PART_PRO_INFO, 0, PART_SIZE_PRO_INFO, 0,PART_FLAG_NONE},</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{PART_NVRAM, 0, PART_SIZE_NVRAM, 0,PART_FLAG_NONE},</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{PART_PROTECT_F, 0, PART_SIZE_PROTECT_F, 0,PART_FLAG_NONE},</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{PART_PROTECT_S, 0, PART_SIZE_PROTECT_S, 0,PART_FLAG_NONE},</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{PART_SECURE, 0, PART_SIZE_SECCFG, 0,PART_FLAG_NONE},</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{PART_UBOOT, 0, PART_SIZE_UBOOT, 0,PART_FLAG_NONE},</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{PART_BOOTIMG, 0, PART_SIZE_BOOTIMG, 0,PART_FLAG_NONE},</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{PART_RECOVERY, 0, PART_SIZE_RECOVERY, 0,PART_FLAG_NONE},
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{PART_SECSTATIC, 0, PART_SIZE_SEC_RO, 0,PART_FLAG_NONE},
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{PART_MISC, 0, PART_SIZE_MISC, 0,PART_FLAG_NONE},
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{PART_LOGO, 0, PART_SIZE_LOGO, 0,PART_FLAG_NONE},
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{PART_EXPDB, 0, PART_SIZE_EXPDB, 0,PART_FLAG_NONE},</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{PART_ANDSYSIMG, 0, PART_SIZE_ANDROID, 0,PART_FLAG_NONE},</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{PART_CACHE, 0, PART_SIZE_CACHE, 0,PART_FLAG_NONE},</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{PART_USER, 0, PART_SIZE_USRDATA, 0,PART_FLAG_NONE},</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{PART_FAT, 0, PART_SIZE_FAT, 0,PART_FLAG_NONE},</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{NULL,0,0,0,PART_FLAG_END},</p>
-                <a>};</a>
-            </div>
+              <p><span id="vscodeblue">static</span> <span id="vscodebluegreen">part_t</span> <span id="vscodelightblue">platform_parts</span><span id="vscodeyellow">[</span>PART_MAX_COUNT<span id="vscodeyellow">]</span> = <span id="vscodeyellow">{</span></p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_PRELOADER, <span id="vscodelightgreen">0</span>, PART_SIZE_PRELOADER, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_MBR, <span id="vscodelightgreen">0</span>, PART_SIZE_MBR, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_EBR1, <span id="vscodelightgreen">0</span>, PART_SIZE_EBR1, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_PRO_INFO, <span id="vscodelightgreen">0</span>, PART_SIZE_PRO_INFO, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_NVRAM, <span id="vscodelightgreen">0</span>, PART_SIZE_NVRAM, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_PROTECT_F, <span id="vscodelightgreen">0</span>, PART_SIZE_PROTECT_F, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_PROTECT_S, <span id="vscodelightgreen">0</span>, PART_SIZE_PROTECT_S, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_SECURE, <span id="vscodelightgreen">0</span>, PART_SIZE_SECCFG, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_UBOOT, <span id="vscodelightgreen">0</span>, PART_SIZE_UBOOT, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_BOOTIMG, <span id="vscodelightgreen">0</span>, PART_SIZE_BOOTIMG, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_RECOVERY, <span id="vscodelightgreen">0</span>, PART_SIZE_RECOVERY, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_SECSTATIC, <span id="vscodelightgreen">0</span>, PART_SIZE_SEC_RO, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_MISC, <span id="vscodelightgreen">0</span>, PART_SIZE_MISC, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_LOGO, <span id="vscodelightgreen">0</span>, PART_SIZE_LOGO, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_EXPDB, <span id="vscodelightgreen">0</span>, PART_SIZE_EXPDB, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_ANDSYSIMG, <span id="vscodelightgreen">0</span>, PART_SIZE_ANDROID, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_CACHE, <span id="vscodelightgreen">0</span>, PART_SIZE_CACHE, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_USER, <span id="vscodelightgreen">0</span>, PART_SIZE_USRDATA, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_FAT, <span id="vscodelightgreen">0</span>, PART_SIZE_FAT, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span><span id="vscodeblue">NULL</span>,<span id="vscodelightgreen">0</span>,<span id="vscodelightgreen">0</span>,<span id="vscodelightgreen">0</span>,PART_FLAG_END<span id="vscodepurple">}</span>,</p>
+              <p><span id="vscodeyellow">}</span>;</p>
+            </div>            
             <h2>Secure boot stage (part 1)</h2>
             <a>After loading all the partitions (and if Secure boot is enabled), the Preloader initializes the SecLib subsystem.</a>
             <a>The OEM supplies a RSA key up to 2048 bits in length.</a>
@@ -147,24 +150,24 @@
             <a>The list for other boot modes is long, but not all of them are self-explanatory:</a>
             <br></br>
             <div class="code">
-                <p>typedef enum</p>
-                <p>{</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;NORMAL_BOOT = 0,</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;META_BOOT = 1,</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;RECOVERY_BOOT = 2,</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;SW_REBOOT = 3,</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;FACTORY_BOOT = 4,</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;ADVMETA_BOOT = 5,</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;ATE_FACTORY_BOOT = 6,</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;ALARM_BOOT = 7,</p>
-                <p>#if defined (MTK_KERNEL_POWER_OFF_CHARGING)</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;KERNEL_POWER_OFF_CHARGING_BOOT = 8,</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;LOW_POWER_OFF_CHARGING_BOOT = 9,</p>
-                <p>#endif</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;FASTBOOT = 99,</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;DOWNLOAD_BOOT = 100,</p>
+                <p id="vscodeblue">typedef enum</p>
+                <p id="vscodeyellow">{</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;NORMAL_BOOT = <span id="vscodelightgreen">0</span>,</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;META_BOOT = <span id="vscodelightgreen">1</span>,</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;RECOVERY_BOOT = <span id="vscodelightgreen">2</span>,</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;SW_REBOOT = <span id="vscodelightgreen">3</span>,</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;FACTORY_BOOT = <span id="vscodelightgreen">4</span>,</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;ADVMETA_BOOT = <span id="vscodelightgreen">5</span>,</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;ATE_FACTORY_BOOT = <span id="vscodelightgreen">6</span>,</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;ALARM_BOOT = <span id="vscodelightgreen">7</span>,</p>
+                <p id="vscodepurple">#if defined (<span id="vscodeblue">MTK_KERNEL_POWER_OFF_CHARGING</span>)</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;KERNEL_POWER_OFF_CHARGING_BOOT = <span id="vscodelightgreen">8</span>,</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;LOW_POWER_OFF_CHARGING_BOOT = <span id="vscodelightgreen">9</span>,</p>
+                <p id="vscodepurple">#endif</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;FASTBOOT = <span id="vscodelightgreen">99</span>,</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;DOWNLOAD_BOOT = <span id="vscodelightgreen">100</span>,</p>
                 <p>&nbsp;&nbsp;&nbsp;&nbsp;UNKNOWN_BOOT</p>
-                <a>} BOOTMODE;</a>
+                <a><span id="vscodeyellow">}</span> BOOTMODE;</a>
             </div>
             <h2>BootROM Download Mode</h2>
             <a>Before Download Mode can be entered, the Preloader needs to find out if a host is connected via USB/UART and running the SP Flash Tool.</a>
@@ -450,22 +453,22 @@
             <br></br>
             <a>The boot arguments structure for the MT6572 will look like this:</a>
             <div class="code">
-                <p>typedef struct {</p>
+                <p id="vscodeblue">typedef struct <span id="vscodeyellow">{</span></p>
                 <p>&nbsp;&nbsp;&nbsp;&nbsp;u32 magic;</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;boot_mode_t mode;</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodebluegreen">boot_arg_t</span> mode;</p>
                 <p>&nbsp;&nbsp;&nbsp;&nbsp;u32 e_flag;</p>
                 <p>&nbsp;&nbsp;&nbsp;&nbsp;u32 log_port;</p>
                 <p>&nbsp;&nbsp;&nbsp;&nbsp;u32 log_baudrate;</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;u8  log_enable;</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;u8  reserved[3];</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;u8&nbsp;&nbsp;log_enable;</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;u8&nbsp;&nbsp;<span id="vscodelightblue">reserved</span><span id="vscodepurple">[<span id="vscodelightgreen">3</span>]</span>;</p>
                 <p>&nbsp;&nbsp;&nbsp;&nbsp;u32 dram_rank_num;</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;u32 dram_rank_size[4];</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;u32 <span id="vscodelightblue">dram_rank_size</span><span id="vscodepurple">[<span id="vscodelightgreen">4</span>]</span>;</p>
                 <p>&nbsp;&nbsp;&nbsp;&nbsp;u32 boot_reason;</p>
                 <p>&nbsp;&nbsp;&nbsp;&nbsp;u32 meta_com_type;</p>
                 <p>&nbsp;&nbsp;&nbsp;&nbsp;u32 meta_com_id;</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;da_infp_t da_info;</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodebluegreen">da_info_t</span> da_info;</p>
                 <p>&nbsp;&nbsp;&nbsp;&nbsp;SEC_LIMIT sec_limit;</p>
-                <a>} boot_arg_t;</a>
+                <a><span id="vscodeyellow">}</span> <span id="vscodebluegreen">boot_arg_t</span>;</a>
             </div>
             <a>It is put at a memory location where it survives until the next component grabs it.</a>
             <h2>Booting the next component</h2>
@@ -480,5 +483,6 @@
         
         <iframe id="footer-iframe" src="../assets/iframes/footer2.html"></iframe>
         <script src="../assets/js/browsercheck.js"></script>
+        <script src="../assets/js/menu.js"></script>
     </body>
 </html>

@@ -14,23 +14,27 @@
         <link rel="stylesheet" href="assets/css/header.css">
         <link rel="stylesheet" href="assets/css/footer.css">
         <link rel="stylesheet" href="assets/css/main.css">
+        <link rel="stylesheet" href="assets/css/pages.css">
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
         <link rel="icon" href="assets/images/favicon.gif">
     </head>
     <body>
         <!--header insert-->
+        <div id="menu">
+            <div id="menucontainer">
+                <a href="#" onclick="onclosebuttonpressed()"><img id="closeicon" class="icon" src="assets/images/icons/close.png"></a>
+                <div class="menubuttoncontainer">
+                    <a href="index.html"><button>Home</button></a>
+                    <a href="blog.html"><button>Blog</button></a>
+                    <a href="projects.html"><button>Projects</button></a>
+                    <a href="stats.html"><button>Stats</button></a>
+                    <a href="live.html"><button>Live</button></a>
+                    <a href="versions.html"><button>Versions</button></a>
+                </div>
+            </div>
+        </div>
+        <!--header insert-->
         <iframe id="header-iframe" src="assets/iframes/header.html"></iframe>
-        <nav>
-            <ul class="navigationbar">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a class="active" href="stats.html">Stats</a></li>
-                <li><a href="live.html">Live</a></li>
-                <li><a href="versions.html">Versions</a></li>
-                <li><a href="">Wiki (Does not Work)</a></li>
-            </ul>
-        </nav>
         <!--header end-->
 
         <div class="homepage">
@@ -60,6 +64,7 @@
 
         <iframe id="footer-iframe" src="assets/iframes/footer2.html"></iframe>
         <script src="assets/js/browsercheck.js"></script>
+        <script src="assets/js/menu.js"></script>
         <!--<script src="js/index.js"></script>-->
     </body>
 </html>

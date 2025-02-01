@@ -1,1 +1,1 @@
-document.getElementById("reason").innerHTML = "Reason: Redesigning the entire website."; // for easy access
+document.getElementById("reason").innerHTML = "Placeholder"; // for easy access

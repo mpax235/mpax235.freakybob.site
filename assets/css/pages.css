@@ -1,0 +1,12 @@
+/* PAGES */
+
+.homepage {
+    padding: 10px;
+    min-height: 100%;
+    margin: 5px 0px;
+}
+
+.notfound {
+    min-height: 100%;
+    text-align: center;
+}

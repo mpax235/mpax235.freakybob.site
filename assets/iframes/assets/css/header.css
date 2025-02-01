@@ -5,23 +5,83 @@ body {
 
 .header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     background-color: #1111115e;
     backdrop-filter: blur(7px);
-    align-items: center;
-    justify-content: center;
 }
 
 #logo {
     height: 45px;
     margin: 10px;
-    margin-left: 10px;
+    margin-left: m10px;
     display: flex;
+}
+
+a {
+    color: #00ffff;
+    font-family: 'Montserrat', 'Arial';
 }
 
 @media (min-width: 600px) {
     .header {
         justify-content: left !important;
     }
+
+    .navigation {
+        display: flex !important;
+        gap: 5px;
+    }
+
+    #menuicon {
+        display: none;
+    }
+    
+    .iconscontainer {
+        display: none !important;
+    }
+}
+
+.navigation {
+    margin-left: auto;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: none;
+}
+
+button {
+    background-color: #1616165e;
+    border: 1px solid rgba(0, 255, 255, 0.18);
+    padding: 10px 15px;
+    color: #00ffff;
+    font-family: 'Montserrat', 'Arial';
+    text-decoration: none;
+    text-align: center;
+    border-radius: 12px;
+    transition: 0.2s ease-in-out;
+    backdrop-filter: blur(7px);
+}
+
+button:hover {
+    background-color: #00ffff5e;
+    transform: scale(1.1);
+    color: #000000;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+#menuicon {
+    width: 24px;
+    height: 24px;
+}
+
+.iconscontainer {
+    height: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
 }
