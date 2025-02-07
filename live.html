@@ -19,39 +19,41 @@
         <link rel="icon" href="assets/images/favicon.gif">
     </head>
     <body>
-        <!--header insert-->
-        <div id="menu">
-            <div id="menucontainer">
-                <a href="#" onclick="onclosebuttonpressed()"><img id="closeicon" class="icon" src="assets/images/icons/close.png"></a>
-                <div class="menubuttoncontainer">
-                    <a href="index.html"><button>Home</button></a>
-                    <a href="blog.html"><button>Blog</button></a>
-                    <a href="projects.html"><button>Projects</button></a>
-                    <a href="stats.html"><button>Stats</button></a>
-                    <a href="live.html"><button>Live</button></a>
-                    <a href="versions.html"><button>Versions</button></a>
-                    <a href="wikipreview.html"><button>Wiki Previews</button></a>
+        <div class="container">
+            <!--header insert-->
+            <div id="menu">
+                <div id="menucontainer">
+                    <a href="#" onclick="onclosebuttonpressed()"><img id="closeicon" class="icon" src="assets/images/icons/close.png"></a>
+                    <div class="menubuttoncontainer">
+                        <a href="index.html"><button>Home</button></a>
+                        <a href="blog.html"><button>Blog</button></a>
+                        <a href="projects.html"><button>Projects</button></a>
+                        <a href="stats.html"><button>Stats</button></a>
+                        <a href="live.html"><button>Live</button></a>
+                        <a href="versions.html"><button>Versions</button></a>
+                        <a href="wikipreview.html"><button>Wiki Previews</button></a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <iframe id="header-iframe" src="assets/iframes/header.html"></iframe>
-        <!--header end-->
+            <iframe id="header-iframe" src="assets/iframes/header.html"></iframe>
+            <!--header end-->
 
-        <div class="homepage">
-            <div class="twitchpage">
-                <h1 id="twitchpagetitle">Live from mpax235 on Twitch</h1>
-                <div class="twitchcontainer">
-                    <div id="twitch-embed"></div>
-                    <iframe id="twitch-chat-embed"
-                        src="https://www.twitch.tv/embed/mpax235/chat?parent=mpax235.github.io"
-                        height="500"
-                        width="350">
-                    </iframe>
+            <div class="homepage">
+                <div class="twitchpage">
+                    <h1 id="twitchpagetitle">Live from mpax235 on Twitch</h1>
+                    <div class="twitchcontainer">
+                        <div id="twitch-embed"></div>
+                        <iframe id="twitch-chat-embed"
+                            src="https://www.twitch.tv/embed/mpax235/chat?parent=mpax235.github.io"
+                            height="500"
+                            width="350">
+                        </iframe>
+                    </div>
                 </div>
             </div>
+            <iframe id="footer-iframe" src="assets/iframes/footer2.html"></iframe>
         </div>
         <script src="https://player.twitch.tv/js/embed/v1.js"></script>
-        <iframe id="footer-iframe" src="assets/iframes/footer2.html"></iframe>
         <script src="assets/js/browsercheck.js"></script>
         <script src="assets/js/twitch.js"></script>
         <script src="assets/js/menu.js"></script>

@@ -133,6 +133,46 @@
     }
 }
 
+#menu {
+    position: fixed;
+    background-color: #0000007a;
+    backdrop-filter: blur(7px);
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+#menucontainer {
+    background-color: #1616165e;
+    backdrop-filter: blur(7px);
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+#menucontainer button {
+    width: 100%;
+}
+
+#menucontainer.show {
+    animation: menuAnimation 0.5s ease-in-out forwards;
+}
+
+#menucontainer.hide {
+    animation: menuAnimationHide 0.5s ease-in-out forwards;
+}
+
+@media (min-width: 600px) {
+    #menucontainer {
+        width: 400px;
+    }
+}
+
 /* CLASSES */
 
 .gallerystuff {
@@ -293,28 +333,6 @@
     flex-wrap: wrap;
 }
 
-#menu {
-    position: fixed;
-    background-color: #0000007a;
-    backdrop-filter: blur(7px);
-    width: 100%;
-    height: 100%;
-    z-index: 1000;
-    display: none;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-}
-
-#menucontainer {
-    background-color: #1616165e;
-    backdrop-filter: blur(7px);
-    display: flex;
-    width: 100%;
-    height: 100%;
-    flex-direction: column;
-    overflow-y: auto;
-}
-
 .menubuttoncontainer {
     display: flex;
     flex-direction: column;
@@ -324,27 +342,25 @@
     margin-bottom: 20px;
 }
 
-#menucontainer button {
-    width: 100%;
-}
-
-#menucontainer.show {
-    animation: menuAnimation 0.5s ease-in-out forwards;
-}
-
-#menucontainer.hide {
-    animation: menuAnimationHide 0.5s ease-in-out forwards;
-}
-
 @media (min-width: 600px) {
     .twitchcontainer {
         display: flex;
     }
-
-    #menucontainer {
-        width: 400px;
-    }
 }
+
+.icon {
+    height: 24px;
+    width: 24px;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ANIMATIONS */
 
 @keyframes menuAnimation {
     0% {
@@ -368,10 +384,4 @@
         transform: translateX(-100%);
         opacity: 0;
     }
-}
-
-.icon {
-    height: 24px;
-    width: 24px;
-    padding: 20px;
 }

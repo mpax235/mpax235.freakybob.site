@@ -14,33 +14,35 @@
         <link rel="icon" href="/assets/images/favicon.gif">
     </head>
     <body>
-        <!--header insert-->
-        <div id="menu">
-            <div id="menucontainer">
-                <a href="#" onclick="onclosebuttonpressed()"><img id="closeicon" class="icon" src="assets/images/icons/close.png"></a>
-                <div class="menubuttoncontainer">
-                    <a href="/index.html"><button>Home</button></a>
-                    <a href="/blog.html"><button>Blog</button></a>
-                    <a href="/projects.html"><button>Projects</button></a>
-                    <a href="/stats.html"><button>Stats</button></a>
-                    <a href="/live.html"><button>Live</button></a>
-                    <a href="/versions.html"><button>Versions</button></a>
-                    <a href="/wikipreview.html"><button>Wiki Previews</button></a>
+        <div class="container">
+            <!--header insert-->
+            <div id="menu">
+                <div id="menucontainer">
+                    <a href="#" onclick="onclosebuttonpressed()"><img id="closeicon" class="icon" src="assets/images/icons/close.png"></a>
+                    <div class="menubuttoncontainer">
+                        <a href="/index.html"><button>Home</button></a>
+                        <a href="/blog.html"><button>Blog</button></a>
+                        <a href="/projects.html"><button>Projects</button></a>
+                        <a href="/stats.html"><button>Stats</button></a>
+                        <a href="/live.html"><button>Live</button></a>
+                        <a href="/versions.html"><button>Versions</button></a>
+                        <a href="/wikipreview.html"><button>Wiki Previews</button></a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <iframe id="header-iframe" src="/assets/iframes/header2.html"></iframe>
-        <!--header end-->
-        
-        <div class="notfound">
-            <h2 id="errortext">404</h2>
-            <p id="errorred">This page cannot be found. It may have moved or it no longer exists.</p>
-            <p id="errorred">To go home, click the button below.</p>
-            <br></br>
-            <a href="/index.html"><button>Go home</button></a>
-        </div>
+            <iframe id="header-iframe" src="/assets/iframes/header2.html"></iframe>
+            <!--header end-->
+            
+            <div class="notfound">
+                <h2 id="errortext">404</h2>
+                <p id="errorred">This page cannot be found. It may have moved or it no longer exists.</p>
+                <p id="errorred">To go home, click the button below.</p>
+                <br></br>
+                <a href="/index.html"><button>Go home</button></a>
+            </div>
 
-        <iframe id="footer-iframe" src="/assets/iframes/footer2.html"></iframe>
+            <iframe id="footer-iframe" src="/assets/iframes/footer2.html"></iframe>
+        </div>
         <script src="/assets/js/browsercheck.js"></script>
         <script src="/assets/js/menu.js"></script>
     </body>

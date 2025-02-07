@@ -2,11 +2,11 @@
 
 .homepage {
     padding: 10px;
-    min-height: 100%;
     margin: 5px 0px;
+    flex: 1;
 }
 
 .notfound {
-    min-height: 100%;
     text-align: center;
+    flex: 1;
 }

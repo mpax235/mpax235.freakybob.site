@@ -22,467 +22,469 @@
         </style>
     </head>
     <body>
-        <div id="menu">
-            <div id="menucontainer">
-                <a href="#" onclick="onclosebuttonpressed()"><img id="closeicon" class="icon" src="../assets/images/icons/close.png"></a>
-                <div class="menubuttoncontainer">
-                    <a href="../index.html"><button>Home</button></a>
-                    <a href="../blog.html"><button>Blog</button></a>
-                    <a href="../projects.html"><button>Projects</button></a>
-                    <a href="../stats.html"><button>Stats</button></a>
-                    <a href="../live.html"><button>Live</button></a>
-                    <a href="../versions.html"><button>Versions</button></a>
-                    <a href="../wikipreview.html"><button>Wiki Previews</button></a>
+        <div class="container">
+            <div id="menu">
+                <div id="menucontainer">
+                    <a href="#" onclick="onclosebuttonpressed()"><img id="closeicon" class="icon" src="../assets/images/icons/close.png"></a>
+                    <div class="menubuttoncontainer">
+                        <a href="../index.html"><button>Home</button></a>
+                        <a href="../blog.html"><button>Blog</button></a>
+                        <a href="../projects.html"><button>Projects</button></a>
+                        <a href="../stats.html"><button>Stats</button></a>
+                        <a href="../live.html"><button>Live</button></a>
+                        <a href="../versions.html"><button>Versions</button></a>
+                        <a href="../wikipreview.html"><button>Wiki Previews</button></a>
+                    </div>
                 </div>
             </div>
+            <!--header insert-->
+            <iframe id="header-iframe" src="../assets/iframes/header.html"></iframe>
+            <!--header end-->
+            
+            <div class="homepage">
+                <!--### BLOG POST HEADER GOES HERE ####-->
+                <h1>MediaTek Details: Preloader</h1>
+                <!--###################################-->
+                <!--### BLOG POST CONTENT GOES HERE ###-->
+                <!--###################################-->
+                <h4>NOTE: The information was gathered through reverse engineering.</h4>
+                <a>After the Boot ROM in a SoC finishes initalizing the bare hardware, it loads the first region of the eMMC/NAND flash into the on-chip SRAM and starts executing it.</a>
+                <a>This would be the bootloader but on MediaTek devices it is not, there is a another step for loading the main Bootloader: the Preloader.</a>
+                <a>This is like a bridge between the Boot ROM and the main Bootloader and offers some features such as</a>
+                <a>entering Download Mode (in BROM) from the Preloader if enabled, boot from eMMC or NAND flash and read/write parts of the flash</a>
+                <a>via USB.</a>
+                <h2>The overview</h2>
+                <a>Usually when MediaTek ships a source package to a manufacturer, it also contains the entire</a>
+                <a>source code for the Preloader. It is not easy to come up with a generic description of what the Preloader does</a>
+                <a>because the manufacturer can modify it, so it does different things on different SoCs</a>
+                <a>and Devices.</a>
+                <br></br>
+                <a>Based on the lightning72_wet_l source code for the MT6572 SoC, the preloader is made up of the following parts:</a>
+                <br></br>
+                <p>&#9679; SoC-specific stuff in mediatek/platform/${platform}/preloader, this contains the core, drivers, initalizing and security code.</p>
+                <a>&#9679; Device-specific stuff in mediatek/custom/${device}/preloader, this contains the Device-specific code.</a>
+                <br></br>
+                <a>Now it's time to dive deeper!</a>
+                <h2>SoC initializing</h2>
+                <a>When the Preloader gets executed, many stuff are in a random state so to initialize them, there is some Assembly code located in</a>
+                <a>mediatek/platform/${platform}/preloader/src/init/init.s which performs the following steps:</a>
+                <br></br>
+                <p>1. Clear all registers.</p>
+                <a>2. Switch the CPU to SVC32 mode.</a>
+                <p>3. Disable interrupts.</p>
+                <p>4. Setup the caches and stack.</p>
+                <p>5. Duplicate the CTP code to the Slave CPU and start it.</p>
+                <p>6. Creates a VMA-to-LMA mapping for the Slave CPU.</p>
+                <a>7. Jump to the main code in the C code.</a>
+                <br></br>
+                <a>Execution now continues at mediatek/platform/${platform}/preloader/src/core/main.c, which calls lots of other methods</a>
+                <a>and start the rest of the Preloader code (security, drivers and the rest of the core).</a>
+                <h2>Platform initializing</h2>
+                <a>The Preloader relies on some peripherials so it has to initialize them. This is mainly done with the platform_pre_init and platform_init</a>
+                <a>code. The list contains the timer, PLL clock, DDR memory controller, Watchdog, GPIO, UART, USB port and the PMC.</a>
+                <br></br>
+                <a>There is something special in the Preloader if enabled: after the flash storage has been initialized, the Preloader offers a early "Download" mode</a>
+                <a>which the manufacturer can define a hardware key that if pressed in 1000 ms, it will trigger a Assert which will cause the Preloader</a>
+                <a>to error out and then reboots back into the Boot ROM in Download Mode. However there is a timeout of 5 seconds before being brought back to the Preloader</a>
+                <a>that can be extended by sending the Start command sequence, to disable the timeout the Watchdog will have to be disabled.</a>
+                <br></br>
+                <a>The Preloader also records why the system was booted:</a>
+                <br></br>
+                <div class="code">
+                    <p><a id="vscodeblue">typedef enum</a> <a id="vscodeyellow">{</a></p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;<a id="vscodeblue2">BR_POWER_KEY</a> = <a id="vscodelightgreen">0,</a></p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;<a id="vscodeblue2">BR_USB</a>,</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;<a id="vscodeblue2">BR_RTC</a>,</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;<a id="vscodeblue2">BR_WDT</a>,</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;<a id="vscodeblue2">BR_WDT_BY_PASS_PWK</a>,</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;<a id="vscodeblue2">BR_TOOL_BY_PASS_PWK</a>,</p>
+                    <p><a id="vscodepurple">#ifdef</a> <a id="vscodeblue">RTC_2SEC_REBOOT_ENABLE</a></p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;<a id="vscodeblue2">BR_2SEC_REBOOT</a>,</p>
+                    <p id="vscodepurple">#endif</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;<a id="vscodeblue2">BR_UNKNOWN</a></p>
+                    <p><a id="vscodeyellow">}</a> <a id="vscodebluegreen">boot_reason_t</a>;</p>
+                </div>
+                <h2>Partition table</h2>
+                <a>After initializing the platform, the Preloader now has entire full access to the eMMC/NAND flash. MediaTek decided to partition the flash, but the table is hardcoded.</a>
+                <a>It is generated during a Preloader generation session from a real Excel file in</a>
+                <a>mediatek/build/tools/ptgen/${platform}/partition_table_${platform}.xls by the command ./makeMtk -t ${device} ptgen. (here is a example of the partition table for a device named PE900s)</a>
+                <br></br>
+                <div class="partition">
+                  <img src="../assets/images/blog/preloaderdetails/partition_table.png">
+                </div>
+                <br></br>
+                <a>The partition table structure is stored into (for PE900s) mediatek/custom/pe900s/preloader/cust_part.c and looks like this:</a>
+                <br></br>
+                <div class="code">
+                  <p><span id="vscodeblue">static</span> <span id="vscodebluegreen">part_t</span> <span id="vscodelightblue">platform_parts</span><span id="vscodeyellow">[</span>PART_MAX_COUNT<span id="vscodeyellow">]</span> = <span id="vscodeyellow">{</span></p>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_PRELOADER, <span id="vscodelightgreen">0</span>, PART_SIZE_PRELOADER, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_MBR, <span id="vscodelightgreen">0</span>, PART_SIZE_MBR, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_EBR1, <span id="vscodelightgreen">0</span>, PART_SIZE_EBR1, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_PRO_INFO, <span id="vscodelightgreen">0</span>, PART_SIZE_PRO_INFO, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_NVRAM, <span id="vscodelightgreen">0</span>, PART_SIZE_NVRAM, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_PROTECT_F, <span id="vscodelightgreen">0</span>, PART_SIZE_PROTECT_F, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_PROTECT_S, <span id="vscodelightgreen">0</span>, PART_SIZE_PROTECT_S, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_SECURE, <span id="vscodelightgreen">0</span>, PART_SIZE_SECCFG, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_UBOOT, <span id="vscodelightgreen">0</span>, PART_SIZE_UBOOT, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_BOOTIMG, <span id="vscodelightgreen">0</span>, PART_SIZE_BOOTIMG, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_RECOVERY, <span id="vscodelightgreen">0</span>, PART_SIZE_RECOVERY, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_SECSTATIC, <span id="vscodelightgreen">0</span>, PART_SIZE_SEC_RO, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_MISC, <span id="vscodelightgreen">0</span>, PART_SIZE_MISC, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_LOGO, <span id="vscodelightgreen">0</span>, PART_SIZE_LOGO, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_EXPDB, <span id="vscodelightgreen">0</span>, PART_SIZE_EXPDB, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_ANDSYSIMG, <span id="vscodelightgreen">0</span>, PART_SIZE_ANDROID, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_CACHE, <span id="vscodelightgreen">0</span>, PART_SIZE_CACHE, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_USER, <span id="vscodelightgreen">0</span>, PART_SIZE_USRDATA, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_FAT, <span id="vscodelightgreen">0</span>, PART_SIZE_FAT, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span><span id="vscodeblue">NULL</span>,<span id="vscodelightgreen">0</span>,<span id="vscodelightgreen">0</span>,<span id="vscodelightgreen">0</span>,PART_FLAG_END<span id="vscodepurple">}</span>,</p>
+                  <p><span id="vscodeyellow">}</span>;</p>
+                </div>            
+                <h2>Secure boot stage (part 1)</h2>
+                <a>After loading all the partitions (and if Secure boot is enabled), the Preloader initializes the SecLib subsystem.</a>
+                <a>The OEM supplies a RSA key up to 2048 bits in length.</a>
+                <br></br>
+                <a>It is unknown on what SecLib does exactly. It takes data from the SECURE partition</a>
+                <a>(if it exists) and the RSA key, and then calls in the binary blob mediatek/platform/${platform}/preloader/src/SecLib.a.</a>
+                <h2>The boot mode selection</h2>
+                <a>After confirming Secure boot (optional), the Preloader decides which boot mode it will go for.</a>
+                <br></br>
+                <a>NORMAL_BOOT is used if secure boot is disabled or the module does not say otherwise. If Download Mode is enabled it will try to enter it immediately.</a>
+                <a>The list for other boot modes is long, but not all of them are self-explanatory:</a>
+                <br></br>
+                <div class="code">
+                    <p id="vscodeblue">typedef enum</p>
+                    <p id="vscodeyellow">{</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;NORMAL_BOOT = <span id="vscodelightgreen">0</span>,</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;META_BOOT = <span id="vscodelightgreen">1</span>,</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;RECOVERY_BOOT = <span id="vscodelightgreen">2</span>,</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;SW_REBOOT = <span id="vscodelightgreen">3</span>,</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;FACTORY_BOOT = <span id="vscodelightgreen">4</span>,</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;ADVMETA_BOOT = <span id="vscodelightgreen">5</span>,</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;ATE_FACTORY_BOOT = <span id="vscodelightgreen">6</span>,</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;ALARM_BOOT = <span id="vscodelightgreen">7</span>,</p>
+                    <p id="vscodepurple">#if defined (<span id="vscodeblue">MTK_KERNEL_POWER_OFF_CHARGING</span>)</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;KERNEL_POWER_OFF_CHARGING_BOOT = <span id="vscodelightgreen">8</span>,</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;LOW_POWER_OFF_CHARGING_BOOT = <span id="vscodelightgreen">9</span>,</p>
+                    <p id="vscodepurple">#endif</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;FASTBOOT = <span id="vscodelightgreen">99</span>,</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;DOWNLOAD_BOOT = <span id="vscodelightgreen">100</span>,</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;UNKNOWN_BOOT</p>
+                    <a><span id="vscodeyellow">}</span> BOOTMODE;</a>
+                </div>
+                <h2>BootROM Download Mode</h2>
+                <a>Before Download Mode can be entered, the Preloader needs to find out if a host is connected via USB/UART and running the SP Flash Tool.</a>
+                <a>Through it can be bypassed by pressing a BROM key while plugging the device in.</a>
+                <a>For SP Flash Tool, it does this by configuring a virtual CDC ACM discipline in USB, so both lines are serial ports and behave the same.</a>
+                <br></br>
+                <a>The USB port if connected will assume that the SP Flash Tool is connected if it receives a CDC message.</a>
+                <a>It then sends the READY string to the tool and waits for a token of 8 bytes.</a>
+                <br></br>
+                <a>If detected successfully, the tool will send a special Start command sequence (0xa0 0x0a 0x50 0x05) to enter a special mode</a>
+                <a>that is only available via USB or holding the BROM button while plugging the USB in.</a>
+                <a>It incorporates the following commands:</a>
+                <br></br>
+                <table border="1">
+                    <thead>
+                      <tr>
+                        <th>Command</th>
+                        <th>Byte</th>
+                        <th>Function</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>CMD_GET_HW_SW_VER</td>
+                        <td>0xfc</td>
+                        <td>Return hardware subcode, hardware/software version</td>
+                      </tr>
+                      <tr>
+                        <td>CMD_GET_HW_CODE</td>
+                        <td>0xfd</td>
+                        <td>Return hardware code/status</td>
+                      </tr>
+                      <tr>
+                        <td>CMD_GET_BL_VER</td>
+                        <td>0xfe</td>
+                        <td>Gets the Preloader version</td>
+                      </tr>
+                      <tr>
+                        <td>CMD_LEGACY_WRITE</td>
+                        <td>0xa1</td>
+                        <td>Write data to the SoC memory (legacy)</td>
+                      </tr>
+                      <tr>
+                        <td>CMD_LEGACY_READ</td>
+                        <td>0xa2</td>
+                        <td>Read data from the SoC memory (legacy)</td>
+                      </tr>
+                      <tr>
+                        <td>CMD_I2C_INIT</td>
+                        <td>0xb0</td>
+                        <td>Initializes the I2C</td>
+                      </tr>
+                      <tr>
+                        <td>CMD_I2C_DEINIT</td>
+                        <td>0xb1</td>
+                        <td>Shuts down the I2C</td>
+                      </tr>
+                      <tr>
+                        <td>CMD_I2C_WRITE8</td>
+                        <td>0xb2</td>
+                        <td>Write data to the I2C (8 bit length)</td>
+                      </tr>
+                      <tr>
+                        <td>CMD_I2C_READ8</td>
+                        <td>0xb3</td>
+                        <td>Read data from the I2C (8 bit length)</td>
+                      </tr>
+                      <tr>
+                        <td>CMD_I2C_SET_SPEED</td>
+                        <td>0xb4</td>
+                        <td>Sets the I2C speed</td>
+                      </tr>
+                      <tr>
+                        <td>CMD_PWR_INIT</td>
+                        <td>0xc4</td>
+                        <td>Initializes the PMC</td>
+                      </tr>
+                      <tr>
+                        <td>CMD_PWR_DEINIT</td>
+                        <td>0xc5</td>
+                        <td>Shuts down the PMC</td>
+                      </tr>
+                      <tr>
+                        <td>CMD_PWR_READ16</td>
+                        <td>0xc6</td>
+                        <td>Read 16 bit data from the PMC interface memory (16 bit length)</td>
+                      </tr>
+                      <tr>
+                        <td>CMD_PWR_WRITE16</td>
+                        <td>0xc7</td>
+                        <td>Write 16 bit data to the PMC interface memory (16 bit length)</td>
+                      </tr>
+                      <tr>
+                        <td>CMD_READ16</td>
+                        <td>0xd0</td>
+                        <td>Read data from the SoC memory (16 bit length)</td>
+                      </tr>
+                      <tr>
+                        <td>CMD_READ32</td>
+                        <td>0xd1</td>
+                        <td>Read data from the SoC memory (32 bit length)</td>
+                      </tr>
+                      <tr>
+                        <td>CMD_WRITE16</td>
+                        <td>0xd2</td>
+                        <td>Write data to the SoC memory (16 bit length)</td>
+                      </tr>
+                      <tr>
+                        <td>CMD_WRITE16_NO_ECHO</td>
+                        <td>0xd3</td>
+                        <td>Write data to the SoC memory without echoing (16 bit length)</td>
+                      </tr>
+                      <tr>
+                        <td>CMD_WRITE32</td>
+                        <td>0xd4</td>
+                        <td>Write data to the SoC memory (32 bit length)</td>
+                      </tr>
+                      <tr>
+                        <td>CMD_JUMP_DA</td>
+                        <td>0xd5</td>
+                        <td>Sets boot mode to DOWNLOAD_BOOT and starts execution of the Download Agent sent to the SoC</td>
+                      </tr>
+                      <tr>
+                        <td>CMD_JUMP_BL</td>
+                        <td>0xd6</td>
+                        <td>Starts execution of the Preloader on eMMC/NAND flash</td>
+                      </tr>
+                      <tr>
+                        <td>CMD_SEND_DA</td>
+                        <td>0xd7</td>
+                        <td>Sends a "Download Agent" binary to the SoC signed with a key</td>
+                      </tr>
+                      <tr>
+                        <td>CMD_GET_TARGET_CONFIG</td>
+                        <td>0xd8</td>
+                        <td>Gets supported Preloader config flags</td>
+                      </tr>
+                      <tr>
+                        <td>CMD_UART1_LOG_EN</td>
+                        <td>0xdb</td>
+                        <td>Not sure what this command does</td>
+                      </tr>
+                    </tbody>
+                </table>
+                <br></br>
+                <a>The Download Agent step is necessary so this way the SP Flash Tool can send a current version for the exact</a>
+                <a>hardware version that is being used.</a>
+                <br></br>
+                <a>The UART has no possibility to detect if the physical line is powered, so it will just send the READY string and hopes for a 8 byte token. If it does,</a>
+                <a>then it assumes that the tool is present.</a>
+                <h4>NOTE: The special commands from the table above are not available when using UART, maybe because the BROM</h4>
+                <h4>already offers most of these commands via UART.</h4>
+                <a>If the Start command is not issued with the host via USB, the Preloader will enter a common mode in which it incorporates the following commands over both USB/UART:</a>
+                <br></br>
+                <table border="1">
+                    <thead>
+                      <tr>
+                        <th>Command</th>
+                        <th>String</th>
+                        <th>Function</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>HSNK_COM_READY</td>
+                        <td>READY</td>
+                        <td>If sent, will wait for a 8 byte token before switching to BROM</td>
+                      </tr>
+                      <tr>
+                        <td>META_STR_REQ</td>
+                        <td>METAMETA</td>
+                        <td>Switches into META_BOOT mode</td>
+                      </tr>
+                      <tr>
+                        <td>META_STR_ACK</td>
+                        <td>ATEMATEM</td>
+                        <td>Used for response from META_BOOT mode</td>
+                      </tr>
+                      <tr>
+                        <td>META_LOCK</td>
+                        <td>LOCK</td>
+                        <td>Not sure what this command does</td>
+                      </tr>
+                      <tr>
+                        <td>META_FORBIDDEN_ACK</td>
+                        <td>METAFORB</td>
+                        <td>Not sure what this command does</td>
+                      </tr>
+                      <tr>
+                        <td>META_ADV_REQ</td>
+                        <td>ADVEMETA</td>
+                        <td>Switches into ADVMETA_BOOT mode</td>
+                      </tr>
+                      <tr>
+                        <td>META_ADV_ACK</td>
+                        <td>ATEMEVDA</td>
+                        <td>Used for response from ADVMETA_BOOT mode</td>
+                      </tr>
+                      <tr>
+                        <td>FACTORY_STR_REQ</td>
+                        <td>FACTFACT</td>
+                        <td>Switches into FACTORY_BOOT mode</td>
+                      </tr>
+                      <tr>
+                        <td>FACTORY_STR_ACK</td>
+                        <td>TCAFTCAF</td>
+                        <td>Used for response from FACTORY_BOOT mode</td>
+                      </tr>
+                      <tr>
+                        <td>ATE_STR_REQ</td>
+                        <td>FACTORYM</td>
+                        <td>Switches into ATE_FACTORY_BOOT mode</td>
+                      </tr>
+                      <tr>
+                        <td>FACTORY_STR_ACK</td>
+                        <td>MYROTCAF</td>
+                        <td>Used for response from ATE_FACTORY_BOOT mode</td>
+                      </tr>
+                      <tr>
+                        <td>SWITCH_MD_REQ</td>
+                        <td>SWITCHMD</td>
+                        <td>Switches the modem into firmware download mode</td>
+                      </tr>
+                      <tr>
+                        <td>SWITCH_MD_ACK</td>
+                        <td>DMHCTIWS</td>
+                        <td>Used for response from modem in firmware download mode</td>
+                      </tr>
+                      <tr>
+                        <td>ATCMD_NBOOT_REQ</td>
+                        <td>AT+NBOOT</td>
+                        <td>Switches into NORMAL_BOOT mode</td>
+                      </tr>
+                      <tr>
+                        <td>ATCMD_OK</td>
+                        <td>AT+OK</td>
+                        <td>Not sure what this command does</td>
+                      </tr>
+                      <tr>
+                        <td>ATCMD_UNKNOWN</td>
+                        <td>AT+UNKNOWN</td>
+                        <td>Not sure what this command does</td>
+                      </tr>
+                      <tr>
+                        <td>FB_STR_REQ</td>
+                        <td>FASTBOOT</td>
+                        <td>Switches into FASTBOOT mode</td>
+                      </tr>
+                      <tr>
+                        <td>FB_STR_ACK</td>
+                        <td>TOOBTSAF</td>
+                        <td>Used for response from FASTBOOT mode</td>
+                      </tr>
+                </table>
+                <h2>Secure boot stage (part 2)</h2>
+                <a>Once again it is unknown what SecLib does at this stage,</a>
+                <a>it just calls into the binary blob most of the time its active.</a>
+                <br></br>
+                <a>The following (questionable) info was gathered by looking at a C wrapper and dumping the library symbols and strings:</a>
+                <br></br>
+                <p>&#9679; Security data comes from the SECSTATIC partition</p>
+                <P>&#9679; Validation of cryptographic image signatures using RSA/SHA1</P>
+                <p>&#9679; (CONFIRMED AS SEEN <a href="https://xdaforums.com/t/new-fire-hd10-2019-bootless-root-method-bootloader-unlock-brainstorming.3979343/page-40#post-86371571">HERE AS FLASHING LK IN MAVERICK GETS IT STUCK IN PRELOADER</a>) The UBOOT, LOGO, BOOTIMG, RECOVERY and ANDROID partitions are checked at some point</p>
+                <a>&#9679; The "customer name" seems to be checked, strange but why?</a>
+                <br></br>
+                <a>The necessary signed images are likely generated by the SignTool binaries in mediatek/build/tools/SignTool.</a>
+                <br></br>
+                <a>The OEM can likely add additional security measures.</a>
+                <h2>Loading core boot images</h2>
+                <a>Now that the Preloader knows the system is good to go, safe and secure, it can load the firmware images from the eMMC/NAND flash.</a>
+                <br></br>
+                <a>This is highly specialised process, because every image has to be processed</a>
+                <a>differently. For example the firmware for the HSPA modem in the MT6582 has to be fed into the modem</a>
+                <a>by using special registers and commands,</a>
+                <a>while the LK bootloader can just be copied to the correct memory address. In this step the Ppreloader will decide also which is the next component</a>
+                <a>that gets executed after itself ends.</a>
+                <a>This will be the bootloader image stored in the UBOOT partition by default.</a>
+                <h4>NOTE: Only the most basic firmware (like modem and LK) is loaded.</h4>
+                <H2>Platform post initializing</H2>
+                <a>In this step, the platform is put into a state for the LK. The most important step for the Preloader is to pass on</a>
+                <a>the boot arguments that was set during the Preloader's execution. This will make more sense once we look at what happens</a>
+                <a>after the Preloader has been executed fully, the whole MediaTek design is a bit compilcated.</a>
+                <br></br>
+                <a>The boot arguments structure for the MT6572 will look like this:</a>
+                <div class="code">
+                    <p id="vscodeblue">typedef struct <span id="vscodeyellow">{</span></p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;u32 magic;</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodebluegreen">boot_arg_t</span> mode;</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;u32 e_flag;</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;u32 log_port;</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;u32 log_baudrate;</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;u8&nbsp;&nbsp;log_enable;</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;u8&nbsp;&nbsp;<span id="vscodelightblue">reserved</span><span id="vscodepurple">[<span id="vscodelightgreen">3</span>]</span>;</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;u32 dram_rank_num;</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;u32 <span id="vscodelightblue">dram_rank_size</span><span id="vscodepurple">[<span id="vscodelightgreen">4</span>]</span>;</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;u32 boot_reason;</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;u32 meta_com_type;</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;u32 meta_com_id;</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodebluegreen">da_info_t</span> da_info;</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;SEC_LIMIT sec_limit;</p>
+                    <a><span id="vscodeyellow">}</span> <span id="vscodebluegreen">boot_arg_t</span>;</a>
+                </div>
+                <a>It is put at a memory location where it survives until the next component grabs it.</a>
+                <h2>Booting the next component</h2>
+                <a>The last step the Preloader has</a>
+                <a>to do is jump to LK loaded from the UBOOT partition.</a>
+                <br></br>
+                <a>After this, the Preloader goes inactive until the BROM starts again.</a>
+                <h2>Sources</h2>
+                <p>&#9679; <a href="https://github.com/li127832919/MTK6572">MT6572 source code for PE900s and lightning72_wet_l</a></p>
+                <p>&#9679; <a href="https://wenku.baidu.com/view/d44d5cd9ad51f01dc281f129.html?_wkts_=1725153461138&needWelcomeRecommand=1">Introduction of MTK Tools</a></p>
+            </div>
+            
+            <iframe id="footer-iframe" src="../assets/iframes/footer2.html"></iframe>
         </div>
-        <!--header insert-->
-        <iframe id="header-iframe" src="../assets/iframes/header.html"></iframe>
-        <!--header end-->
-        
-        <div class="homepage">
-            <!--### BLOG POST HEADER GOES HERE ####-->
-            <h1>MediaTek Details: Preloader</h1>
-            <!--###################################-->
-            <!--### BLOG POST CONTENT GOES HERE ###-->
-            <!--###################################-->
-            <h4>NOTE: The information was gathered through reverse engineering.</h4>
-            <a>After the Boot ROM in a SoC finishes initalizing the bare hardware, it loads the first region of the eMMC/NAND flash into the on-chip SRAM and starts executing it.</a>
-            <a>This would be the bootloader but on MediaTek devices it is not, there is a another step for loading the main Bootloader: the Preloader.</a>
-            <a>This is like a bridge between the Boot ROM and the main Bootloader and offers some features such as</a>
-            <a>entering Download Mode (in BROM) from the Preloader if enabled, boot from eMMC or NAND flash and read/write parts of the flash</a>
-            <a>via USB.</a>
-            <h2>The overview</h2>
-            <a>Usually when MediaTek ships a source package to a manufacturer, it also contains the entire</a>
-            <a>source code for the Preloader. It is not easy to come up with a generic description of what the Preloader does</a>
-            <a>because the manufacturer can modify it, so it does different things on different SoCs</a>
-            <a>and Devices.</a>
-            <br></br>
-            <a>Based on the lightning72_wet_l source code for the MT6572 SoC, the preloader is made up of the following parts:</a>
-            <br></br>
-            <p>&#9679; SoC-specific stuff in mediatek/platform/${platform}/preloader, this contains the core, drivers, initalizing and security code.</p>
-            <a>&#9679; Device-specific stuff in mediatek/custom/${device}/preloader, this contains the Device-specific code.</a>
-            <br></br>
-            <a>Now it's time to dive deeper!</a>
-            <h2>SoC initializing</h2>
-            <a>When the Preloader gets executed, many stuff are in a random state so to initialize them, there is some Assembly code located in</a>
-            <a>mediatek/platform/${platform}/preloader/src/init/init.s which performs the following steps:</a>
-            <br></br>
-            <p>1. Clear all registers.</p>
-            <a>2. Switch the CPU to SVC32 mode.</a>
-            <p>3. Disable interrupts.</p>
-            <p>4. Setup the caches and stack.</p>
-            <p>5. Duplicate the CTP code to the Slave CPU and start it.</p>
-            <p>6. Creates a VMA-to-LMA mapping for the Slave CPU.</p>
-            <a>7. Jump to the main code in the C code.</a>
-            <br></br>
-            <a>Execution now continues at mediatek/platform/${platform}/preloader/src/core/main.c, which calls lots of other methods</a>
-            <a>and start the rest of the Preloader code (security, drivers and the rest of the core).</a>
-            <h2>Platform initializing</h2>
-            <a>The Preloader relies on some peripherials so it has to initialize them. This is mainly done with the platform_pre_init and platform_init</a>
-            <a>code. The list contains the timer, PLL clock, DDR memory controller, Watchdog, GPIO, UART, USB port and the PMC.</a>
-            <br></br>
-            <a>There is something special in the Preloader if enabled: after the flash storage has been initialized, the Preloader offers a early "Download" mode</a>
-            <a>which the manufacturer can define a hardware key that if pressed in 1000 ms, it will trigger a Assert which will cause the Preloader</a>
-            <a>to error out and then reboots back into the Boot ROM in Download Mode. However there is a timeout of 5 seconds before being brought back to the Preloader</a>
-            <a>that can be extended by sending the Start command sequence, to disable the timeout the Watchdog will have to be disabled.</a>
-            <br></br>
-            <a>The Preloader also records why the system was booted:</a>
-            <br></br>
-            <div class="code">
-                <p><a id="vscodeblue">typedef enum</a> <a id="vscodeyellow">{</a></p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;<a id="vscodeblue2">BR_POWER_KEY</a> = <a id="vscodelightgreen">0,</a></p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;<a id="vscodeblue2">BR_USB</a>,</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;<a id="vscodeblue2">BR_RTC</a>,</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;<a id="vscodeblue2">BR_WDT</a>,</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;<a id="vscodeblue2">BR_WDT_BY_PASS_PWK</a>,</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;<a id="vscodeblue2">BR_TOOL_BY_PASS_PWK</a>,</p>
-                <p><a id="vscodepurple">#ifdef</a> <a id="vscodeblue">RTC_2SEC_REBOOT_ENABLE</a></p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;<a id="vscodeblue2">BR_2SEC_REBOOT</a>,</p>
-                <p id="vscodepurple">#endif</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;<a id="vscodeblue2">BR_UNKNOWN</a></p>
-                <p><a id="vscodeyellow">}</a> <a id="vscodebluegreen">boot_reason_t</a>;</p>
-            </div>
-            <h2>Partition table</h2>
-            <a>After initializing the platform, the Preloader now has entire full access to the eMMC/NAND flash. MediaTek decided to partition the flash, but the table is hardcoded.</a>
-            <a>It is generated during a Preloader generation session from a real Excel file in</a>
-            <a>mediatek/build/tools/ptgen/${platform}/partition_table_${platform}.xls by the command ./makeMtk -t ${device} ptgen. (here is a example of the partition table for a device named PE900s)</a>
-            <br></br>
-            <div class="partition">
-              <img src="../assets/images/blog/preloaderdetails/partition_table.png">
-            </div>
-            <br></br>
-            <a>The partition table structure is stored into (for PE900s) mediatek/custom/pe900s/preloader/cust_part.c and looks like this:</a>
-            <br></br>
-            <div class="code">
-              <p><span id="vscodeblue">static</span> <span id="vscodebluegreen">part_t</span> <span id="vscodelightblue">platform_parts</span><span id="vscodeyellow">[</span>PART_MAX_COUNT<span id="vscodeyellow">]</span> = <span id="vscodeyellow">{</span></p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_PRELOADER, <span id="vscodelightgreen">0</span>, PART_SIZE_PRELOADER, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_MBR, <span id="vscodelightgreen">0</span>, PART_SIZE_MBR, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_EBR1, <span id="vscodelightgreen">0</span>, PART_SIZE_EBR1, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_PRO_INFO, <span id="vscodelightgreen">0</span>, PART_SIZE_PRO_INFO, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_NVRAM, <span id="vscodelightgreen">0</span>, PART_SIZE_NVRAM, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_PROTECT_F, <span id="vscodelightgreen">0</span>, PART_SIZE_PROTECT_F, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_PROTECT_S, <span id="vscodelightgreen">0</span>, PART_SIZE_PROTECT_S, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_SECURE, <span id="vscodelightgreen">0</span>, PART_SIZE_SECCFG, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_UBOOT, <span id="vscodelightgreen">0</span>, PART_SIZE_UBOOT, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_BOOTIMG, <span id="vscodelightgreen">0</span>, PART_SIZE_BOOTIMG, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_RECOVERY, <span id="vscodelightgreen">0</span>, PART_SIZE_RECOVERY, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_SECSTATIC, <span id="vscodelightgreen">0</span>, PART_SIZE_SEC_RO, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_MISC, <span id="vscodelightgreen">0</span>, PART_SIZE_MISC, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_LOGO, <span id="vscodelightgreen">0</span>, PART_SIZE_LOGO, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_EXPDB, <span id="vscodelightgreen">0</span>, PART_SIZE_EXPDB, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_ANDSYSIMG, <span id="vscodelightgreen">0</span>, PART_SIZE_ANDROID, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_CACHE, <span id="vscodelightgreen">0</span>, PART_SIZE_CACHE, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_USER, <span id="vscodelightgreen">0</span>, PART_SIZE_USRDATA, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span>PART_FAT, <span id="vscodelightgreen">0</span>, PART_SIZE_FAT, <span id="vscodelightgreen">0</span>, PART_FLAG_NONE<span id="vscodepurple">}</span>,</p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodepurple">{</span><span id="vscodeblue">NULL</span>,<span id="vscodelightgreen">0</span>,<span id="vscodelightgreen">0</span>,<span id="vscodelightgreen">0</span>,PART_FLAG_END<span id="vscodepurple">}</span>,</p>
-              <p><span id="vscodeyellow">}</span>;</p>
-            </div>            
-            <h2>Secure boot stage (part 1)</h2>
-            <a>After loading all the partitions (and if Secure boot is enabled), the Preloader initializes the SecLib subsystem.</a>
-            <a>The OEM supplies a RSA key up to 2048 bits in length.</a>
-            <br></br>
-            <a>It is unknown on what SecLib does exactly. It takes data from the SECURE partition</a>
-            <a>(if it exists) and the RSA key, and then calls in the binary blob mediatek/platform/${platform}/preloader/src/SecLib.a.</a>
-            <h2>The boot mode selection</h2>
-            <a>After confirming Secure boot (optional), the Preloader decides which boot mode it will go for.</a>
-            <br></br>
-            <a>NORMAL_BOOT is used if secure boot is disabled or the module does not say otherwise. If Download Mode is enabled it will try to enter it immediately.</a>
-            <a>The list for other boot modes is long, but not all of them are self-explanatory:</a>
-            <br></br>
-            <div class="code">
-                <p id="vscodeblue">typedef enum</p>
-                <p id="vscodeyellow">{</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;NORMAL_BOOT = <span id="vscodelightgreen">0</span>,</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;META_BOOT = <span id="vscodelightgreen">1</span>,</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;RECOVERY_BOOT = <span id="vscodelightgreen">2</span>,</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;SW_REBOOT = <span id="vscodelightgreen">3</span>,</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;FACTORY_BOOT = <span id="vscodelightgreen">4</span>,</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;ADVMETA_BOOT = <span id="vscodelightgreen">5</span>,</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;ATE_FACTORY_BOOT = <span id="vscodelightgreen">6</span>,</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;ALARM_BOOT = <span id="vscodelightgreen">7</span>,</p>
-                <p id="vscodepurple">#if defined (<span id="vscodeblue">MTK_KERNEL_POWER_OFF_CHARGING</span>)</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;KERNEL_POWER_OFF_CHARGING_BOOT = <span id="vscodelightgreen">8</span>,</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;LOW_POWER_OFF_CHARGING_BOOT = <span id="vscodelightgreen">9</span>,</p>
-                <p id="vscodepurple">#endif</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;FASTBOOT = <span id="vscodelightgreen">99</span>,</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;DOWNLOAD_BOOT = <span id="vscodelightgreen">100</span>,</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;UNKNOWN_BOOT</p>
-                <a><span id="vscodeyellow">}</span> BOOTMODE;</a>
-            </div>
-            <h2>BootROM Download Mode</h2>
-            <a>Before Download Mode can be entered, the Preloader needs to find out if a host is connected via USB/UART and running the SP Flash Tool.</a>
-            <a>Through it can be bypassed by pressing a BROM key while plugging the device in.</a>
-            <a>For SP Flash Tool, it does this by configuring a virtual CDC ACM discipline in USB, so both lines are serial ports and behave the same.</a>
-            <br></br>
-            <a>The USB port if connected will assume that the SP Flash Tool is connected if it receives a CDC message.</a>
-            <a>It then sends the READY string to the tool and waits for a token of 8 bytes.</a>
-            <br></br>
-            <a>If detected successfully, the tool will send a special Start command sequence (0xa0 0x0a 0x50 0x05) to enter a special mode</a>
-            <a>that is only available via USB or holding the BROM button while plugging the USB in.</a>
-            <a>It incorporates the following commands:</a>
-            <br></br>
-            <table border="1">
-                <thead>
-                  <tr>
-                    <th>Command</th>
-                    <th>Byte</th>
-                    <th>Function</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>CMD_GET_HW_SW_VER</td>
-                    <td>0xfc</td>
-                    <td>Return hardware subcode, hardware/software version</td>
-                  </tr>
-                  <tr>
-                    <td>CMD_GET_HW_CODE</td>
-                    <td>0xfd</td>
-                    <td>Return hardware code/status</td>
-                  </tr>
-                  <tr>
-                    <td>CMD_GET_BL_VER</td>
-                    <td>0xfe</td>
-                    <td>Gets the Preloader version</td>
-                  </tr>
-                  <tr>
-                    <td>CMD_LEGACY_WRITE</td>
-                    <td>0xa1</td>
-                    <td>Write data to the SoC memory (legacy)</td>
-                  </tr>
-                  <tr>
-                    <td>CMD_LEGACY_READ</td>
-                    <td>0xa2</td>
-                    <td>Read data from the SoC memory (legacy)</td>
-                  </tr>
-                  <tr>
-                    <td>CMD_I2C_INIT</td>
-                    <td>0xb0</td>
-                    <td>Initializes the I2C</td>
-                  </tr>
-                  <tr>
-                    <td>CMD_I2C_DEINIT</td>
-                    <td>0xb1</td>
-                    <td>Shuts down the I2C</td>
-                  </tr>
-                  <tr>
-                    <td>CMD_I2C_WRITE8</td>
-                    <td>0xb2</td>
-                    <td>Write data to the I2C (8 bit length)</td>
-                  </tr>
-                  <tr>
-                    <td>CMD_I2C_READ8</td>
-                    <td>0xb3</td>
-                    <td>Read data from the I2C (8 bit length)</td>
-                  </tr>
-                  <tr>
-                    <td>CMD_I2C_SET_SPEED</td>
-                    <td>0xb4</td>
-                    <td>Sets the I2C speed</td>
-                  </tr>
-                  <tr>
-                    <td>CMD_PWR_INIT</td>
-                    <td>0xc4</td>
-                    <td>Initializes the PMC</td>
-                  </tr>
-                  <tr>
-                    <td>CMD_PWR_DEINIT</td>
-                    <td>0xc5</td>
-                    <td>Shuts down the PMC</td>
-                  </tr>
-                  <tr>
-                    <td>CMD_PWR_READ16</td>
-                    <td>0xc6</td>
-                    <td>Read 16 bit data from the PMC interface memory (16 bit length)</td>
-                  </tr>
-                  <tr>
-                    <td>CMD_PWR_WRITE16</td>
-                    <td>0xc7</td>
-                    <td>Write 16 bit data to the PMC interface memory (16 bit length)</td>
-                  </tr>
-                  <tr>
-                    <td>CMD_READ16</td>
-                    <td>0xd0</td>
-                    <td>Read data from the SoC memory (16 bit length)</td>
-                  </tr>
-                  <tr>
-                    <td>CMD_READ32</td>
-                    <td>0xd1</td>
-                    <td>Read data from the SoC memory (32 bit length)</td>
-                  </tr>
-                  <tr>
-                    <td>CMD_WRITE16</td>
-                    <td>0xd2</td>
-                    <td>Write data to the SoC memory (16 bit length)</td>
-                  </tr>
-                  <tr>
-                    <td>CMD_WRITE16_NO_ECHO</td>
-                    <td>0xd3</td>
-                    <td>Write data to the SoC memory without echoing (16 bit length)</td>
-                  </tr>
-                  <tr>
-                    <td>CMD_WRITE32</td>
-                    <td>0xd4</td>
-                    <td>Write data to the SoC memory (32 bit length)</td>
-                  </tr>
-                  <tr>
-                    <td>CMD_JUMP_DA</td>
-                    <td>0xd5</td>
-                    <td>Sets boot mode to DOWNLOAD_BOOT and starts execution of the Download Agent sent to the SoC</td>
-                  </tr>
-                  <tr>
-                    <td>CMD_JUMP_BL</td>
-                    <td>0xd6</td>
-                    <td>Starts execution of the Preloader on eMMC/NAND flash</td>
-                  </tr>
-                  <tr>
-                    <td>CMD_SEND_DA</td>
-                    <td>0xd7</td>
-                    <td>Sends a "Download Agent" binary to the SoC signed with a key</td>
-                  </tr>
-                  <tr>
-                    <td>CMD_GET_TARGET_CONFIG</td>
-                    <td>0xd8</td>
-                    <td>Gets supported Preloader config flags</td>
-                  </tr>
-                  <tr>
-                    <td>CMD_UART1_LOG_EN</td>
-                    <td>0xdb</td>
-                    <td>Not sure what this command does</td>
-                  </tr>
-                </tbody>
-            </table>
-            <br></br>
-            <a>The Download Agent step is necessary so this way the SP Flash Tool can send a current version for the exact</a>
-            <a>hardware version that is being used.</a>
-            <br></br>
-            <a>The UART has no possibility to detect if the physical line is powered, so it will just send the READY string and hopes for a 8 byte token. If it does,</a>
-            <a>then it assumes that the tool is present.</a>
-            <h4>NOTE: The special commands from the table above are not available when using UART, maybe because the BROM</h4>
-            <h4>already offers most of these commands via UART.</h4>
-            <a>If the Start command is not issued with the host via USB, the Preloader will enter a common mode in which it incorporates the following commands over both USB/UART:</a>
-            <br></br>
-            <table border="1">
-                <thead>
-                  <tr>
-                    <th>Command</th>
-                    <th>String</th>
-                    <th>Function</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>HSNK_COM_READY</td>
-                    <td>READY</td>
-                    <td>If sent, will wait for a 8 byte token before switching to BROM</td>
-                  </tr>
-                  <tr>
-                    <td>META_STR_REQ</td>
-                    <td>METAMETA</td>
-                    <td>Switches into META_BOOT mode</td>
-                  </tr>
-                  <tr>
-                    <td>META_STR_ACK</td>
-                    <td>ATEMATEM</td>
-                    <td>Used for response from META_BOOT mode</td>
-                  </tr>
-                  <tr>
-                    <td>META_LOCK</td>
-                    <td>LOCK</td>
-                    <td>Not sure what this command does</td>
-                  </tr>
-                  <tr>
-                    <td>META_FORBIDDEN_ACK</td>
-                    <td>METAFORB</td>
-                    <td>Not sure what this command does</td>
-                  </tr>
-                  <tr>
-                    <td>META_ADV_REQ</td>
-                    <td>ADVEMETA</td>
-                    <td>Switches into ADVMETA_BOOT mode</td>
-                  </tr>
-                  <tr>
-                    <td>META_ADV_ACK</td>
-                    <td>ATEMEVDA</td>
-                    <td>Used for response from ADVMETA_BOOT mode</td>
-                  </tr>
-                  <tr>
-                    <td>FACTORY_STR_REQ</td>
-                    <td>FACTFACT</td>
-                    <td>Switches into FACTORY_BOOT mode</td>
-                  </tr>
-                  <tr>
-                    <td>FACTORY_STR_ACK</td>
-                    <td>TCAFTCAF</td>
-                    <td>Used for response from FACTORY_BOOT mode</td>
-                  </tr>
-                  <tr>
-                    <td>ATE_STR_REQ</td>
-                    <td>FACTORYM</td>
-                    <td>Switches into ATE_FACTORY_BOOT mode</td>
-                  </tr>
-                  <tr>
-                    <td>FACTORY_STR_ACK</td>
-                    <td>MYROTCAF</td>
-                    <td>Used for response from ATE_FACTORY_BOOT mode</td>
-                  </tr>
-                  <tr>
-                    <td>SWITCH_MD_REQ</td>
-                    <td>SWITCHMD</td>
-                    <td>Switches the modem into firmware download mode</td>
-                  </tr>
-                  <tr>
-                    <td>SWITCH_MD_ACK</td>
-                    <td>DMHCTIWS</td>
-                    <td>Used for response from modem in firmware download mode</td>
-                  </tr>
-                  <tr>
-                    <td>ATCMD_NBOOT_REQ</td>
-                    <td>AT+NBOOT</td>
-                    <td>Switches into NORMAL_BOOT mode</td>
-                  </tr>
-                  <tr>
-                    <td>ATCMD_OK</td>
-                    <td>AT+OK</td>
-                    <td>Not sure what this command does</td>
-                  </tr>
-                  <tr>
-                    <td>ATCMD_UNKNOWN</td>
-                    <td>AT+UNKNOWN</td>
-                    <td>Not sure what this command does</td>
-                  </tr>
-                  <tr>
-                    <td>FB_STR_REQ</td>
-                    <td>FASTBOOT</td>
-                    <td>Switches into FASTBOOT mode</td>
-                  </tr>
-                  <tr>
-                    <td>FB_STR_ACK</td>
-                    <td>TOOBTSAF</td>
-                    <td>Used for response from FASTBOOT mode</td>
-                  </tr>
-            </table>
-            <h2>Secure boot stage (part 2)</h2>
-            <a>Once again it is unknown what SecLib does at this stage,</a>
-            <a>it just calls into the binary blob most of the time its active.</a>
-            <br></br>
-            <a>The following (questionable) info was gathered by looking at a C wrapper and dumping the library symbols and strings:</a>
-            <br></br>
-            <p>&#9679; Security data comes from the SECSTATIC partition</p>
-            <P>&#9679; Validation of cryptographic image signatures using RSA/SHA1</P>
-            <p>&#9679; (CONFIRMED AS SEEN <a href="https://xdaforums.com/t/new-fire-hd10-2019-bootless-root-method-bootloader-unlock-brainstorming.3979343/page-40#post-86371571">HERE AS FLASHING LK IN MAVERICK GETS IT STUCK IN PRELOADER</a>) The UBOOT, LOGO, BOOTIMG, RECOVERY and ANDROID partitions are checked at some point</p>
-            <a>&#9679; The "customer name" seems to be checked, strange but why?</a>
-            <br></br>
-            <a>The necessary signed images are likely generated by the SignTool binaries in mediatek/build/tools/SignTool.</a>
-            <br></br>
-            <a>The OEM can likely add additional security measures.</a>
-            <h2>Loading core boot images</h2>
-            <a>Now that the Preloader knows the system is good to go, safe and secure, it can load the firmware images from the eMMC/NAND flash.</a>
-            <br></br>
-            <a>This is highly specialised process, because every image has to be processed</a>
-            <a>differently. For example the firmware for the HSPA modem in the MT6582 has to be fed into the modem</a>
-            <a>by using special registers and commands,</a>
-            <a>while the LK bootloader can just be copied to the correct memory address. In this step the Ppreloader will decide also which is the next component</a>
-            <a>that gets executed after itself ends.</a>
-            <a>This will be the bootloader image stored in the UBOOT partition by default.</a>
-            <h4>NOTE: Only the most basic firmware (like modem and LK) is loaded.</h4>
-            <H2>Platform post initializing</H2>
-            <a>In this step, the platform is put into a state for the LK. The most important step for the Preloader is to pass on</a>
-            <a>the boot arguments that was set during the Preloader's execution. This will make more sense once we look at what happens</a>
-            <a>after the Preloader has been executed fully, the whole MediaTek design is a bit compilcated.</a>
-            <br></br>
-            <a>The boot arguments structure for the MT6572 will look like this:</a>
-            <div class="code">
-                <p id="vscodeblue">typedef struct <span id="vscodeyellow">{</span></p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;u32 magic;</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodebluegreen">boot_arg_t</span> mode;</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;u32 e_flag;</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;u32 log_port;</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;u32 log_baudrate;</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;u8&nbsp;&nbsp;log_enable;</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;u8&nbsp;&nbsp;<span id="vscodelightblue">reserved</span><span id="vscodepurple">[<span id="vscodelightgreen">3</span>]</span>;</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;u32 dram_rank_num;</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;u32 <span id="vscodelightblue">dram_rank_size</span><span id="vscodepurple">[<span id="vscodelightgreen">4</span>]</span>;</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;u32 boot_reason;</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;u32 meta_com_type;</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;u32 meta_com_id;</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;<span id="vscodebluegreen">da_info_t</span> da_info;</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;SEC_LIMIT sec_limit;</p>
-                <a><span id="vscodeyellow">}</span> <span id="vscodebluegreen">boot_arg_t</span>;</a>
-            </div>
-            <a>It is put at a memory location where it survives until the next component grabs it.</a>
-            <h2>Booting the next component</h2>
-            <a>The last step the Preloader has</a>
-            <a>to do is jump to LK loaded from the UBOOT partition.</a>
-            <br></br>
-            <a>After this, the Preloader goes inactive until the BROM starts again.</a>
-            <h2>Sources</h2>
-            <p>&#9679; <a href="https://github.com/li127832919/MTK6572">MT6572 source code for PE900s and lightning72_wet_l</a></p>
-            <p>&#9679; <a href="https://wenku.baidu.com/view/d44d5cd9ad51f01dc281f129.html?_wkts_=1725153461138&needWelcomeRecommand=1">Introduction of MTK Tools</a></p>
-        </div>
-        
-        <iframe id="footer-iframe" src="../assets/iframes/footer2.html"></iframe>
         <script src="../assets/js/browsercheck.js"></script>
         <script src="../assets/js/menu.js"></script>
     </body>
