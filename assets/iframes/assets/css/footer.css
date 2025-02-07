@@ -2,6 +2,7 @@ body {
     margin: 0px;
     padding: 0px;
     font-family: 'Montserrat', 'Arial';
+    border-top: 1px solid rgba(0, 255, 255, 0.18);
 }
 
 a {
@@ -15,7 +16,6 @@ a {
     align-items: center;
     background-color: #1111115e;
     backdrop-filter: blur(7px);
-    align-items: center;
     padding: 10px 0px;
     width: 100%;
     z-index: -5;
@@ -28,4 +28,32 @@ a {
 
 #counter {
     padding-right: 10px;
+}
+
+.footer2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1111115e;
+    backdrop-filter: blur(7px);
+    padding: 10px 0px;
+    width: 100%;
+    z-index: -5;
+    height: auto;
+    flex-wrap: wrap;
+}
+
+#sociallink {
+    padding: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#sociallink img {
+    transition: 0.2s ease-in-out;
+    height: 40px;
+}
+
+#sociallink img:hover {
+    transform: scale(1.25);
 }
