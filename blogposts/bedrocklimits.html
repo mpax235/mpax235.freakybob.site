@@ -25,20 +25,35 @@
             #code {
                 font-family: "Source Code Pro", monospace;
             }
+            .doorvsthenafter, 
+            .stripelands, 
+            .slicelands4x, 
+            .slicelands128x, 
+            .nothingness090alpha, 
+            .farlandsxaxis090alpha {
+                display: flex;
+                justify-content: center; 
+            }
             .doorvsthenafter img {
-                width: 100%;
+                width: 75%;
+                border-radius: 12px;
             }
             .stripelands img {
-                width: 100%;
+                width: 75%;
+                border-radius: 12px;
             }
             .slicelands4x img {
-                width: 100%;
+                width: 75%;
+                border-radius: 12px;
             }
             .slicelands128x img {
-                width: 100%;
+                width: 75%;
+                border-radius: 12px;
             }
-            #nothingness090alpha, #farlandsxaxis090alpha {
-                width: 100%;
+
+            .farlandsxaxis090alpha img {
+                width: 75%;
+                border-radius: 12px;
             }
         </style>
     </head>
@@ -92,7 +107,9 @@
                 <div class="doorvsthenafter">
                     <img src="../assets/images/blog/bedrocklimits/doorvsthenafter.png">
                 </div>
-                <a id="smalltext">Door before 2,097,152 blocks (right) and after 2,097,152 blocks (left)</a>
+                <div class="picturecaptioncontainer">
+                    <a id="picturecaption">Door before 2,097,152 blocks (right) and after 2,097,152 blocks (left)</a>
+                </div>
                 <br></br>
                 <a>At 4,194,304 blocks, your journey ends here on Survival if you don't have Ender Pearls, Elytra with Fireworks, Riptide Trident, Horseback, Boats or Chorus Fruit as the minimum speed is now changed to</a>
                 <a>5 blocks. More than the speed of 4.3 blocks for the Player.</a>
@@ -107,7 +124,9 @@
                 <div class="stripelands">
                     <img src="../assets/images/blog/bedrocklimits/stripelands.png">
                 </div>
-                <a id="smalltext">Stripe Lands rendering beyond 16,777,216 blocks. Looks broken huh? The "Sky" color stripes are "Invalid" spaces while the "Grass" spaces are "Valid" spaces.</a>
+                <div class="picturecaptioncontainer">
+                    <a id="picturecaption">Stripe Lands rendering beyond 16,777,216 blocks. Looks broken huh? The "Sky" color stripes are "Invalid" spaces while the "Grass" spaces are "Valid" spaces.</a>
+                </div>
                 <br></br>
                 <a>However it does not end here. Thanks to AntVenom's video, I figured that using PocketMine lets me teleport beyond 30,000,000 blocks.</a>
                 <a>When i tried it with
@@ -121,7 +140,9 @@
                 <div class="slicelands4x">
                     <img src="../assets/images/blog/bedrocklimits/slicelands4.png">
                 </div>
-                <a id="smalltext">Slice Lands rendering beyond 33,554,432 blocks. Horizontal rendering stops beyond this point.</a>
+                <div class="picturecaptioncontainer">
+                    <a id="picturecaption">Slice Lands rendering beyond 33,554,432 blocks. Horizontal rendering stops beyond this point.</a>
+                </div>
                 <br></br>
                 <a>I also noticed the gaps doubled from 2 blocks to 4 blocks, this continues with each double of coordinates like changing gaps to 8 blocks, 16 blocks, 32 blocks, 64 blocks and so on.</a>
                 <br></br>
@@ -131,7 +152,9 @@
                 <div class="slicelands128x">
                     <img src="../assets/images/blog/bedrocklimits/slicelands128.png">
                 </div>
-                <a id="smalltext">1,073,741,824 blocks away into the Slice Lands with a render distance set to 9 chunks.</a>
+                <div class="picturecaptioncontainer">
+                    <a id="picturecaption">1,073,741,824 blocks away into the Slice Lands with a render distance set to 9 chunks.</a>
+                </div>
                 <br></br>
                 <a>Sadly I can't show you more on whats beyond 2^31 as thats the 32-Bit Integer Limit and when I try to go to it,</a>
                 <a>the game will just crash.</a>
@@ -332,8 +355,12 @@
                 </table>
                 <br>
                 <h3>Far Lands</h3>
-                <img id="farlandsxaxis090alpha" src="../assets/images/blog/bedrocklimits/farlandsxaxis090alpha.png">
-                <a id="smalltext">The Far Lands generating on the X axis in the Pocket Edition 0.9.0 alpha.</a>
+                <div class="farlandsxaxis090alpha">
+                    <img src="../assets/images/blog/bedrocklimits/farlandsxaxis090alpha.png">
+                </div>
+                <div class="picturecaptioncontainer">
+                    <a id="picturecaption">The Far Lands generating on the X axis in the Pocket Edition 0.9.0 alpha.</a>
+                </div>
                 <br></br>
                 <table border="1">
                     <thead>
@@ -407,8 +434,12 @@
                     </tbody>
                 </table>
                 <h2>Nothingness</h2>
-                <img id="nothingness090alpha" src="../assets/images//blog/bedrocklimits/nothingness090alpha.png">
-                <a id="smalltext">Nothingness generating in the Pocket Edition 0.9.0 alpha after the X axis Far Lands ends.</a>
+                <div class="farlandsxaxis090alpha">
+                    <img src="../assets/images/blog/bedrocklimits/nothingness090alpha.png">
+                </div>
+                <div class="picturecaptioncontainer">
+                    <a id="picturecaption">Nothingness generating in the Pocket Edition 0.9.0 alpha after the X axis Far Lands ends.</a>
+                </div>
                 <br></br>
                 <a>In the negative X Far Lands, after the X/Z coords degrade, and in all the Far Lands in Windows, Xbox, and PlayStation, only Nothingness generates.
                     <br><br>
@@ -455,7 +486,7 @@
                         </div>
                         <div class="galleryitem">
                             <div class="gallerycontainer">
-                                <a href="../sources/blog/bedrocklimits/farlandsgone090alpha.png"><img id="galleryimage" src="../assets/images/blog/bedrocklimits/farlandsgone090alpha.png"></a>
+                                <a href="../assets/images/blog/bedrocklimits/farlandsgone090alpha.png"><img id="galleryimage" src="../assets/images/blog/bedrocklimits/farlandsgone090alpha.png"></a>
                                 <br>
                                 <a>Far Lands not generating anymore beyond 12,758,545 blocks on the X axis in Pocket Edition 0.9.0 alpha.</a>
                             </div>
