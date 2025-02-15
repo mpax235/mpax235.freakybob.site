@@ -177,6 +177,13 @@
     font-size: 11px;
 }
 
+#marquee {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
 /* CLASSES */
 
 .gallerystuff {
@@ -354,6 +361,10 @@
     .twitchcontainer {
         display: flex;
     }
+
+    .marquee-content {
+        animation: marquee 20s linear infinite !important;
+    }
 }
 
 .icon {
@@ -371,6 +382,12 @@
 .picturecaptioncontainer {
     margin-left: 12.5%;
     margin-right: 12.5%;
+}
+
+.marquee-content {
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee 15s linear infinite;   
 }
 
 /* ANIMATIONS */
@@ -396,5 +413,15 @@
     100% {
         transform: translateX(-100%);
         opacity: 0;
+    }
+}
+
+@keyframes marquee {
+    from {
+        transform: translateX(0%);
+    }
+
+    to {
+        transform: translateX(-100%);
     }
 }

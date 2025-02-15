@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 body {
     margin: 10px;
     padding: 0px;
@@ -8,6 +10,7 @@ body {
 h1, h2, h3, h4, h5, h6, table {
     color: #00ffff;
     text-align: center;
+    font-weight: normal;
 }
 
 p {
