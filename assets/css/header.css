@@ -4,61 +4,7 @@
 //////////////////
 */
 
-/* NAVIGATION BAR */
-
-.navigationbar {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #1616165e;
-    backdrop-filter: blur(7px);
-    display: flex;
-    flex-direction: column;
-}
-
-.navigationbar li {
-    border-right:1px solid #00ffff;
-    text-align: center;
-}
-
-.navigationbar li:last-child {
-    border-right: none;
-}
-
-.navigationbar li a {
-    display: block;
-    padding: 12px;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 1px;
-    transition: 0.2s ease-in-out;
-}
-
-.navigationbar li a:hover:not(.active) {
-    background-color: #00ffff;
-    color: #000000;
-    transition: 0.2s ease-in-out;
-}
-
-@media (min-width: 600px) {
-    .navigationbar {
-        flex-direction: row;
-        justify-content: center;
-    }
-
-    .navigationbar li {
-        font-size: 14px;
-        text-align: left;
-    }
-}
-
 /* MAIN HEADER */
-
-.active {
-    background-color: #00ffff;
-    color: #000000;
-}
 
 #header-iframe {
     border: none;

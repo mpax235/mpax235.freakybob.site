@@ -13,10 +13,6 @@
 
 /* IDS */
 
-#github {
-    height: 40px;
-}
-
 #happynewyear {
     background-color: #ff000015;
     backdrop-filter: blur(7px);
@@ -28,20 +24,6 @@
 
 #time {
     font-size: 35px;
-}
-
-@keyframes newyear {
-    0% {
-        color: #ff0000;
-    }
-
-    50% {
-        color: #ff000000;
-    }
-
-    100% {
-        color: #ff0000;
-    }
 }
 
 #smalltext {
@@ -99,6 +81,10 @@
     width: 100%;
 }
 
+/******************/
+/* VS CODE COLORS */
+/******************/
+
 #vscodeblue {
     color: #569cd6;
 }
@@ -126,6 +112,8 @@
 #vscodelightblue {
     color: #9cdcfe;
 }
+
+/******************/
 
 @media (min-width: 600px) {
     #twitch-chat-embed {
@@ -299,7 +287,7 @@
 }
 
 .columninnertext {
-    margin: -5px 10px;
+    margin: 5px 5px 5px 10px;
     padding: 1px;
 }
 
@@ -361,6 +349,10 @@
     .marquee-content {
         animation: marquee 20s linear infinite !important;
     }
+
+    .columncontainer {
+        display: flex;
+    }
 }
 
 .icon {
@@ -396,7 +388,34 @@
     margin-bottom: 5px;
 }
 
+.rightside img {
+    height: 150px;
+    border-radius: 12px;
+}
+
+.leftside {
+    margin-right: 5px;
+}
+
+.rightside {
+    margin-left: auto;
+}
+
 /* ANIMATIONS */
+
+@keyframes newyear {
+    0% {
+        color: #ff0000;
+    }
+
+    50% {
+        color: #ff000000;
+    }
+
+    100% {
+        color: #ff0000;
+    }
+}
 
 @keyframes menuAnimation {
     0% {
