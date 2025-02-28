@@ -172,6 +172,18 @@
     box-sizing: border-box;
 }
 
+#hellotext {
+    margin: 0;
+}
+
+#announcementsiframe {
+    width: 100%;
+    border-radius: 12px;
+    background-color: #1616165e;
+    backdrop-filter: blur(7px);
+    border: 1px solid rgba(0, 255, 255, 0.18)
+}
+
 /* CLASSES */
 
 .gallerystuff {
@@ -399,6 +411,43 @@
 
 .rightside {
     margin-left: auto;
+}
+
+.socialshome {
+    padding: 20px;
+}
+
+.introduction {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 600px) {
+    .rightintroduction {
+        margin-left: auto;
+    }
+
+    .introduction {
+        flex-direction: row;
+    }
+
+    .announcements {
+        margin-top: 0 !important;
+    }
+}
+
+.leftintroduction {
+    margin-right: 5px;
+}
+
+.announcements {
+    background-color: #1616165e;
+    padding: 10px;
+    margin-top: 10px;
+    text-align: center;
+    border: 1px solid rgba(0, 255, 255, 0.18);
+    backdrop-filter: blur(7px);
+    border-radius: 12px;
 }
 
 /* ANIMATIONS */
