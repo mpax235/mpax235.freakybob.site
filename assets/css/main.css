@@ -76,9 +76,14 @@
     padding-right: 10px;
 }
 
+#twitch-embed > iframe {
+    border-radius: 12px;
+}
+
 #twitch-chat-embed {
     border: none;
     width: 100%;
+    border-radius: 12px;
 }
 
 /******************/
