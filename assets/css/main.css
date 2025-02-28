@@ -189,6 +189,20 @@
     border: 1px solid rgba(0, 255, 255, 0.18)
 }
 
+#sitemappagetitle {
+    text-align: center;
+}
+
+#sitemapheader {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+#sitemapright {
+    margin-left: auto;
+    text-align: right;
+}
+
 /* CLASSES */
 
 .gallerystuff {
@@ -453,6 +467,29 @@
     border: 1px solid rgba(0, 255, 255, 0.18);
     backdrop-filter: blur(7px);
     border-radius: 12px;
+}
+
+.sitemap {
+    background-color: #1616165e;
+    padding: 10px;
+    border: 1px solid rgba(0, 255, 255, 0.18);
+    backdrop-filter: blur(7px);
+    border-radius: 12px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.sitemap ul {
+    color: #00ffff;
+    margin: 0;
+}
+
+.sitemapcontent {
+    margin-bottom: 10px;
+}
+
+.sitemaprow {
+    display: flex;
 }
 
 /* ANIMATIONS */

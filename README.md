@@ -1,6 +1,6 @@
 <div class="header">
   <p align="center">
-    <img style="height: 64px" src="assets/images/docs/thempax235website.png">
+    <img style="height: 64px; width: 547.95px;" src="assets/images/docs/thempax235website.png">
   </p>
 </div>
 <hr>
