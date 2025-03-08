@@ -554,6 +554,8 @@ SOFTWARE.
 
 .rightsocial {
     text-align: left;
+    display: flex;
+    align-items: center;
 }
 
 /* ANIMATIONS */

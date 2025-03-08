@@ -22,26 +22,33 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+const browser = document.getElementById('browser');
+const browserversion = document.getElementById('browserversion');
+
 function detectBrowser() {
     const userAgent = window.navigator.userAgent;
 
     const msie = userAgent.indexOf('MSIE ');
     const trident = userAgent.indexOf('Trident/');
 
+    let tridentmatch = userAgent.match(/Trident\/(\d+)\./);
     if (msie > -1 || trident > -1) {
-        window.location.replace('https://mpax235.github.io/unsupported.html');
+        browser.textContent = 'Internet Explorer';
+        browserversion.textContent = 'Trident/' + tridentmatch[1] + '.0';
         return;
     }
 
     let firefoxmatch = userAgent.match(/Firefox\/(\d+)\./);
     if (firefoxmatch && parseInt(firefoxmatch[1]) <= 68) {
-        window.location.replace('https://mpax235.github.io/unsupported.html');
+        browser.textContent = 'Waterfox Classic';
+        browserversion.textContent = 'Firefox/' + firefoxmatch[1] + '.0';
         return;
     }
 
-    if (userAgent.includes('Nintendo 3DS') || userAgent.includes('New Nintendo 3DS') || userAgent.includes("Nintendo WiiU")) {
-        window.location.replace('https://mpax235.github.io/unsupported.html');
-        return;
+    let nintendomatch3ds = userAgent.match(/NX\/(\d+)\./);
+    if (nintendomatch3ds) {
+        browser.textContent = 'New Nintendo 3DS Browser';
+        browserversion.textContent = 'NX/' + nintendomatch3ds[1] + '.0';
     }
 }
 
