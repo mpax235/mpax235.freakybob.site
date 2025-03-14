@@ -52,48 +52,54 @@ hr {
 
 /* SCROLLBAR */
 
-::-webkit-scrollbar {
-    background-color: #000000;
-    backdrop-filter: blur(7px);
+@supports (scrollbar-color: auto) {
+    html {
+        scrollbar-color: #00ffff5e #000000;
+    }
 }
 
-::-webkit-scrollbar-thumb {
-    background-color: #0063635e;
-    border: 1px solid rgba(0, 255, 255, 0.18);
-    border-radius: 12px;
-    backdrop-filter: blur(7px);
-}
+@supports selector(::-webkit-scrollbar) {
+    html::-webkit-scrollbar {
+        background-color: #000000;
+    }
 
-::-webkit-scrollbar-thumb:hover {
-    background-color: #0083835e;
-}
+    html::-webkit-scrollbar-thumb {
+        background-color: #0063635e;
+        border: 1px solid rgba(0, 255, 255, 0.18);
+        border-radius: 12px;
+    }
 
-::-webkit-scrollbar-track {
-    background: #0000005e;
-}
+    html::-webkit-scrollbar-thumb:hover {
+        background-color: #0083835e;
+    }
 
-::-webkit-scrollbar-button {
-    background-color: #0063635e;
-    border: 1px solid rgba(0, 255, 255, 0.18);
-}
+    html::-webkit-scrollbar-track {
+        background: #0000005e;
+    }
 
-::-webkit-scrollbar-button:hover {
-    background-color: #0083835e;
-}
-
-::-webkit-scrollbar-button:single-button:vertical:decrement {
-    background-image: url('../../../images/scrollbar/scrollbar_up_arrow.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-::-webkit-scrollbar-button:single-button:vertical:increment {
-    background-image: url('../../../images/scrollbar/scrollbar_down_arrow.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-::-webkit-scrollbar-button:single-button:horizontal:decrement,
-::-webkit-scrollbar-button:single-button:horizontal:increment {
-    display: none;
+    html::-webkit-scrollbar-button {
+        background-color: #0063635e;
+        border: 1px solid rgba(0, 255, 255, 0.18);
+    }
+    
+    html::-webkit-scrollbar-button:hover {
+        background-color: #0083835e;
+    }
+    
+    html::-webkit-scrollbar-button:single-button:vertical:decrement {
+        background-image: url('../images/scrollbar/scrollbar_up_arrow.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    
+    html::-webkit-scrollbar-button:single-button:vertical:increment {
+        background-image: url('../images/scrollbar/scrollbar_down_arrow.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    
+    html::-webkit-scrollbar-button:single-button:horizontal:decrement,
+    html::-webkit-scrollbar-button:single-button:horizontal:increment {
+        display: none;
+    }
 }

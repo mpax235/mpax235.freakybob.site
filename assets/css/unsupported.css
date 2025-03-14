@@ -124,3 +124,30 @@ a {
 .owners a {
     text-decoration: underline;
 }
+
+button {
+    background-color: #1616165e;
+    border: 1px solid rgba(0, 255, 255, 0.18);
+    padding: 10px 15px;
+    color: #00ffff;
+    font-family: 'Montserrat', 'Arial';
+    text-decoration: none;
+    text-align: center;
+    border-radius: 12px;
+    transition: 0.2s ease-in-out;
+    backdrop-filter: blur(7px);
+}
+
+button:hover {
+    background-color: #00ffff5e;
+    transform: scale(1.05);
+    color: #000000;
+    cursor: pointer;
+}
+
+.continue {
+    display: flex;
+    justify-content: center;
+    display: none;
+    margin-bottom: 10px;
+}

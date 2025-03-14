@@ -22,7 +22,15 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+if (!localStorage.getItem('continueAnyway')) {
+    localStorage.setItem('continueAnyway', 'false');
+}
+
 function detectBrowser() {
+    if (localStorage.getItem('continueAnyway') === 'true') {
+        return;
+    }
+
     const userAgent = window.navigator.userAgent;
 
     const msie = userAgent.indexOf('MSIE ');

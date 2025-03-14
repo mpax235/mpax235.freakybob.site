@@ -210,7 +210,7 @@ SOFTWARE.
     border-radius: 12px;
     background-color: #1616165e;
     backdrop-filter: blur(7px);
-    border: 1px solid rgba(0, 255, 255, 0.18)
+    border: 1px solid rgba(0, 255, 255, 0.18);
 }
 
 #sitemappagetitle {

@@ -40,7 +40,9 @@ function detectBrowser() {
 
     let firefoxmatch = userAgent.match(/Firefox\/(\d+)\./);
     if (firefoxmatch && parseInt(firefoxmatch[1]) <= 68) {
-        browser.textContent = 'Waterfox Classic';
+        const continueanyway = document.querySelector('.continue');
+        continueanyway.style.display = 'flex';
+        browser.textContent = 'Waterfox Classic / Firefox 68.0 and lower';
         browserversion.textContent = 'Firefox/' + firefoxmatch[1] + '.0';
         return;
     }
@@ -52,5 +54,9 @@ function detectBrowser() {
     }
 }
 
+document.getElementById('continue').addEventListener('click', () => {
+    localStorage.setItem('continueAnyway', 'true');
+    window.location.href = 'index.html';
+});
 
 window.onload = detectBrowser;

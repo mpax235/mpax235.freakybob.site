@@ -26,6 +26,7 @@ SOFTWARE.
 
 body {
     margin: 0px;
+    overflow: hidden;
     padding: 0px;
     font-family: 'Montserrat', 'Arial';
     border-top-left-radius: 12px;
