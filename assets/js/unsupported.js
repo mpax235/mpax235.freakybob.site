@@ -54,9 +54,4 @@ function detectBrowser() {
     }
 }
 
-document.getElementById('continue').addEventListener('click', () => {
-    localStorage.setItem('continueAnyway', 'true');
-    window.location.href = 'index.html';
-});
-
 window.onload = detectBrowser;

@@ -180,3 +180,11 @@ td, th {
     border: 1px solid rgba(0, 255, 255, 0.18);
     background-color: #1111115e;
 }
+
+code {
+    font-family: "Source Code Pro", monospace;
+    background-color: #0000005e;
+    backdrop-filter: blur(7px);
+    border-radius: 12px;
+    padding: 0 5px 0 5px;
+}

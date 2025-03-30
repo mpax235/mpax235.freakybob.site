@@ -1,0 +1,216 @@
+<!--
+MIT License
+
+Copyright (c) 2025 mpax235
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="The official website of mpax235!">
+        <meta content="mpax235" property="og:title" />
+        <meta content="The official website of mpax235!" property="og:description" />
+        <meta content="https://mpax235.github.io" property="og:url" />
+        <meta content="/assets/images/favicon.gif" property="og:image" />
+        <meta content="#006666" data-react-helmet="true" name="theme-color" />
+        <title>mpax235 - Blog Post</title>
+        <link rel="stylesheet" href="../assets/css/core.css">
+        <link rel="stylesheet" href="../assets/css/header.css">
+        <link rel="stylesheet" href="../assets/css/footer.css">
+        <link rel="stylesheet" href="../assets/css/main.css">
+        <link rel="stylesheet" href="../assets/css/pages.css">
+        <link rel="manifest" href="/manifest.json">
+        <link rel="icon" href="../assets/images/favicon.gif">
+        <style>
+            .classic,
+            .aerobasic {
+                display: flex;
+                justify-content: center;
+            }
+
+            .classic img,
+            .aerobasic img {
+                width: 75%;
+                border-radius: 12px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div id="menu">
+                <div id="menucontainer">
+                    <a href="#" onclick="onclosebuttonpressed()"><img id="closeicon" class="icon" src="../assets/images/icons/close.png"></a>
+                    <div class="menubuttoncontainer">
+                        <a href="../index.html"><button>Home</button></a>
+                        <a href="../blog.html"><button>Blog</button></a>
+                        <a href="../projects.html"><button>Projects</button></a>
+                        <a href="../stats.html"><button>Stats</button></a>
+                        <a href="../live.html"><button>Live</button></a>
+                        <a href="../versions.html"><button>Versions</button></a>
+                        <a href="../wiki/index.html"><button>Wiki</button></a>
+                    </div>
+                </div>
+            </div>
+            <!--header insert-->
+            <iframe id="header-iframe" src="../assets/iframes/header.html"></iframe>
+            <!--header end-->
+
+            <div class="homepage">
+                <!--### BLOG POST HEADER GOES HERE ####-->
+                <div class="attention">
+                    <a id="errortext" style="font-weight: bold;">ATTENTION: IF YOU DON'T UNDERSTAND ALL OF THIS, DO NOT PERFORM ANYTHING HERE. ONLY DO THIS ON A VM OR A PC YOU DONT CARE ABOUT. BE SURE TO BACKUP ALL THE FILES MENTIONED HERE BEFORE DOING THIS. TO RESTORE THE FILES, YOU WILL NEED TO USE WINDOWS RE TO RESTORE THE FILES YOU BACKED UP.</a>
+                </div>
+                <h1>Going through Windows's UI layers</h1>
+                <!--###################################-->
+                <!--### BLOG POST CONTENT GOES HERE ###-->
+                <!--###################################-->
+                <a>In this blog post, I will share my exploration of Windows's UI layers, and how I got to the classic layer.</a>
+                <h1>Part 1: Windows 10</h1>
+                <h2>Taking ownership of some files</h2>
+                <a>First things first, I tried using a tool called <b>Run as TrustedInstaller</b> by Sergey Tkachenko, unfortunately that did not work out as I kept getting <code>Access is Denied</code> errors. I performed the <code>whoami</code> command to see this:</a><br><br>
+                <div class="code">
+                    <p>C:\Windows\System32><span id="vscodeblue">whoami</span></p>
+                    <p>nt authority\system</p>
+                </div>
+                <br>
+                <a>Eventually, I had to take the last resort of taking ownership of the required files to make this happen. After I was done, I deleted <code>dwm.exe</code>, the program that handles the Windows 10 interface. But according to Enderman's video "What's underneath Windows 11?", the video said that the Logon UI depends on DWM, so if I didn't remove <code>Windows.UI.Logon.dll</code>, I would be greeted by a black screen on boot. So I removed the file, this forces the fallback version of the Logon UI to load.</a>
+                <br><br>
+                <a>It turns out that the Shell Infrastructure Host also depends on DWM, so I had to move <code>sihost.exe</code> to <code>sihost2.exe</code>, and put <code>cmd.exe</code> in place of <code>dwm.exe</code> because Windows has hard checks in place for checking if DWM exists. I didn't reboot yet because it turns out if you did not remove <code>dwminit.dll</code>, the cursor will not work. So I removed that file and then rebooted.</a>
+                <h2>The Windows Basic layer</h2>
+                <a>After my testing PC (ASUS Chromebook C425 with MrChromebox's UEFI firmware) rebooted, I was greeted by a fallback version of Logon UI asking me to press Ctrl + Alt + Del to unlock the computer. Luckily my keyboard driver was still working, so I pressed Ctrl + Alt + Backspace and then logged in.</a>
+                <br><br>
+                <a>When I logged in, I was greeted by Explorer crashing rapidly, so I opened the Task Manager via the Ctrl + Alt + Del menu, and then ended the Explorer process to stop the rapid crashing. After this, the background stayed black and the taskbar never reappeared. By the way, the backlight keyboard driver by CoolStar stopped working after DWM was removed, it was now totally flawed. However the mouse driver was still working, same for the key remappings.</a><br><br>
+                <div class="aerobasic">
+                    <img src="../assets/images/blog/goingthruwin10layers/aerobasictheme.png">
+                </div>
+                <div class="picturecaptioncontainer">
+                    <a id="picturecaption">The Windows Basic theme after removing the DWM</a>
+                </div>
+                <br>
+                <a>Chrome was still working, expect that there was now a border at all sides expect the top. Task Manager was working like nothing happened. But sadly, all the UWP apps have died due to them requiring DWM to function.</a><br><br>
+                <a>I later found out that if programs had been open for a while, they will crash and close suddenly. WebGL doesn't work anymore, due to the GPU drivers not being available to Chrome.</a><br><br>
+                <a>Eventually, It was time to peel off the Basic layer, so I renamed <code>explorer.exe</code> to <code>explorer1.exe</code> (a very bad mistake), and deleted the <code>C:\Windows\Resources</code> folder. Before I did that, I set <code>cmd.exe</code> as a startup program, after that, I restarted the testing PC.</a>
+                <h2>The Windows Classic layer</h2>
+                <a>After I restarted, I was greeted by the same fallback prompt, but the basic theme was now gone, in its place was the classic theme from pre-Windows 8 (it still exists internally in Windows 8 and later). I tried to start Task Manager, but it turns out that without the Aero theme (<code>aero.msstyles</code>) (which was deleted due to the deletion of the Resources folder), Task Manager will crash. Eventually, there was no other option. So I restarted to the UEFI Shell to boot to the Windows Recovery Environment.</a>
+                <br><br>
+                <a>Once I got to the Windows Recovery Environment, I logged in with my Microsoft account credientials, and got a command prompt. Then I moved <code>sethc.exe</code> to <code>sethc1.exe</code>, and copied <code>cmd.exe</code> to <code>sethc.exe</code>. After doing this, I restarted the computer.</a>
+                <br><br>
+                <a>When I got to the desktop, I pressed <code>Shift</code> 5 times and got a Command Prompt, I then launched MS Paint. Chrome was the same state, only difference is the theme. Edge for some reason worked without DWM, but worse.</a><br><br>
+                <div class="classic">
+                    <img src="../assets/images/blog/goingthruwin10layers/classictheme.png">
+                </div>
+                <div class="picturecaptioncontainer">
+                    <a id="picturecaption">The classic theme appearing after DWM and C:\Windows\Resources was removed, shortly after starting MS Paint</a>
+                </div>
+                <br>
+                <a>I eventually had to use my Command Prompt to start PowerShell, and then use <code>Start-Process cmd -Verb RunAs</code>, only to see a blank UAC dialog, It took a few tries to get the administrator Command Prompt open, after which I executed the <code>takeown</code> and <code>icacls</code> commands on <code>explorer1.exe</code>, I then renamed it to <code>explorer.exe</code>.</a>
+                <br><br>
+                <a>After doing this, I started up Explorer via <code>explorer /n</code>, and its ribbon is slightly broken, but still usable. After a while, I decided to restore everything to where it was by using the backed up files from my microSD card.</a>
+                <h2>Back to Normal</h2>
+                <a>After I restarted, the Windows installation was back to normal, it was a fun journey going through all the layers of the Windows 10 GUI. Heres a list of files that is responsible for stuff I touched:</a><br><br>
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Program/Library Name</th>
+                            <th>File/Folder Location</th>
+                            <th>Purpose</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Command Prompt</td>
+                            <td>cmd.exe</td>
+                            <td>Responsible for the Command Prompt</td>
+                        </tr>
+                        <tr>
+                            <td>N/A</td>
+                            <td>\Windows\Resources</td>
+                            <td>Responsible for Windows themes</td>
+                        </tr>
+                        <tr>
+                            <td>Desktop Window Manager</td>
+                            <td>dwm.exe</td>
+                            <td>Responsible for graphical effects and visual elements</td>
+                        </tr>
+                        <tr>
+                            <td>DWMInit</td>
+                            <td>dwminit.dll</td>
+                            <td>Responsible for transparency effects, live taskbar previews, animations, and cursor using hardware accleration.</td>
+                        </tr>
+                        <tr>
+                            <td>Windows Explorer</td>
+                            <td>explorer.exe</td>
+                            <td>Responsible for the File Explorer, Wallpaper, Taskbar, etc.</td>
+                        </tr>
+                        <tr>
+                            <td>Accessibility shortcut keys</td>
+                            <td>sethc.exe</td>
+                            <td>Responsible for the sticky keys dialog</td>
+                        </tr>
+                        <tr>
+                            <td>Shell Infrastructure Host</td>
+                            <td>sihost.exe</td>
+                            <td>Responsible for graphical elements</td>
+                        </tr>
+                        <tr>
+                            <td>Logon User Experience</td>
+                            <td>Windows.UI.Logon.dll</td>
+                            <td>Responsible for providing a UI for LogonUI.exe</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h1>Part 2: Windows 8.1</h1>
+                <a>Coming soon!</a>
+                <h1>Part 3: Windows 11</h1>
+                <a>Coming soon!</a>
+                <h2>Conclusion</h2>
+                <a>In conclusion, this was a experiment for me to try. I eventually got the idea from a Enderman video to do it. Microsoft keeps reusing code, so the base is 39 years old at the time of writing this.</a>
+                <h2>Gallery</h2>
+                <div class="gallerystuff">
+                    <div class="galleryitem">
+                        <div class="gallerycontainer">
+                            <div class="galleryimagecontainer">
+                                <a href="../assets/images/blog/goingthruwin10layers/cm2webglbroken.png"><img id="galleryimage" src="../assets/images/blog/goingthruwin10layers/cm2webglbroken.png"></a>
+                            </div>
+                            <a>Panzoid Clipmaker 2 reporting that WebGL is broken without DWM</a>
+                        </div>
+                    </div>
+                    <div class="galleryitem">
+                        <div class="gallerycontainer">
+                            <div class="galleryimagecontainer">
+                                <a href="../assets/images/blog/goingthruwin10layers/seneraclassic.png"><img id="galleryimage" src="../assets/images/blog/goingthruwin10layers/seneraclassic.png"></a>
+                            </div>
+                            <a>Senera running without C:\Windows\Resources and DWM</a>
+                        </div>
+                    </div>
+                </div>
+                <h2>Sources</h2>
+                <p>&#9679; <a href="https://www.youtube.com/watch?v=1iXfUThaQ1Q">"What's underneath Windows 11?" by Enderman</a></p>
+            </div>
+
+            <iframe id="footer-iframe" src="../assets/iframes/footer2.html"></iframe>
+        </div>
+        <script src="../assets/js/browsercheck.js"></script>
+        <script src="../assets/js/menu.js"></script>
+    </body>
+</html>

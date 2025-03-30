@@ -14,6 +14,7 @@ This website was first made on July 16th, 2024. It was published on September 1s
     <img src="https://skillicons.dev/icons?i=html,css,js" />
   </a><br>
 </p>
+<hr>
 <h3 align="center">Hosted with:</h3>
 <p align="center">
   <a href="https://pages.github.com" align="center">

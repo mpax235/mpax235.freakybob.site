@@ -55,11 +55,11 @@ SOFTWARE.
 }
 
 #errortext {
-    color: red;
+    color: #ff0000;
 }
 
 #errorred {
-    color: red;
+    color: #ff0000;
 }
 
 #counter {
@@ -485,20 +485,6 @@ SOFTWARE.
     flex-direction: column;
 }
 
-@media (min-width: 600px) {
-    .rightintroduction {
-        margin-left: auto;
-    }
-
-    .introduction {
-        flex-direction: row;
-    }
-
-    .announcements {
-        margin-top: 0 !important;
-    }
-}
-
 .leftintroduction {
     margin-right: 5px;
 }
@@ -556,6 +542,30 @@ SOFTWARE.
     text-align: left;
     display: flex;
     align-items: center;
+}
+
+.attention {
+    background-color: #ff00005e;
+    backdrop-filter: blur(7px);
+    border-radius: 12px;
+    padding: 10px;
+    border: 1px solid rgba(255, 0, 0, 0.18);
+}
+
+/* DISPLAY PATCHES */
+
+@media (min-width: 600px) {
+    .rightintroduction {
+        margin-left: auto;
+    }
+
+    .introduction {
+        flex-direction: row;
+    }
+
+    .announcements {
+        margin-top: 0 !important;
+    }
 }
 
 /* ANIMATIONS */
