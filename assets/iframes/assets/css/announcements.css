@@ -39,6 +39,8 @@ h4 {
 a {
     font-size: 12px;
     font-weight: 300;
+    text-decoration: none;
+    color: #00ffff;
 }
 
 #by {
