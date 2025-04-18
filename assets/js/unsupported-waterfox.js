@@ -24,5 +24,5 @@ SOFTWARE.
 
 document.getElementById('continue').addEventListener('click', () => {
     localStorage.setItem('continueAnyway', 'true');
-    window.location.href = 'index.html';
+    window.location.href = 'home.html';
 });

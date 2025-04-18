@@ -38,7 +38,7 @@ setTimeout(() => {
 
     template.appendChild(br);
 
-    button.href = 'index.html';
+    button.href = 'home.html';
     button.innerHTML = `<button>Go home</button>`;
     template.appendChild(button);
 }, 10000);
