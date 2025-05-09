@@ -244,6 +244,16 @@ SOFTWARE.
     overflow-wrap: break-word;
 }
 
+#deviceimage {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+
+#devicename {
+    transition: 0.2s ease-in-out;
+}
+
 /* CLASSES */
 
 .gallerystuff {
@@ -550,6 +560,35 @@ SOFTWARE.
     border-radius: 12px;
     padding: 10px;
     border: 1px solid rgba(255, 0, 0, 0.18);
+}
+
+.devicebutton {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(0, 255, 255, 0.18);
+    border-radius: 12px;
+    padding: 10px;
+    background-color: #1616165e;
+    backdrop-filter: blur(7px);
+    width: 200px;
+    text-align: center;
+    transition: 0.2s ease-in-out;
+}
+
+.devicebutton:hover {
+    background-color: #00ffff5e;
+    transform: scale(1.05);
+}
+
+.devicebutton:hover #devicename {
+    color: black;
+}
+
+.devices {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
 }
 
 /* DISPLAY PATCHES */

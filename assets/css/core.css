@@ -188,3 +188,7 @@ code {
     border-radius: 12px;
     padding: 0 5px 0 5px;
 }
+
+ol {
+    color: #00ffff;
+}
