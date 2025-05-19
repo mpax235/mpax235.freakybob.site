@@ -246,13 +246,13 @@ function apiResultFunction(userId, username, followers, following, pfp, banner, 
         postElement.appendChild(textTwo);
 
         if (post.images && post.images.length > 0) {
-            post.images.forEach((imageSrc) => {
-                const image = document.createElement('img');
-                if (imageSrc.includes("/uploads/emotes")) {
-                    imageSrc = `https://pikidiary.lol${imageSrc}`;
+            post.images.forEach((imageObj) => {
+                if (imageObj.url) {
+                    const image = document.createElement('img');
+                    image.src = imageObj.url;
+                    attachmentContent.appendChild(image);
+                    attachmentContent.style.margin = '10px 0 0 0';
                 }
-                image.src = imageSrc;
-                attachmentContent.appendChild(image);
             });
         }
         postContent.appendChild(attachmentContent);
