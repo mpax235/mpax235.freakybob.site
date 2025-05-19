@@ -245,6 +245,7 @@ function apiResultFunction(userId, username, followers, following, pfp, banner, 
         postElement.appendChild(commentsElement);
         postElement.appendChild(textTwo);
 
+        /* Cmon github pages please push this fixed code or im gonna move on */
         if (post.images && post.images.length > 0) {
             post.images.forEach((imageObj) => {
                 if (imageObj.url) {
