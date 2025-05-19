@@ -50,5 +50,5 @@ SOFTWARE.
 const interval = setInterval(updateCountdown, 1000);
 updateCountdown();*/
 
-let version = 'beta-6.0.1';
+let version = '6.1.0';
 document.getElementById('versioncounter').innerHTML = version;
