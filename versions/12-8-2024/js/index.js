@@ -23,5 +23,5 @@ SOFTWARE.
 */
 
 //setTimeout(function() {
-//    window.location.href = "https://mpax235.github.io/maintenance.html";
+//    window.location.href = "https://mpax235.freakybob.site/maintenance.html";
 //}, 0);

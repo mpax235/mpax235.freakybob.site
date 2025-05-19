@@ -28,7 +28,7 @@ if (!localStorage.getItem('continueAnyway')) {
 
 function detectBrowser() {
     if (localStorage.getItem('continueAnyway') === 'true') {
-        window.location.replace('https://mpax235.github.io/home.html');
+        window.location.replace('https://mpax235.freakybob.site/home.html');
         return;
     }
 
@@ -38,22 +38,22 @@ function detectBrowser() {
     const trident = userAgent.indexOf('Trident/');
 
     if (msie > -1 || trident > -1) {
-        window.location.replace('https://mpax235.github.io/unsupported.html');
+        window.location.replace('https://mpax235.freakybob.site/unsupported.html');
         return;
     }
 
     let firefoxmatch = userAgent.match(/Firefox\/(\d+)\./);
     if (firefoxmatch && parseInt(firefoxmatch[1]) <= 68) {
-        window.location.replace('https://mpax235.github.io/unsupported.html');
+        window.location.replace('https://mpax235.freakybob.site/unsupported.html');
         return;
     }
 
     if (userAgent.includes('Nintendo 3DS') || userAgent.includes('New Nintendo 3DS') || userAgent.includes("Nintendo WiiU")) {
-        window.location.replace('https://mpax235.github.io/unsupported.html');
+        window.location.replace('https://mpax235.freakybob.site/unsupported.html');
         return;
     }
 
-    window.location.replace('https://mpax235.github.io/home.html');
+    window.location.replace('https://mpax235.freakybob.site/home.html');
 }
 
 
