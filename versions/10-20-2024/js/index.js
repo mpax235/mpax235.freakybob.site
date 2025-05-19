@@ -1,4 +1,4 @@
-<!--
+/*
 MIT License
 
 Copyright (c) 2025 mpax235
@@ -20,26 +20,32 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
--->
+*/
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Footer</title>
-        <link rel="stylesheet" href="assets/css/footer.css">
-    </head>
-    <body>
-        <div class="footer">
-            <a>2024-2025 mpax235</a>
-        </div>
-        <div class="footer2">
-            <a id="sociallink" target="_top" href="https://github.com/mpax235"><img id="github" alt="github" src="../images/github.png"></a>
-            <a id="sociallink" target="_top" href="https://www.twitch.tv/mpax235"><img id="github" alt="github" src="https://static.wikia.nocookie.net/logopedia/images/f/f9/Twitch_Icon_2019.svg/"></a>
-        </div>
-        <div class="footer3">
-            <a href="../../contactsocials.html" target="_top">Contact/Socials</a>
-            <a href="../../about.html" target="_top">About</a>
-            <a href="../../sitemap.html" target="_top">Site Map</a>
-        </div>
-    </body>
-</html>
+id = null;
+
+function myMove() {
+    var elem = document.getElementById('testAnimation');
+    var pos = 0;
+    clearInterval(id);
+    id = setInterval(frame,5);
+    function frame() {
+        if (pos == 350) {
+            clearInterval(id);
+        } else {
+            pos++;
+            elem.style.top = pos + 'px';
+            elem.style.left = pos + 'px';
+        }
+    }
+}
+
+function myFunction() {
+    var inp = document.getElementById('usernameinput').value;
+    var x = document.createElement("BUTTON");
+    var t = document.createTextNode(inp);
+    x.appendChild(t);
+    x.className = 'clone-button';
+    document.body.appendChild(x);
+    document.body.style.backgroundColor = '#FF0000';
+}

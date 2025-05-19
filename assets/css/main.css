@@ -254,6 +254,10 @@ SOFTWARE.
     transition: 0.2s ease-in-out;
 }
 
+#warningtext {
+    color: #ffff00;
+}
+
 /* CLASSES */
 
 .gallerystuff {
@@ -589,6 +593,14 @@ SOFTWARE.
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
+}
+
+.warning {
+    background-color: #ffff005e;
+    backdrop-filter: blur(7px);
+    border-radius: 12px;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 0, 0.18);
 }
 
 /* DISPLAY PATCHES */

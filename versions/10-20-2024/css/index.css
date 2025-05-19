@@ -1,0 +1,213 @@
+/*
+MIT License
+
+Copyright (c) 2025 mpax235
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
+body {
+    margin: 10px;
+    padding: 0px;
+    font-family: 'Montserrat';
+    background-color: #000000;
+}
+
+.logo {
+    color: #00ffff;
+}
+
+button {
+    background-color: #161616;
+    border: none;
+    padding: 10px 15px;
+    color: #00ffff;
+    font-family: 'Montserrat';
+    text-decoration: none;
+    text-align: center;
+    border-radius: 12px;
+}
+
+button:hover {
+    background-color: #00ffff;
+    border: none;
+    padding: 10px 15px;
+    color: #000000;
+    font-family: 'Montserrat';
+    text-decoration: none;
+    text-align: center;
+}
+
+input {
+    background-color: #161616;
+    color: #00ffff;
+    border: none;
+    padding: 5px 10px;
+    font-family: 'Montserrat';
+    text-decoration: none;
+    text-align: left;
+    border-radius: 12px;
+}
+
+.test-animation {
+    display: block;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border: 2px solid #00ffff;
+    border-radius: 25px;
+}
+
+a {
+    color: #00ffff;
+    text-decoration: none;
+}
+
+.navigationbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #161616;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+}
+
+.navigationbar li {
+    border-right: 1px solid #00ffff;
+    text-align: center;
+}
+
+.navigationbar li:last-child {
+    border-right: none;
+}
+
+.navigationbar li a {
+    display: block;
+    padding: 12px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 1px;
+}
+
+.navigationbar li a:hover:not(.active) {
+    background-color: #00ffff;
+    color: #000000;
+}
+
+.active {
+    background-color: #00ffff;
+    color: #000000;
+}
+
+.homepage {
+    margin: 5px 0px;
+}
+
+#logo {
+    height: 45px;
+    margin: 10px;
+    margin-left: 10px;
+    display: flex;
+}
+
+#github {
+    height: 40px;
+    margin-right: 10px;
+    display: flex;
+}
+
+.homepage button:hover {
+    cursor: pointer;
+    background-color: #00ffff;
+    color: #000000;
+}
+
+p {
+    color: #00ffff;
+}
+
+@media (min-width: 600px) {
+    .navigationbar {
+        flex-direction: row;
+    }
+    .navigationbar li {
+        font-size: 14px;
+        text-align: left;
+    }
+}
+
+p {
+    margin: 0px;
+}
+
+h1, h2, h3, h4, h5, h6, table {
+    color: #00ffff;
+}
+
+table {
+    height: 150px;
+    text-align: left;
+    color: #00ffff;
+    border: #00ffff;
+    border: #00ffff;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 4px;
+    border: 1px solid #00ffff;
+}
+
+.notfound {
+    text-align: center;
+}
+
+.code {
+    font-family: "Source Code Pro", monospace;
+}
+
+.social {
+    background-color: #161616;
+    margin: 10px 0px;
+    border-radius: 16px;
+}
+
+.social a {
+    padding: 5px;
+}
+
+#smalltext {
+    font-size: 11px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #111111;
+    align-items: center;
+}
+
+.invisible {
+    height: 10px;
+}

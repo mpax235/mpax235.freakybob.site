@@ -1,0 +1,83 @@
+<!--
+MIT License
+
+Copyright (c) 2025 mpax235
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="The official website of mpax235!">
+        <meta content="mpax235" property="og:title" />
+        <meta content="The official website of mpax235!" property="og:description" />
+        <meta content="https://mpax235.github.io" property="og:url" />
+        <meta content="/assets/images/favicon.gif" property="og:image" />
+        <meta content="#006666" data-react-helmet="true" name="theme-color" />
+        <title>mpax235 - Template</title>
+        <link rel="stylesheet" href="../assets/css/core.css">
+        <link rel="stylesheet" href="../assets/css/header.css">
+        <link rel="stylesheet" href="../assets/css/footer.css">
+        <link rel="stylesheet" href="../assets/css/main.css">
+        <link rel="stylesheet" href="../assets/css/pages.css">
+        <link rel="manifest" href="/manifest.json">
+        <link rel="icon" href="../assets/images/favicon.gif">
+    </head>
+    <body>
+        <div class="container">
+            <!--header insert-->
+            <div id="menu">
+                <div id="menucontainer">
+                    <a href="#" onclick="onclosebuttonpressed()"><img id="closeicon" class="icon" src="../assets/images/icons/close.png"></a>
+                    <div class="menubuttoncontainer">
+                        <a href="../home.html"><button>Home</button></a>
+                        <a href="../blog.html"><button>Blog</button></a>
+                        <a href="../projects.html"><button>Projects</button></a>
+                        <a href="../stats.html"><button>Stats</button></a>
+                        <a href="../live.html"><button>Live</button></a>
+                        <a href="../versions.html"><button>Versions</button></a>
+                        <a href="../wiki/index.html"><button>Wiki</button></a>
+                    </div>
+                </div>
+            </div>
+            <iframe id="header-iframe" src="../assets/iframes/header.html"></iframe>
+            <!--header end-->
+
+            <div class="homepage">
+                <h1>mpax235 Tools</h1>
+                <a>This page lists all the tools I made!</a><br><br>
+                <div class="column1project">
+                    <div class="columninnertext">
+                        <a href="getpikidiaryuserinfo.html"><h3>Get a PikiDiary User's public info</h3></a>
+                        <h5>This tool can get a PikiDiary's User's public info using 5quirre1's PikiDiary API Fan-Made Remake! Emotes and Live Status support is still being worked on. Emotes are implemented, but they appear as attachments instead of a emote.</h5>
+                        <h5>This tool can retrieve a User's Profile Picture, Bio, Posts, Achievements, Badges, Banner, Background, Following Count, Followers Count, User ID, Username, Status (Active, Inactive), Login Streak, and Cursor.</h5>
+                        <h5>Made with HTML, CSS, and JavaScript.</h5>
+                    </div>
+                </div>
+            </div>
+            
+            <iframe id="footer-iframe" src="../assets/iframes/footer.html"></iframe>
+        </div>
+        <script src="../assets/js/browsercheck.js"></script>
+        <script src="../assets/js/menu.js"></script>
+    </body>
+</html>

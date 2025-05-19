@@ -151,6 +151,15 @@ input:hover::placeholder {
     color: rgba(0, 0, 0, 0.82);
 }
 
+input:focus-visible {
+    border-color: #00ffff;
+    outline: none;
+}
+
+button:active {
+    background-color: rgba(0, 255, 255, 0.18);
+}
+
 a {
     color: #00ffff;
     text-decoration: none;

@@ -1,0 +1,250 @@
+/*
+MIT License
+
+Copyright (c) 2025 mpax235
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
+.apiResult {
+    display: none;
+}
+
+#banner {
+    border: 1px solid rgba(0, 255, 255, 0.18);
+    border-radius: 12px 12px 0 0;
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    background-color: black;
+}
+
+.bottom {
+    background-color: #1616165e;
+    backdrop-filter: blur(7px);
+    border: 1px solid rgba(0, 255, 255, 0.18);
+    border-radius: 0 0 12px 12px;
+    padding: 10px;
+    width: calc(100% - 20px);
+    display: flex;
+    gap: 10px;
+}
+
+#pfp {
+    border: 1px solid rgba(0, 255, 255, 0.18);
+    border-radius: 12px;
+    height: 100px;
+}
+
+#username {
+    font-size: 32px;
+}
+
+.righttop {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.badge {
+    width: 20px;
+}
+
+#loginStreakTitle, #loginStreakTitle2 {
+    font-size: 14px;
+}
+
+#loginStreakTitle {
+    font-weight: bold;
+}
+
+.loginStreak {
+    background-color: #1616165e;
+    backdrop-filter: blur(7px);
+    border: 1px solid rgba(0, 255, 255, 0.18);
+    border-radius: 12px;
+    padding: 10px;
+}
+
+.stuff {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.post {
+    background-color: #1616165e;
+    backdrop-filter: blur(7px);
+    border: 1px solid rgba(0, 255, 255, 0.18);
+    border-radius: 12px;
+    padding: 10px;
+}
+
+.posts {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#author {
+    font-size: 32px;
+}
+
+.posttop {
+    align-items: top;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: calc(100% - 20px);
+}
+
+.posttop2 {
+    display: flex;
+    gap: 10px;
+}
+
+.postcontent {
+    background-color: #1616165e;
+    border: 1px solid rgba(0, 255, 255, 0.18);
+    backdrop-filter: blur(7px);
+    border-radius: 12px;
+    padding: 10px;
+}
+
+.bio {
+    background-color: #1616165e;
+    backdrop-filter: blur(7px);
+    border: 1px solid rgba(0, 255, 255, 0.18);
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+    max-height: 245px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    align-items: flex-start;
+    scrollbar-width: none;
+    width: 149px;
+    -ms-overflow-style: none;
+    color: #00ffff;
+}
+
+.bio::-webkit-scrollbar {
+    display: none;
+}
+
+.bio a {
+    display: flex;
+}
+
+.bio img {
+    display: block;
+    max-width: 100%;
+}
+
+.bio a img {
+    display: inline;
+}
+
+.bio .br {
+    flex-basis: 100%;
+    height: 0;
+    width: 0;
+}
+
+.bio marquee {
+    font-size: 16px;
+    color: #00ffff;
+}
+
+.achievements, .loginStreak {
+    width: 149px;
+}
+
+.stuffright {
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+}
+
+.bio audio {
+    height: 30px;
+    width: 100%;
+}
+
+.bio span {
+    color: #00ffff;
+}
+
+.achievement {
+    background-color: #1616165e;
+    backdrop-filter: blur(7px);
+    border: 1px solid rgba(0, 255, 255, 0.18);
+    border-radius: 12px;
+    padding: 10px;
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    gap: 5px;
+}
+
+.achievementleft #iconUrl {
+    border-radius: 12px;
+    border: 1px solid rgba(0, 255, 255, 0.18);
+}
+
+.achievementright {
+    display: flex;
+    flex-direction: column;
+}
+
+.achievement #name {
+    font-size: 19px;
+}
+
+.achievement #description {
+    font-size: 11px;
+}
+
+#attachmentContent {
+    margin-top: 10px;
+    /*///////////////////////////////////////////////*/
+    /* credit to 5quirre1 for these lines of code */
+    /*///////////////////////////////////////////////*/
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
+    /*///////////////////////////////////////////////*/
+    gap: 10px;
+}
+
+#attachmentContent img {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 255, 255, 0.18);
+}
+
+.usernotfoundpikidiary {
+    font-size: 28px;
+    display: none;
+}
