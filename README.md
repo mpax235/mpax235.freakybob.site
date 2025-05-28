@@ -20,6 +20,8 @@ This also serves as a core for all of the mpax235 websites. Those other websites
 <h3 align="center">Hosted with:</h3>
 <p align="center">
   <a href="https://www.namecheap.com" align="center">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Namecheap_Logo.svg" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2c/Namecheap_Logo.svg" /><br><br>
+    <img src="https://pages.github.com/images/logo.svg">
+    <img src="">
   </a><br>
 </p>
