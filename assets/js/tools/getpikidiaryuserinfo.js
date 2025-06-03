@@ -97,7 +97,7 @@ function apiResultFunction(userId, username, followers, following, pfp, banner, 
     usernameElement.textContent = username;
     followersElement.textContent = followers;
     followingElement.textContent = following;
-    pfpElement.src = 'https://bitview.lol/?url=' + pfp;
+    pfpElement.src = 'https://allowcors.nomaakip.workers.dev/?url=' + pfp;
 
     if (username === 'pikiapi') {
         userIdElement.textContent = '4151';
@@ -119,27 +119,27 @@ function apiResultFunction(userId, username, followers, following, pfp, banner, 
     if (banner === null) {
         bannerElement.src = '../assets/images/tools/getpikiuserinfo/bannerplaceholder.png';
     } else {
-        bannerElement.src = 'https://bitview.lol/?url=' + banner;
+        bannerElement.src = 'https://allowcors.nomaakip.workers.dev/?url=' + banner;
     }
 
     if (isAdmin === true) {
         const badge = document.createElement('img');
         badge.className = 'badge';
-        badge.src = 'https://bitview.lol/?url=https://pikidiary.lol/img/icons/admin.png';
+        badge.src = 'https://allowcors.nomaakip.workers.dev/?url=https://pikidiary.lol/img/icons/admin.png';
         rightTop.appendChild(badge);
     }
 
     if (isVerified === true) {
         const badge = document.createElement('img');
         badge.className = 'badge';
-        badge.src = 'https://bitview.lol/?url=https://pikidiary.lol/img/icons/verified.png';
+        badge.src = 'https://allowcors.nomaakip.workers.dev/?url=https://pikidiary.lol/img/icons/verified.png';
         rightTop.appendChild(badge);
     }
 
     if (isDonator === true) {
         const badge = document.createElement('img');
         badge.className = 'badge';
-        badge.src = 'https://bitview.lol/?url=https://pikidiary.lol/img/icons/donator.png';
+        badge.src = 'https://allowcors.nomaakip.workers.dev/?url=https://pikidiary.lol/img/icons/donator.png';
         rightTop.appendChild(badge);
     }
 
@@ -154,7 +154,7 @@ function apiResultFunction(userId, username, followers, following, pfp, banner, 
 
         const iconUrl = document.createElement('img');
         iconUrl.id = 'iconUrl';
-        iconUrl.src = 'https://bitview.lol/?url=' + `${achievement.iconUrl}`;
+        iconUrl.src = 'https://allowcors.nomaakip.workers.dev/?url=' + `${achievement.iconUrl}`;
         achievementleft.appendChild(iconUrl);
 
         const name = document.createElement('a');
@@ -190,7 +190,7 @@ function apiResultFunction(userId, username, followers, following, pfp, banner, 
 
         const pfpElement = document.createElement('img');
         pfpElement.id = 'pfp';
-        pfpElement.src = 'https://bitview.lol/?url=' + pfp;
+        pfpElement.src = 'https://allowcors.nomaakip.workers.dev/?url=' + pfp;
 
         const authorElement = document.createElement('a');
         authorElement.id = 'author';
