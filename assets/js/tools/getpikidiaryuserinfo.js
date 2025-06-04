@@ -142,6 +142,7 @@ function apiResultFunction(userId, username, followers, following, pfp, banner, 
         rightTop.appendChild(badge);
     }
 
+    /* get achievements from the api */
     achievements.forEach((achievement, index) => {
         const achievementElement = document.createElement('div');
         const achievementleft = document.createElement('div');
