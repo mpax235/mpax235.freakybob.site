@@ -51,7 +51,7 @@ document.getElementById('getInfo').addEventListener('click', () => {
             apiResultFunction(data.userId, data.username, data.followers, data.following, data.pfp, data.banner, data.isVerified, data.isAdmin, data.isDonator, data.isInactive, data.bio, data.loginStreak, data.achievements, data.posts);
         })
         .catch(error => {
-            console.log(error);
+            console.error('PikiAPI Error:', error);
             pikidiaryerror.style.display = 'block';
             apiResult.style.display = 'none';
             pikidiaryerror.innerHTML = `There was an error. Either Vercel or PikiAPI is down, you dont have a internet connection, or the user does not exist. Please try again later.<br><a id="errorred" style="font-size: 18px">${error}</a><br><br>`;
