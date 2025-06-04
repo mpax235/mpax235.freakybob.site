@@ -48,7 +48,7 @@ document.getElementById('getInfo').addEventListener('click', () => {
             pikidiaryerror.style.display = 'none';
             preAPI.style.display = 'none';
             apiResult.style.display = 'block';
-            apiResultFunction(data.userId, data.username, data.followers, data.following, data.pfp, data.banner, data.isVerified, data.isAdmin, data.isDonator, data.isInactive, data.bio, data.loginStreak, data.achievements, data.posts);
+            apiResultFunction(data.username, data.followers, data.following, data.pfp, data.banner, data.isVerified, data.isAdmin, data.isDonator, data.isInactive, data.bio, data.loginStreak, data.achievements, data.posts);
         })
         .catch(error => {
             console.error('PikiAPI Error:', error);
@@ -58,10 +58,9 @@ document.getElementById('getInfo').addEventListener('click', () => {
         });
 });
 
-function apiResultFunction(userId, username, followers, following, pfp, banner, isVerified, isAdmin, isDonator, isInactive, bio, loginStreak, achievements, posts) {
+function apiResultFunction(username, followers, following, pfp, banner, isVerified, isAdmin, isDonator, isInactive, bio, loginStreak, achievements, posts) {
     const rightTop = document.querySelector('.righttop');
     const badges = rightTop.querySelectorAll('.badge');
-    const userIdElement = document.getElementById('userId');
     const usernameElement = document.getElementById('username');
     const followersElement = document.getElementById('followers');
     const followingElement = document.getElementById('following');
@@ -92,15 +91,10 @@ function apiResultFunction(userId, username, followers, following, pfp, banner, 
         console.log('No posts found');
     }
     
-    userIdElement.textContent = userId;
     usernameElement.textContent = username;
     followersElement.textContent = followers;
     followingElement.textContent = following;
     pfpElement.src = 'https://allowcors.nomaakip.workers.dev/?url=' + pfp;
-
-    if (username === 'pikiapi') {
-        userIdElement.textContent = '4151';
-    }
 
     if (isInactive === true) {
         pfpElement.style.filter = 'grayscale(100%)';
