@@ -135,6 +135,7 @@ function apiResultFunction(userId, username, followers, following, pfp, banner, 
         rightTop.appendChild(badge);
     }
 
+    /* get isDonator variable */
     if (isDonator === true) {
         const badge = document.createElement('img');
         badge.className = 'badge';
