@@ -23,6 +23,7 @@ SOFTWARE.
 */
 
 const usernameInput = document.getElementById('usernameInput');
+const workerUrl = 'https://allowcors.nomaakip.workers.dev/?url=';
 
 document.getElementById('getInfo').addEventListener('click', () => {
     const loadingThingy = document.getElementById('loadingThingy');
@@ -94,7 +95,7 @@ function apiResultFunction(username, followers, following, pfp, banner, isVerifi
     usernameElement.textContent = username;
     followersElement.textContent = followers;
     followingElement.textContent = following;
-    pfpElement.src = 'https://allowcors.nomaakip.workers.dev/?url=' + pfp;
+    pfpElement.src = workerUrl + pfp;
 
     if (isInactive === true) {
         pfpElement.style.filter = 'grayscale(100%)';
@@ -112,20 +113,20 @@ function apiResultFunction(username, followers, following, pfp, banner, isVerifi
     if (banner === null) {
         bannerElement.src = '../assets/images/tools/getpikiuserinfo/bannerplaceholder.png';
     } else {
-        bannerElement.src = 'https://allowcors.nomaakip.workers.dev/?url=' + banner;
+        bannerElement.src = workerUrl + banner;
     }
 
     if (isAdmin === true) {
         const badge = document.createElement('img');
         badge.className = 'badge';
-        badge.src = 'https://allowcors.nomaakip.workers.dev/?url=https://pikidiary.lol/img/icons/admin.png';
+        badge.src = workerUrl + 'https://pikidiary.lol/img/icons/admin.png';
         rightTop.appendChild(badge);
     }
 
     if (isVerified === true) {
         const badge = document.createElement('img');
         badge.className = 'badge';
-        badge.src = 'https://allowcors.nomaakip.workers.dev/?url=https://pikidiary.lol/img/icons/verified.png';
+        badge.src = workerUrl + 'https://pikidiary.lol/img/icons/verified.png';
         rightTop.appendChild(badge);
     }
 
@@ -133,7 +134,7 @@ function apiResultFunction(username, followers, following, pfp, banner, isVerifi
     if (isDonator === true) {
         const badge = document.createElement('img');
         badge.className = 'badge';
-        badge.src = 'https://allowcors.nomaakip.workers.dev/?url=https://pikidiary.lol/img/icons/donator.png';
+        badge.src = workerUrl + 'https://pikidiary.lol/img/icons/donator.png';
         rightTop.appendChild(badge);
     }
 
@@ -149,7 +150,7 @@ function apiResultFunction(username, followers, following, pfp, banner, isVerifi
 
         const iconUrl = document.createElement('img');
         iconUrl.id = 'iconUrl';
-        iconUrl.src = 'https://allowcors.nomaakip.workers.dev/?url=' + `${achievement.iconUrl}`;
+        iconUrl.src = workerUrl + `${achievement.iconUrl}`;
         achievementleft.appendChild(iconUrl);
 
         const name = document.createElement('a');
@@ -185,7 +186,7 @@ function apiResultFunction(username, followers, following, pfp, banner, isVerifi
 
         const pfpElement = document.createElement('img');
         pfpElement.id = 'pfp';
-        pfpElement.src = 'https://allowcors.nomaakip.workers.dev/?url=' + pfp;
+        pfpElement.src = workerUrl + pfp;
 
         const authorElement = document.createElement('a');
         authorElement.id = 'author';
@@ -236,6 +237,12 @@ function apiResultFunction(username, followers, following, pfp, banner, isVerifi
         postElement.appendChild(barrierTwo);
         postElement.appendChild(commentsElement);
         postElement.appendChild(textTwo);
+
+        if (post.comments === undefined) {
+            commentsElement.textContent = '';
+            textTwo.textContent = '';
+            barrierTwo.textContent = '';
+        }
 
         /* Cmon github pages please push this fixed code or im gonna move on */
         if (post.media && post.media.length > 0) {
