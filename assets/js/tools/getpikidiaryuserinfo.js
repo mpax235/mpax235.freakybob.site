@@ -44,7 +44,18 @@ document.getElementById('getInfo').addEventListener('click', () => {
     introduction.style.display = 'none';
 
     fetch(url)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                console.error('PikiAPI Error:', response.status);
+                pikidiaryerror.style.display = 'block';
+                apiResult.style.display = 'none';
+                preAPI.style.display = 'none';
+                pikidiaryerror.innerHTML = `There was an error. Either Vercel or PikiAPI is down, you dont have a internet connection, or the user does not exist. Please try again later.<br><a id="errorred" style="font-size: 18px">${response.status}</a><br><br>`;
+
+                throw new Error(`HTTP Error ${response.status}`);
+            }
+            return response.json();
+        })
         .then(data => {
             pikidiaryerror.style.display = 'none';
             preAPI.style.display = 'none';
@@ -139,123 +150,127 @@ function apiResultFunction(username, followers, following, pfp, banner, isVerifi
     }
 
     /* get achievements from the api */
-    achievements.forEach((achievement, index) => {
-        const achievementElement = document.createElement('div');
-        const achievementleft = document.createElement('div');
-        const achievementright = document.createElement('div');
+    if (achievements) {
+        achievements.forEach((achievement, index) => {
+            const achievementElement = document.createElement('div');
+            const achievementleft = document.createElement('div');
+            const achievementright = document.createElement('div');
 
-        achievementElement.className = 'achievement';
-        achievementleft.className = 'achievementleft';
-        achievementright.className = 'achievementright';
+            achievementElement.className = 'achievement';
+            achievementleft.className = 'achievementleft';
+            achievementright.className = 'achievementright';
 
-        const iconUrl = document.createElement('img');
-        iconUrl.id = 'iconUrl';
-        iconUrl.src = workerUrl + `${achievement.iconUrl}`;
-        achievementleft.appendChild(iconUrl);
+            const iconUrl = document.createElement('img');
+            iconUrl.id = 'iconUrl';
+            iconUrl.src = workerUrl + `${achievement.iconUrl}`;
+            achievementleft.appendChild(iconUrl);
 
-        const name = document.createElement('a');
-        const description = document.createElement('a');
+            const name = document.createElement('a');
+            const description = document.createElement('a');
 
-        name.id = 'name';
-        description.id = 'description';
+            name.id = 'name';
+            description.id = 'description';
 
-        name.textContent = `${achievement.name}`;
-        description.textContent = `${achievement.description}`;
+            name.textContent = `${achievement.name}`;
+            description.textContent = `${achievement.description}`;
 
-        achievementright.appendChild(name);
-        achievementright.appendChild(description);
+            achievementright.appendChild(name);
+            achievementright.appendChild(description);
 
-        achievementElement.appendChild(achievementleft);
-        achievementElement.appendChild(achievementright);
+            achievementElement.appendChild(achievementleft);
+            achievementElement.appendChild(achievementright);
 
-        achievementsElement.appendChild(achievementElement);
-    });
+            achievementsElement.appendChild(achievementElement);
+        });
+    }
 
-    posts.forEach((post, index) => {
-        const postElement = document.createElement('div');
-        const postTop2 = document.createElement('div');
-        const postTop = document.createElement('div');
-        const postContent = document.createElement('div');
-        const attachmentContent = document.createElement('div');
+    if (posts) {
+        posts.forEach((post, index) => {
+            const postElement = document.createElement('div');
+            const postTop2 = document.createElement('div');
+            const postTop = document.createElement('div');
+            const postContent = document.createElement('div');
+            const attachmentContent = document.createElement('div');
 
-        postElement.className = 'post';
-        postTop2.className = 'posttop2';
-        postTop.className = 'posttop';
-        postContent.className = 'postcontent';
-        attachmentContent.id = 'attachmentContent';
+            postElement.className = 'post';
+            postTop2.className = 'posttop2';
+            postTop.className = 'posttop';
+            postContent.className = 'postcontent';
+            attachmentContent.id = 'attachmentContent';
 
-        const pfpElement = document.createElement('img');
-        pfpElement.id = 'pfp';
-        pfpElement.src = workerUrl + pfp;
+            const pfpElement = document.createElement('img');
+            pfpElement.id = 'pfp';
+            pfpElement.src = workerUrl + pfp;
 
-        const authorElement = document.createElement('a');
-        authorElement.id = 'author';
-        authorElement.textContent = `${post.author}`;
+            const authorElement = document.createElement('a');
+            authorElement.id = 'author';
+            authorElement.textContent = `${post.author}`;
 
-        const contentElement = document.createElement('a');
-        contentElement.id = 'content';
-        contentElement.textContent = `${post.content}`;
+            const contentElement = document.createElement('a');
+            contentElement.id = 'content';
+            contentElement.textContent = `${post.content}`;
 
-        const timestampElement = document.createElement('a');
-        timestampElement.id = 'timestamp';
-        timestampElement.textContent = `${post.timestamp}`;
+            const timestampElement = document.createElement('a');
+            timestampElement.id = 'timestamp';
+            timestampElement.textContent = `${post.timestamp}`;
 
-        const barrierOne = document.createElement('a');
-        barrierOne.textContent = ' | ';
+            const barrierOne = document.createElement('a');
+            barrierOne.textContent = ' | ';
 
-        const likesElement = document.createElement('a');
-        likesElement.id = 'likes';
-        likesElement.textContent = `${post.likes}`;
+            const likesElement = document.createElement('a');
+            likesElement.id = 'likes';
+            likesElement.textContent = `${post.likes}`;
 
-        const textOne = document.createElement('a');
-        textOne.textContent = ' likes';
+            const textOne = document.createElement('a');
+            textOne.textContent = ' likes';
 
-        const barrierTwo = document.createElement('a');
-        barrierTwo.textContent = ' | ';
+            const barrierTwo = document.createElement('a');
+            barrierTwo.textContent = ' | ';
 
-        const commentsElement = document.createElement('a');
-        commentsElement.id = 'comments';
-        commentsElement.textContent = `${post.comments}`;
-        
-        const textTwo = document.createElement('a');
-        textTwo.textContent = ' comments';
+            const commentsElement = document.createElement('a');
+            commentsElement.id = 'comments';
+            commentsElement.textContent = `${post.comments}`;
+            
+            const textTwo = document.createElement('a');
+            textTwo.textContent = ' comments';
 
-        const breaklineOne = document.createElement('br');
+            const breaklineOne = document.createElement('br');
 
-        postElement.appendChild(postTop2);
-        postTop2.appendChild(pfpElement);
-        postTop2.appendChild(postTop);
-        postTop.appendChild(authorElement);
+            postElement.appendChild(postTop2);
+            postTop2.appendChild(pfpElement);
+            postTop2.appendChild(postTop);
+            postTop.appendChild(authorElement);
 
-        postTop.appendChild(postContent);
-        postContent.appendChild(contentElement);
-        postElement.appendChild(breaklineOne);
-        postElement.appendChild(timestampElement);
-        postElement.appendChild(barrierOne);
-        postElement.appendChild(likesElement);
-        postElement.appendChild(textOne);
-        postElement.appendChild(barrierTwo);
-        postElement.appendChild(commentsElement);
-        postElement.appendChild(textTwo);
+            postTop.appendChild(postContent);
+            postContent.appendChild(contentElement);
+            postElement.appendChild(breaklineOne);
+            postElement.appendChild(timestampElement);
+            postElement.appendChild(barrierOne);
+            postElement.appendChild(likesElement);
+            postElement.appendChild(textOne);
+            postElement.appendChild(barrierTwo);
+            postElement.appendChild(commentsElement);
+            postElement.appendChild(textTwo);
 
-        if (post.comments === undefined) {
-            commentsElement.textContent = '';
-            textTwo.textContent = '';
-            barrierTwo.textContent = '';
-        }
+            if (post.comments === undefined) {
+                commentsElement.textContent = '';
+                textTwo.textContent = '';
+                barrierTwo.textContent = '';
+            }
 
-        /* Cmon github pages please push this fixed code or im gonna move on */
-        if (post.media && post.media.length > 0) {
-            post.media.forEach((imageObj) => {
-                if (imageObj.url && imageObj.type === "image") {
-                    const image = document.createElement('img');
-                    image.src = imageObj.url;
-                    attachmentContent.appendChild(image);
-                    attachmentContent.style.margin = '10px 0 0 0';
-                }
-            });
-        }
-        postContent.appendChild(attachmentContent);
-        postsElement.appendChild(postElement);
-    });
+            /* Cmon github pages please push this fixed code or im gonna move on */
+            if (post.media && post.media.length > 0) {
+                post.media.forEach((imageObj) => {
+                    if (imageObj.url && imageObj.type === "image") {
+                        const image = document.createElement('img');
+                        image.src = imageObj.url;
+                        attachmentContent.appendChild(image);
+                        attachmentContent.style.margin = '10px 0 0 0';
+                    }
+                });
+            }
+            postContent.appendChild(attachmentContent);
+            postsElement.appendChild(postElement);
+        });
+    }
 }
