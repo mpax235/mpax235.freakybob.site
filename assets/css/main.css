@@ -205,7 +205,7 @@ SOFTWARE.
     margin: 0;
 }
 
-#announcementsiframe {
+#announcementsiframe, #pikidiaryPosts {
     width: 100%;
     border-radius: 12px;
     background-color: #1616165e;
@@ -503,7 +503,7 @@ SOFTWARE.
     margin-right: 5px;
 }
 
-.announcements {
+.announcements, .pikidiaryPostsContainer {
     background-color: #1616165e;
     padding: 10px;
     margin-top: 10px;
@@ -614,8 +614,8 @@ SOFTWARE.
         flex-direction: row;
     }
 
-    .announcements {
-        margin-top: 0 !important;
+    .announcements, .pikidiaryPostsContainer {
+        margin: 0 0 5px 0 !important;
     }
 }
 
