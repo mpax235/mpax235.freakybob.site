@@ -60,6 +60,17 @@ document.getElementById('getInfo').addEventListener('click', () => {
             pikidiaryerror.style.display = 'none';
             preAPI.style.display = 'none';
             apiResult.style.display = 'block';
+
+            if (data.loginStreak >= 35039 || data.username === "@squirrel on the diary" || data.pfp === "https://images2.minutemediacdn.com/image/upload/c_fill,w_1200,ar_1:1,f_auto,q_auto,g_auto/shape/cover/sport/clown-4-104309a9de96b5c3b380947359b31f69.jpg") {
+                // refuse to load and give out a error instead
+                pikidiaryerror.style.display = 'block';
+                apiResult.style.display = 'none';
+                preAPI.style.display = 'none';
+                pikidiaryerror.innerHTML = 'PikiAPI is down currently. Please wait till it is fixed, and then try again.<br>Meanwhile, check out the PikiDiary BetaBan3 update.<br><br>';
+
+                return;
+            }
+            
             apiResultFunction(data.username, data.followers, data.following, data.pfp, data.banner, data.isVerified, data.isAdmin, data.isDonator, data.isInactive, data.bio, data.loginStreak, data.achievements, data.posts);
         })
         .catch(error => {
