@@ -71,7 +71,7 @@ document.getElementById('getInfo').addEventListener('click', () => {
                 return;
             }
             
-            apiResultFunction(data.username, data.followers, data.following, data.pfp, data.banner, data.isVerified, data.isAdmin, data.isDonator, data.isInactive, data.bio, data.loginStreak, data.achievements, data.posts);
+            apiResultFunction(data.username, data.followers, data.following, data.pfp, data.banner, data.isVerified, data.isAdmin, data.isBot, data.isClub, data.isInactive, data.bio, data.loginStreak, data.achievements, data.posts);
         })
         .catch(error => {
             console.error('PikiAPI Error:', error);
@@ -81,7 +81,7 @@ document.getElementById('getInfo').addEventListener('click', () => {
         });
 });
 
-function apiResultFunction(username, followers, following, pfp, banner, isVerified, isAdmin, isDonator, isInactive, bio, loginStreak, achievements, posts) {
+function apiResultFunction(username, followers, following, pfp, banner, isVerified, isBot, isAdmin, isClub, isInactive, bio, loginStreak, achievements, posts) {
     const rightTop = document.querySelector('.righttop');
     const badges = rightTop.querySelectorAll('.badge');
     const usernameElement = document.getElementById('username');
@@ -95,6 +95,7 @@ function apiResultFunction(username, followers, following, pfp, banner, isVerifi
     const achievementsDiary = achievementsElement.querySelectorAll('.achievement');
     const postsElement = document.querySelector('.posts');
     const postsDiary = postsElement.querySelectorAll('.post');
+    const loginStreakElementParent = document.querySelector('.loginStreak');
 
     if (badges) {
         badges.forEach(badge => badge.remove());
@@ -128,21 +129,16 @@ function apiResultFunction(username, followers, following, pfp, banner, isVerifi
     bioElement.innerHTML = bio;
     if (loginStreak === null) {
         loginStreakElement.textContent = '0';
+        loginStreakElementParent.style.display = 'none';
     } else {
         loginStreakElement.textContent = loginStreak;
+        loginStreakElementParent.style.display = 'block';
     }
     
     if (banner === null) {
         bannerElement.src = '../assets/images/tools/getpikiuserinfo/bannerplaceholder.png';
     } else {
         bannerElement.src = workerUrl + banner;
-    }
-
-    if (isAdmin === true) {
-        const badge = document.createElement('img');
-        badge.className = 'badge';
-        badge.src = workerUrl + 'https://pikidiary.lol/img/icons/admin.png';
-        rightTop.appendChild(badge);
     }
 
     if (isVerified === true) {
@@ -152,11 +148,25 @@ function apiResultFunction(username, followers, following, pfp, banner, isVerifi
         rightTop.appendChild(badge);
     }
 
-    /* get isDonator variable */
-    if (isDonator === true) {
+    if (isBot === true) {
         const badge = document.createElement('img');
         badge.className = 'badge';
-        badge.src = workerUrl + 'https://pikidiary.lol/img/icons/donator.png';
+        badge.src = workerUrl + 'https://pikidiary.lol/img/icons/robot.png';
+        rightTop.appendChild(badge);
+    }
+
+    if (isAdmin === true) {
+        const badge = document.createElement('img');
+        badge.className = 'badge';
+        badge.src = workerUrl + 'https://pikidiary.lol/img/icons/admin.png';
+        rightTop.appendChild(badge);
+    }
+
+    /* get isClub variable */
+    if (isClub === true) {
+        const badge = document.createElement('img');
+        badge.className = 'badge';
+        badge.src = workerUrl + 'https://pikidiary.lol/img/icons/club.png';
         rightTop.appendChild(badge);
     }
 
@@ -219,11 +229,11 @@ function apiResultFunction(username, followers, following, pfp, banner, isVerifi
 
             const contentElement = document.createElement('a');
             contentElement.id = 'content';
-            contentElement.textContent = `${post.content}`;
+            contentElement.innerHTML = post.content.replace(/\n/g, '<br>');
 
             const timestampElement = document.createElement('a');
             timestampElement.id = 'timestamp';
-            timestampElement.textContent = `${post.timestamp}`;
+            timestampElement.textContent = `${post.createdAt}`;
 
             const barrierOne = document.createElement('a');
             barrierOne.textContent = ' | ';
