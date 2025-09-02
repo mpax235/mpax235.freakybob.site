@@ -230,7 +230,7 @@ SOFTWARE.
 #attachmentContent {
     /*margin-top: 10px;*/
     /*///////////////////////////////////////////////*/
-    /* credit to 5quirre1 for these lines of code */
+    /* credit to 5quirre1 for the lines of code below */
     /*///////////////////////////////////////////////*/
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
@@ -248,3 +248,75 @@ SOFTWARE.
     font-size: 28px;
     display: none;
 }
+
+/*/////////////////////////////////////////////////////*/
+/* credit to jax (nobline) for the lines of code below */
+/* slightly modified by mpax235                        */
+/*/////////////////////////////////////////////////////*/
+.nametag-wrapper {
+    display: inline-flex;
+    cursor: pointer;
+    margin: -2px 0;
+    position: relative;
+    top: -1px;
+    height: 22px;
+}
+
+.nametag-left {
+    padding: 1px 4px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    transition: border-radius .2s, background-color .2s, border-right .25s, padding .2s;
+    z-index: 1;
+    text-decoration: none;
+    vertical-align: baseline;
+    box-sizing: border-box;
+    font-size: 13px;
+}
+
+.nametag-right {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    color: #3f7bac;
+    background-color: rgba(63, 123, 172, .1);
+    border: 1px solid rgba(63, 123, 172, .3);
+    border-left: none;
+    border-radius: 0 3px 3px 0;
+    font-size: 13px;
+    vertical-align: baseline;
+    box-sizing: border-box;
+    text-decoration: none;
+    max-width: 0;
+    opacity: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: max-width .25s ease, opacity .25s, padding-left .25s, padding-right .25s;
+}
+
+.nametag-wrapper:hover .nametag-right {
+    max-width: 200px;
+    opacity: 1;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.ping {
+    color: #3f7bac;
+    background-color: rgba(63, 123, 172, .1);
+    border: 1px solid rgba(63, 123, 172, .3);
+    padding: 1px 4px;
+    border-radius: 3px;
+    display: inline-block;
+    text-decoration: none;
+    vertical-align: baseline;
+    box-sizing: border-box;
+    font-size: 13px;
+    margin: -2px 0;
+    position: relative;
+    top: -1px;
+    height: 22px;
+    padding-bottom: 0;
+}
+/*///////////////////////////////////////////////*/

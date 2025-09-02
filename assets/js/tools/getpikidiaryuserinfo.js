@@ -23,9 +23,12 @@ SOFTWARE.
 */
 
 const usernameInput = document.getElementById('usernameInput');
-const workerUrl = 'https://allowcors.nomaakip.workers.dev/?url=';
+const workerUrl = 'https://mpax235-worker.mpax235c.workers.dev/?url=';
 
 document.getElementById('getInfo').addEventListener('click', () => {
+    document.body.style.backgroundImage = 'url(\'../assets/images/websitebackground.png\')';
+    document.body.style.backgroundRepeat = 'no-repeat';
+    document.body.style.backgroundSize = 'cover';
     const loadingThingy = document.getElementById('loadingThingy');
     const introduction = document.getElementById('introduction');
     const warning = document.querySelector('.warning');
@@ -71,17 +74,22 @@ document.getElementById('getInfo').addEventListener('click', () => {
                 return;
             }
             
-            apiResultFunction(data.username, data.followers, data.following, data.pfp, data.banner, data.isVerified, data.isAdmin, data.isBot, data.isClub, data.isInactive, data.bio, data.loginStreak, data.achievements, data.posts);
+            apiResultFunction(data.background, data.username, data.followers, data.following, data.pfp, data.banner, data.isVerified, data.isAdmin, data.isBot, data.isClub, data.isInactive, data.bio, data.loginStreak, data.achievements, data.posts);
         })
         .catch(error => {
             console.error('PikiAPI Error:', error);
             pikidiaryerror.style.display = 'block';
             apiResult.style.display = 'none';
-            pikidiaryerror.innerHTML = `There was an error. Either Vercel or PikiAPI is down, you dont have a internet connection, or the user does not exist. Please try again later.<br><a id="errorred" style="font-size: 18px">${error}</a><br><br>`;
+
+            if (error.message.includes('404')) {
+                pikidiaryerror.innerHTML = `The user you specified was not found. Please try a different user.<br><br>`;
+            } else {
+                pikidiaryerror.innerHTML = `There was an error. Either Vercel or PikiAPI is down, you dont have a internet connection, or the user does not exist. Please try again later.<br><a id="errorred" style="font-size: 18px">${error}</a><br><br>`;
+            }
         });
 });
 
-function apiResultFunction(username, followers, following, pfp, banner, isVerified, isBot, isAdmin, isClub, isInactive, bio, loginStreak, achievements, posts) {
+function apiResultFunction(background, username, followers, following, pfp, banner, isVerified, isBot, isAdmin, isClub, isInactive, bio, loginStreak, achievements, posts) {
     const rightTop = document.querySelector('.righttop');
     const badges = rightTop.querySelectorAll('.badge');
     const usernameElement = document.getElementById('username');
@@ -115,6 +123,16 @@ function apiResultFunction(username, followers, following, pfp, banner, isVerifi
         console.log('No posts found');
     }
     
+    if (!background) {
+        document.body.style.backgroundImage = 'url(\'../assets/images/websitebackground.png\')';
+        document.body.style.backgroundRepeat = 'no-repeat';
+        document.body.style.backgroundSize = 'cover';
+    } else {
+        document.body.style.backgroundImage = `url('${workerUrl + background}')`;
+        document.body.style.backgroundRepeat = 'repeat';
+        document.body.style.backgroundSize = 'unset';
+    }
+
     usernameElement.textContent = username;
     followersElement.textContent = followers;
     followingElement.textContent = following;
@@ -126,7 +144,8 @@ function apiResultFunction(username, followers, following, pfp, banner, isVerifi
         pfpElement.style.filter = 'none';
     }
 
-    bioElement.innerHTML = bio;
+    const formattedBio = formatContentWithBBCode(bio);
+    bioElement.innerHTML = formattedBio;
     if (loginStreak === null) {
         loginStreakElement.textContent = '0';
         loginStreakElementParent.style.display = 'none';
@@ -145,6 +164,7 @@ function apiResultFunction(username, followers, following, pfp, banner, isVerifi
         const badge = document.createElement('img');
         badge.className = 'badge';
         badge.src = workerUrl + 'https://pikidiary.lol/img/icons/verified.png';
+        badge.title = 'Verified';
         rightTop.appendChild(badge);
     }
 
@@ -152,6 +172,7 @@ function apiResultFunction(username, followers, following, pfp, banner, isVerifi
         const badge = document.createElement('img');
         badge.className = 'badge';
         badge.src = workerUrl + 'https://pikidiary.lol/img/icons/robot.png';
+        badge.title = 'Bot'
         rightTop.appendChild(badge);
     }
 
@@ -159,6 +180,7 @@ function apiResultFunction(username, followers, following, pfp, banner, isVerifi
         const badge = document.createElement('img');
         badge.className = 'badge';
         badge.src = workerUrl + 'https://pikidiary.lol/img/icons/admin.png';
+        badge.title = 'Admin';
         rightTop.appendChild(badge);
     }
 
@@ -167,6 +189,7 @@ function apiResultFunction(username, followers, following, pfp, banner, isVerifi
         const badge = document.createElement('img');
         badge.className = 'badge';
         badge.src = workerUrl + 'https://pikidiary.lol/img/icons/club.png';
+        badge.title = 'CLUB Member'
         rightTop.appendChild(badge);
     }
 

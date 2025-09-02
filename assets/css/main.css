@@ -110,6 +110,10 @@ SOFTWARE.
     border-radius: 12px;
 }
 
+#pagename {
+    word-wrap: break-word;
+}
+
 /******************/
 /* VS CODE COLORS */
 /******************/
