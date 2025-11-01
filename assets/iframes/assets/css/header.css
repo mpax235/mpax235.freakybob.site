@@ -121,3 +121,7 @@ button:hover {
 button:active {
     background-color: rgba(0, 255, 255, 0.18);
 }
+
+a.active button {
+    box-shadow: 0px 0px 7px #00ffff;
+}

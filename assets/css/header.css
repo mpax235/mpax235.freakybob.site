@@ -35,4 +35,5 @@ SOFTWARE.
     width: 100%;
     height: 66px;
     vertical-align: bottom;
+    z-index: 1000;
 }

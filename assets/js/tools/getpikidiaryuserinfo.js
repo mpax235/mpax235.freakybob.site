@@ -26,7 +26,7 @@ const usernameInput = document.getElementById('usernameInput');
 const workerUrl = 'https://mpax235-worker.mpax235c.workers.dev/?url=';
 
 document.getElementById('getInfo').addEventListener('click', () => {
-    document.body.style.backgroundImage = 'url(\'../assets/images/websitebackground.png\')';
+    document.body.style.backgroundImage = 'url(\'../../assets/images/websitebackground.png\')';
     document.body.style.backgroundRepeat = 'no-repeat';
     document.body.style.backgroundSize = 'cover';
     const loadingThingy = document.getElementById('loadingThingy');
@@ -53,7 +53,7 @@ document.getElementById('getInfo').addEventListener('click', () => {
                 pikidiaryerror.style.display = 'block';
                 apiResult.style.display = 'none';
                 preAPI.style.display = 'none';
-                pikidiaryerror.innerHTML = `There was an error. Either Vercel or PikiAPI is down, you dont have a internet connection, or the user does not exist. Please try again later.<br><a id="errorred" style="font-size: 18px">${response.status}</a><br><br>`;
+                pikidiaryerror.innerHTML = `There was an error. Either Vercel or PikiAPI is down, you dont have a internet connection, or the user does not exist. Please try again later.<br><span id="errorred" style="font-size: 18px">${response.status}</span><br><br>`;
 
                 throw new Error(`HTTP Error ${response.status}`);
             }
@@ -84,7 +84,7 @@ document.getElementById('getInfo').addEventListener('click', () => {
             if (error.message.includes('404')) {
                 pikidiaryerror.innerHTML = `The user you specified was not found. Please try a different user.<br><br>`;
             } else {
-                pikidiaryerror.innerHTML = `There was an error. Either Vercel or PikiAPI is down, you dont have a internet connection, or the user does not exist. Please try again later.<br><a id="errorred" style="font-size: 18px">${error}</a><br><br>`;
+                pikidiaryerror.innerHTML = `There was an error. Either Vercel or PikiAPI is down, you dont have a internet connection, or the user does not exist. Please try again later.<br><span id="errorred" style="font-size: 18px">${error}</span><br><br>`;
             }
         });
 });
@@ -124,7 +124,7 @@ function apiResultFunction(background, username, followers, following, pfp, bann
     }
     
     if (!background) {
-        document.body.style.backgroundImage = 'url(\'../assets/images/websitebackground.png\')';
+        document.body.style.backgroundImage = 'url(\'../../assets/images/websitebackground.png\')';
         document.body.style.backgroundRepeat = 'no-repeat';
         document.body.style.backgroundSize = 'cover';
     } else {
@@ -155,7 +155,7 @@ function apiResultFunction(background, username, followers, following, pfp, bann
     }
     
     if (banner === null) {
-        bannerElement.src = '../assets/images/tools/getpikiuserinfo/bannerplaceholder.png';
+        bannerElement.src = '../../assets/images/tools/getpikiuserinfo/bannerplaceholder.png';
     } else {
         bannerElement.src = workerUrl + banner;
     }

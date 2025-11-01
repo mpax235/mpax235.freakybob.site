@@ -33,7 +33,7 @@ SOFTWARE.
         <meta content="https://mpax235.freakybob.site" property="og:url" />
         <meta content="/assets/images/favicon.gif" property="og:image" />
         <meta content="#006666" data-react-helmet="true" name="theme-color" />
-        <title>mpax235 - mpax235 Tools</title>
+        <title>mpax235 - Blog Post</title>
         <link rel="stylesheet" href="../assets/css/core.css">
         <link rel="stylesheet" href="../assets/css/header.css">
         <link rel="stylesheet" href="../assets/css/footer.css">
@@ -41,10 +41,22 @@ SOFTWARE.
         <link rel="stylesheet" href="../assets/css/pages.css">
         <link rel="manifest" href="/manifest.json">
         <link rel="icon" href="../assets/images/favicon.gif">
+        <style>
+            .classic,
+            .aerobasic {
+                display: flex;
+                justify-content: center;
+            }
+
+            .classic img,
+            .aerobasic img {
+                width: 75%;
+                border-radius: 12px;
+            }
+        </style>
     </head>
     <body>
         <div class="container">
-            <!--header insert-->
             <div id="menu">
                 <div id="menucontainer">
                     <a href="#" onclick="onclosebuttonpressed()"><img id="closeicon" class="icon" src="../assets/images/icons/close.png"></a>
@@ -59,23 +71,22 @@ SOFTWARE.
                     </div>
                 </div>
             </div>
+            <!--header insert-->
             <iframe id="header-iframe" src="../assets/iframes/header.html"></iframe>
             <!--header end-->
 
-            <div class="homepage">
-                <h1>mpax235 Tools</h1>
-                <a>This page lists all the tools I made!</a><br><br>
-                <div class="column1project">
-                    <div class="columninnertext">
-                        <a href="getpikidiaryuserinfo.html"><h3>Get a PikiDiary User's public info</h3></a>
-                        <h5>This tool can get a PikiDiary's User's public info using 5quirre1's PikiDiary API Fan-Made Remake! Emotes support is still being worked on.</h5>
-                        <h5>This tool can retrieve a User's Profile Picture, Bio, Posts, Achievements, Badges, Banner, Background, Following Count, Followers Count, User ID, Username, Status (Active, Inactive), Login Streak, and Cursor.</h5>
-                        <h5>Made with HTML, CSS, and JavaScript.</h5>
-                    </div>
-                </div>
+            <div class="blogpage">
+                <!--### BLOG POST HEADER GOES HERE ####-->
+                <h1 id="blogTitle">New blog post coming soon I guess</h1>
+                <span id="lastUpdated">Last updated on October 31st, 2025</span>
+                <hr>
+                <!--###################################-->
+                <!--### BLOG POST CONTENT GOES HERE ###-->
+                <!--###################################-->
+                <span>Hello everyone. It's been 7 months since I last made a blog post here. I am trying my best to think of a blog post I can make. Other than that, I hope to see you guys in the next blog post. Happy halloween!</span>
             </div>
-            
-            <iframe id="footer-iframe" src="../assets/iframes/footer.html"></iframe>
+
+            <iframe id="footer-iframe" src="../assets/iframes/footer2.html"></iframe>
         </div>
         <script src="../assets/js/browsercheck.js"></script>
         <script src="../assets/js/menu.js"></script>

@@ -34,9 +34,10 @@ body {
     border-top: 1px solid rgba(0, 255, 255, 0.18);
 }
 
-a {
+a, span {
     color: #00ffff;
     text-decoration: none;
+    transition: 0.2s ease-in-out;
 }
 
 .footer {
@@ -54,7 +55,7 @@ a {
     
 }
 
-.footer a {
+.footer a, .footer span {
     margin-left: 15px;
 }
 
@@ -102,4 +103,8 @@ a {
 
 #sociallink img:hover {
     transform: scale(1.25);
+}
+
+a:hover {
+    text-shadow: 0 0 10px #00ffff;
 }

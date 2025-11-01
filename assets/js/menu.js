@@ -22,41 +22,39 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-document.addEventListener('DOMContentLoaded', function() {
-    let header = document.getElementById('header-iframe');
+let header = document.getElementById('header-iframe');
 
-    header.addEventListener('load', function() {
-        let iframeDoc = header.contentDocument || header.contentWindow.document;
+header.addEventListener('load', function() {
+    let iframeDoc = header.contentDocument || header.contentWindow.document;
 
-        let menuButton = iframeDoc.getElementById('menubutton');
+    let menuButton = iframeDoc.getElementById('menubutton');
 
-        if (menuButton) {
-            menuButton.addEventListener('click', function() {
-                let menu = document.getElementById('menu');
+    if (menuButton) {
+        menuButton.addEventListener('click', function() {
+            let menu = document.getElementById('menu');
 
-                if (menu) {
-                    menu.style.display = 'block';
-                    menu.style.opacity = '0';
+            if (menu) {
+                menu.style.display = 'block';
+                menu.style.opacity = '0';
 
-                    menu.offsetHeight;
+                menu.offsetHeight;
 
-                    let menuContainer = document.getElementById('menucontainer');
-                    if (menuContainer) {
-                        menuContainer.style.opacity = '0';
+                let menuContainer = document.getElementById('menucontainer');
+                if (menuContainer) {
+                    menuContainer.style.opacity = '0';
 
-                        menuContainer.offsetHeight;
+                    menuContainer.offsetHeight;
 
-                        menuContainer.classList.remove('hide');
-                        menuContainer.classList.add('show');
-                    }
-
-                    setTimeout(() => {
-                        menu.style.opacity = '1';
-                    }, 10);
+                    menuContainer.classList.remove('hide');
+                    menuContainer.classList.add('show');
                 }
-            });
-        }
-    });
+
+                setTimeout(() => {
+                    menu.style.opacity = '1';
+                }, 10);
+            }
+        });
+    }
 });
 
 function onclosebuttonpressed() {

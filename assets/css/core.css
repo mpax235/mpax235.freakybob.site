@@ -46,6 +46,7 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
+    overflow-x: hidden;
 }
 
 /* SCROLLBAR */
@@ -163,6 +164,16 @@ button:active {
 a {
     color: #00ffff;
     text-decoration: none;
+    transition: 0.2s ease-in-out;
+}
+
+span {
+    color: #00ffff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-shadow: 0 0 10px #00ffff;
 }
 
 p {
@@ -200,4 +211,8 @@ code {
 
 ol {
     color: #00ffff;
+}
+
+hr {
+    border: 1px solid rgba(0, 255, 255, 0.18);
 }

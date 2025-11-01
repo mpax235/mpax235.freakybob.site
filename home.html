@@ -39,11 +39,13 @@ SOFTWARE.
         <link rel="stylesheet" href="assets/css/footer.css">
         <link rel="stylesheet" href="assets/css/main.css">
         <link rel="stylesheet" href="assets/css/pages.css">
+        <link rel="stylesheet" href="assets/css/pages/home.css">
         <link rel="manifest" href="/manifest.json">
         <link rel="icon" href="assets/images/favicon.gif">
     </head>
     <body>
         <div class="container">
+            <div class="blackscreen"></div>
             <!--header insert-->
             <div id="menu">
                 <div id="menucontainer">
@@ -82,15 +84,15 @@ SOFTWARE.
                     <div class="leftintroduction">
                         <a>Welcome! This is the official website of mpax235!</a><br><br>
                         <a>This website was first made on 7/16/2024 and was released on 9/1/2024.</a>
-                        <p>This website is currently a W.I.P, so for more stuff, come back soon.</p>
+                        <p>This website is currently a W.I.P.</p>
                     </div>
                     <div class="rightintroduction">
                         <div class="version">
-                            <a style="font-weight: bold">Version: <a id="versioncounter" style="font-weight: normal;">0</a></a>
+                            <span style="font-weight: bold">Version: <span id="versioncounter" style="font-weight: normal;">0</span></span>
                         </div>
                         <div class="largecontainers">
                             <div class="announcements">
-                                <a style="font-weight: bold;">Announcements</a><br><br>
+                                <span style="font-weight: bold;">Announcements</span><br><br>
                                 <iframe id="announcementsiframe" src="assets/iframes/announcements.html"></iframe>
                             </div>
                             <!--
@@ -99,6 +101,12 @@ SOFTWARE.
                                 <iframe id="pikidiaryPosts" src="https://nomaakip.github.io/pikicards/?username=mpax235"></iframe>
                             </div>
                             -->
+                            <div class="announcements">
+                                <span style="font-weight: bold;">Link Me</span><br><br>
+                                <img src="/assets/images/buttons/sitebutton.png"><hr>
+                                <span style="font-weight: bold;">Hotlink my Button</span><br><br>
+                                <textarea id="hotlinkTextarea" readonly><a href="https://mpax235.freakybob.site"><img src="https://mpax235.freakybob.site/assets/images/buttons/sitebutton.png" alt="mpax235's Website"></a></textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -115,5 +123,6 @@ SOFTWARE.
         <script src="assets/js/index.js"></script>
         <script src="assets/js/browsercheck.js"></script>
         <script src="assets/js/menu.js"></script>
+        <script src="assets/js/pages/home.js"></script>
     </body>
 </html>

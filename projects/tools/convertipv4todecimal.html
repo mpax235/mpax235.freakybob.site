@@ -1,0 +1,92 @@
+<!--
+MIT License
+
+Copyright (c) 2025 mpax235
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="The official website of mpax235!">
+        <meta content="mpax235" property="og:title" />
+        <meta content="The official website of mpax235!" property="og:description" />
+        <meta content="https://mpax235.freakybob.site" property="og:url" />
+        <meta content="/assets/images/favicon.gif" property="og:image" />
+        <meta content="#006666" data-react-helmet="true" name="theme-color" />
+        <title>mpax235 - Get a PikiDiary User's Info</title>
+        <link rel="stylesheet" href="/assets/css/core.css">
+        <link rel="stylesheet" href="/assets/css/header.css">
+        <link rel="stylesheet" href="/assets/css/footer.css">
+        <link rel="stylesheet" href="/assets/css/main.css">
+        <link rel="stylesheet" href="/assets/css/pages.css">
+        <link rel="stylesheet" href="/assets/css/tools/convertipv4todecimal.css">
+        <link rel="manifest" href="/manifest.json">
+        <link rel="icon" href="/assets/images/favicon.gif">
+    </head>
+    <body>
+        <div class="container">
+            <!--header insert-->
+            <div id="menu">
+                <div id="menucontainer">
+                    <a href="#" onclick="onclosebuttonpressed()"><img id="closeicon" class="icon" src="../assets/images/icons/close.png"></a>
+                    <div class="menubuttoncontainer">
+                        <a href="/home.html"><button>Home</button></a>
+                        <a href="/blog.html"><button>Blog</button></a>
+                        <a href="/projects.html"><button>Projects</button></a>
+                        <a href="/stats.html"><button>Stats</button></a>
+                        <a href="/live.html"><button>Live</button></a>
+                        <a href="/versions.html"><button>Versions</button></a>
+                        <a href="https://mpax235.github.io/wiki/index.html"><button>Wiki</button></a>
+                    </div>
+                </div>
+            </div>
+            <iframe id="header-iframe" src="/assets/iframes/header.html"></iframe>
+            <!--header end-->
+
+            <div class="homepage">
+                <noscript>
+                    <div class="warning">
+                        <a id="warningtext" style="font-weight: bold;">Warning: You don't have JavaScript enabled, which is required to run this tool. Please enable JavaScript.</a>
+                    </div><br>
+                </noscript>
+                <h1 id="loadingThingy">Convert a IPv4 Address to Decimal</h1>
+                <span id="introduction">This tool allows you to convert a IPv4 Address to a Decimal number. To get started, enter a IPv4 Address and then click <b>Convert to Decimal</b>.</span><br><br><br>
+                <span id="errortext" class="usernotfoundpikidiary">The user you specified was not found. Please try a different user.<br><br></span>
+                <input id="firstOctet" maxlength="3">
+                <span>.</span>
+                <input id="secondOctet" maxlength="3">
+                <span>.</span>
+                <input id="thirdOctet" maxlength="3">
+                <span>.</span>
+                <input id="fourthOctet" maxlength="3">
+                <button id="convertToDecimal">Convert to Decimal</button><br><br>
+                <span id="theResult">Result:</span>
+            </div>
+            
+            <iframe id="footer-iframe" src="../../assets/iframes/footer.html"></iframe>
+        </div>
+        <script src="../../assets/js/browsercheck.js"></script>
+        <script src="../../assets/js/menu.js"></script>
+        <script src="../../assets/js/tools/convertipv4todecimal.js"></script>
+    </body>
+</html>

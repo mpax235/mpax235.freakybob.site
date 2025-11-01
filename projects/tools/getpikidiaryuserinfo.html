@@ -34,63 +34,63 @@ SOFTWARE.
         <meta content="/assets/images/favicon.gif" property="og:image" />
         <meta content="#006666" data-react-helmet="true" name="theme-color" />
         <title>mpax235 - Get a PikiDiary User's Info</title>
-        <link rel="stylesheet" href="../assets/css/core.css">
-        <link rel="stylesheet" href="../assets/css/header.css">
-        <link rel="stylesheet" href="../assets/css/footer.css">
-        <link rel="stylesheet" href="../assets/css/main.css">
-        <link rel="stylesheet" href="../assets/css/pages.css">
-        <link rel="stylesheet" href="../assets/css/tools/getpikidiaryuserinfo.css">
+        <link rel="stylesheet" href="../../assets/css/core.css">
+        <link rel="stylesheet" href="../../assets/css/header.css">
+        <link rel="stylesheet" href="../../assets/css/footer.css">
+        <link rel="stylesheet" href="../../assets/css/main.css">
+        <link rel="stylesheet" href="../../assets/css/pages.css">
+        <link rel="stylesheet" href="../../assets/css/tools/getpikidiaryuserinfo.css">
         <link rel="manifest" href="/manifest.json">
-        <link rel="icon" href="../assets/images/favicon.gif">
+        <link rel="icon" href="../../assets/images/favicon.gif">
     </head>
     <body>
         <div class="container">
             <!--header insert-->
             <div id="menu">
                 <div id="menucontainer">
-                    <a href="#" onclick="onclosebuttonpressed()"><img id="closeicon" class="icon" src="../assets/images/icons/close.png"></a>
+                    <a href="#" onclick="onclosebuttonpressed()"><img id="closeicon" class="icon" src="../../assets/images/icons/close.png"></a>
                     <div class="menubuttoncontainer">
-                        <a href="../home.html"><button>Home</button></a>
-                        <a href="../blog.html"><button>Blog</button></a>
-                        <a href="../projects.html"><button>Projects</button></a>
-                        <a href="../stats.html"><button>Stats</button></a>
-                        <a href="../live.html"><button>Live</button></a>
-                        <a href="../versions.html"><button>Versions</button></a>
-                        <a href="../wiki/index.html"><button>Wiki</button></a>
+                        <a href="../../home.html"><button>Home</button></a>
+                        <a href="../../blog.html"><button>Blog</button></a>
+                        <a href="../../projects.html"><button>Projects</button></a>
+                        <a href="../../stats.html"><button>Stats</button></a>
+                        <a href="../../live.html"><button>Live</button></a>
+                        <a href="../../versions.html"><button>Versions</button></a>
+                        <a href="../../wiki/index.html"><button>Wiki</button></a>
                     </div>
                 </div>
             </div>
-            <iframe id="header-iframe" src="../assets/iframes/header.html"></iframe>
+            <iframe id="header-iframe" src="../../assets/iframes/header.html"></iframe>
             <!--header end-->
 
             <div class="homepage">
                 <noscript>
                     <div class="warning">
-                        <a id="warningtext" style="font-weight: bold;">Warning: You don't have JavaScript enabled, which is required to run this tool. Please enable JavaScript.</a>
+                        <span id="warningtext" style="font-weight: bold;">Warning: You don't have JavaScript enabled, which is required to run this tool. Please enable JavaScript.</span>
                     </div><br>
                 </noscript>
                 <div class="preapi">
                     <div class="warning">
-                        <a id="warningtext" style="font-weight: bold;">Warning: PikiDiary is not school-friendly for some posts due to strong language in some of PikiDiary's posts. If you are at school, proceed at your own risk.</a>
+                        <span id="warningtext" style="font-weight: bold;">Warning: PikiDiary is not school-friendly for some posts due to strong language in some of PikiDiary's posts. If you are at school, proceed at your own risk.</span>
                     </div>
                     <h1 id="loadingThingy">Get a PikiDiary User's public info</h1>
-                    <a id="introduction">This tool allows you to get a PikiDiary User's public info by using 5quirre1's Pikidiary API Fan-Made Remake! To get started, enter a PikiDiary username on the input below, and then click <b>Get Public Info</b>.</a><br><br><br>
+                    <span id="introduction">This tool allows you to get a PikiDiary User's public info by using 5quirre1's Pikidiary API Fan-Made Remake! To get started, enter a PikiDiary username on the input below, and then click <b>Get Public Info</b>.</span><br><br><br>
                 </div>
-                <a id="errortext" class="usernotfoundpikidiary">The user you specified was not found. Please try a different user.<br><br></a>
+                <span id="errortext" class="usernotfoundpikidiary">The user you specified was not found. Please try a different user.<br><br></span>
                 <input id="usernameInput">
                 <button id="getInfo">Get Public Info</button><br><br>
                 <div class="apiResult">
                     <div class="banner">
                         <div class="top">
-                            <img id="banner" src="../assets/images/tools/getpikiuserinfo/bannerplaceholder.png">
+                            <img id="banner" src="../../assets/images/tools/getpikiuserinfo/bannerplaceholder.png">
                         </div>
                         <div class="bottom">
                             <img id="pfp" src="https://mpax235-worker.mpax235c.workers.dev/?url=https://pikidiary.lol/uploads/avatars/default.png">
                             <div class="right">
                                 <div class="righttop">
-                                    <a id="username">username</a>
+                                    <span id="username">username</span>
                                 </div>
-                                <a id="following">following</a><a> Following</a><a> | </a><a id="followers">followers</a><a> Followers</a><br><br>
+                                <span id="following">following</span><span> Following</span><span> | </span><span id="followers">followers</span><span> Followers</span><br><br>
                                 <!--<a>User ID: <a id="userId">userID</a></a>-->
                             </div>
                         </div>
@@ -105,10 +105,10 @@ SOFTWARE.
                                             <div class="postcontent">
                                                 <a id="content">content</a>
                                                 <div id="attachmentContent">
-                                                    <img src="../assets/images/unused/custom1.png">
-                                                    <img src="../assets/images/unused/custom1.png">
-                                                    <img src="../assets/images/unused/custom1.png">
-                                                    <img src="../assets/images/unused/custom1.png">
+                                                    <img src="../../assets/images/unused/custom1.png">
+                                                    <img src="../../assets/images/unused/custom1.png">
+                                                    <img src="../../assets/images/unused/custom1.png">
+                                                    <img src="../../assets/images/unused/custom1.png">
                                                 </div>
                                             </div>
                                         </div>
@@ -118,11 +118,11 @@ SOFTWARE.
                                 -->
                             </div>
                             <div class="stuffright">
-                                <div class="bio"><a>Empty Bio</a></div>
+                                <div class="bio"><span>Empty Bio</span></div>
                                 <div class="achievements">
                                     <div class="loginStreak">
-                                        <a id="loginStreakTitle">loginStreak</a><a id="loginStreakTitle2"> day</a><br>
-                                        <a style="font-size: 11px;">log-in streak</a>
+                                        <span id="loginStreakTitle">loginStreak</span><span id="loginStreakTitle2"> day</span><br>
+                                        <span style="font-size: 11px;">log-in streak</span>
                                     </div>
                                     <!--<div class="achievement">
                                         <div class="achievementleft">
@@ -138,15 +138,15 @@ SOFTWARE.
                         </div>
                     </div>
                 </div>
-                <a id="smalltext">This project uses <a id="smalltext" href="https://github.com/5quirre1/pikidiaryAPI-remake">5quirre1's PikiDiary API Fan-Made Remake</a><a id="smalltext">. The remake is not affiliated with <a id="smalltext" href="https://pikidiary.lol/@jax">Jax</a><a id="smalltext"> in any way. The API used in this tool is licensed under the MIT license. Credits go to 5quirre1. 2025 5quirre1.</a></a></a>
-                <a id="smalltext">This project also uses 5quirre1's BBCode Decoder. The BBCode Decoder is licensed under the MIT license. 2025 5quirre1.</a>
+                <span id="smalltext">This project uses <a id="smalltext" href="https://github.com/5quirre1/pikidiaryAPI-remake">5quirre1's PikiDiary API Fan-Made Remake</a><span id="smalltext">. The remake is not affiliated with <a id="smalltext" href="https://pikidiary.lol/@jax">Jax</a><span id="smalltext"> in any way. The API used in this tool is licensed under the MIT license. Credits go to 5quirre1. 2025 5quirre1.</span></span></span>
+                <span id="smalltext">This project also uses 5quirre1's BBCode Decoder. The BBCode Decoder is licensed under the MIT license. 2025 5quirre1.</span>
             </div>
             
-            <iframe id="footer-iframe" src="../assets/iframes/footer.html"></iframe>
+            <iframe id="footer-iframe" src="../../assets/iframes/footer.html"></iframe>
         </div>
-        <script src="../assets/js/browsercheck.js"></script>
-        <script src="../assets/js/menu.js"></script>
-        <script src="../assets/lib/pbbcode-decode/bbcode.js"></script>
-        <script src="../assets/js/tools/getpikidiaryuserinfo.js"></script>
+        <script src="../../assets/js/browsercheck.js"></script>
+        <script src="../../assets/js/menu.js"></script>
+        <script src="../../assets/lib/pbbcode-decode/bbcode.js"></script>
+        <script src="../../assets/js/tools/getpikidiaryuserinfo.js"></script>
     </body>
 </html>

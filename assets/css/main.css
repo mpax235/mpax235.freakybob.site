@@ -262,6 +262,25 @@ SOFTWARE.
     color: #ffff00;
 }
 
+#hotlinkTextarea {
+    resize: none;
+    background-color: #0000005e;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 255, 255, 0.18);
+    color: #00ffff;
+    font-family: 'Montserrat', Arial, sans-serif;
+    padding: 10px;
+    height: 50px;
+}
+
+#blogPostPreview, #lastUpdated {
+    color: #007777;
+}
+
+#blogTitle {
+    font-weight: normal;
+}
+
 /* CLASSES */
 
 .gallerystuff {
@@ -607,6 +626,19 @@ SOFTWARE.
     border: 1px solid rgba(255, 255, 0, 0.18);
 }
 
+.blackscreen {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    z-index: 1000;
+    display: none;
+}
+
+.blogpage h1, .blogpage h2, .blogpage h3, .blogpage h4, .blogpage h5, .blogpage h6 {
+    font-weight: bold;
+}
+
 /* DISPLAY PATCHES */
 
 @media (min-width: 600px) {
@@ -670,5 +702,87 @@ SOFTWARE.
 
     to {
         transform: translateX(-100%);
+    }
+}
+
+@keyframes scrollFromLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+@keyframes scrollFromRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+@keyframes scrollFromTop {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+
+    100% {
+        opacity: 1;
+        translate: translateY(0%);
+    }
+}
+
+@keyframes scrollFromBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+
+    100% {
+        opacity: 1;
+        translate: translateY(0%);
+    }
+}
+
+@keyframes scrollToLeft {
+    0% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+@keyframes scrollToRight {
+    0% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes fadeBlackScreen {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
     }
 }

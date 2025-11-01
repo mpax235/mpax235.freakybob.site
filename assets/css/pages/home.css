@@ -1,0 +1,30 @@
+/*
+.socials, .leftintroduction {
+    translate: 0%;
+    opacity: 1;
+    animation: scrollFromRight 2s ease;
+}
+
+.rightintroduction {
+    translate: 0;
+    opacity: 1;
+    animation: scrollFromLeft 2s ease;
+}
+
+#header-iframe {
+    translate: 0;
+    opacity: 1;
+    animation: scrollFromBottom 2s ease;
+}
+
+#footer-iframe {
+    translate: 0;
+    opacity: 1;
+    animation: scrollFromTop 2s ease;
+}
+
+.blackscreen {
+    animation: fadeBlackScreen 2s ease forwards;
+    display: block;
+}
+*/
