@@ -639,6 +639,13 @@ SOFTWARE.
     font-weight: bold;
 }
 
+.coolsitesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+
 /* DISPLAY PATCHES */
 
 @media (min-width: 600px) {
