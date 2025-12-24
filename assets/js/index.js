@@ -26,9 +26,9 @@ SOFTWARE.
 //    window.location.href = "https://mpax235.freakybob.site/maintenance.html";
 //}, 0);
 
-/*function updateCountdown() {
+function updateCountdown() {
     const now = new Date();
-    const targetDate = new Date('January 1, 2025 00:00:00');
+    const targetDate = new Date('January 1, 2026 00:00:00');
     const timeDifference = targetDate - now;
 
     if (timeDifference <= 0) {
@@ -47,8 +47,8 @@ SOFTWARE.
     `;
 }
 
-const interval = setInterval(updateCountdown, 1000);
-updateCountdown();*/
+const interval = setInterval(updateCountdown, 100);
+updateCountdown();
 
 let version = '6.2.0';
 document.getElementById('versioncounter').innerHTML = version;
