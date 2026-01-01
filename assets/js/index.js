@@ -26,13 +26,16 @@ SOFTWARE.
 //    window.location.href = "https://mpax235.freakybob.site/maintenance.html";
 //}, 0);
 
+const season = 'winter';
+
 function updateCountdown() {
     const now = new Date();
-    const targetDate = new Date('January 1, 2026 00:00:00');
+    const targetDate = new Date('January 1 2026 00:00:00');
     const timeDifference = targetDate - now;
 
     if (timeDifference <= 0) {
         document.getElementById('time').innerHTML = '<div id="happynewyear">HAPPY NEW YEAR!</div>';
+        document.getElementById('time').style.textShadow = 'none';
         clearInterval(interval);
         return;
     }
@@ -45,6 +48,10 @@ function updateCountdown() {
     document.getElementById('time').innerHTML = `
         <div>${days}d ${hours}h ${minutes}m ${seconds}s</div>
     `;
+
+    if (timeDifference <= 59000 && !(timeDifference <= 0)) {
+        document.getElementById('time').style.textShadow = '0 0 20px rgba(0, 255, 255, 0.8), 0 0 20px rgba(0, 255, 255, 0.6), 0 0 30px rgba(0, 255, 255, 0.4)';
+    }
 }
 
 const interval = setInterval(updateCountdown, 100);
@@ -52,3 +59,15 @@ updateCountdown();
 
 let version = '6.2.0';
 document.getElementById('versioncounter').innerHTML = version;
+
+function loadSeasonsTheme() {
+    if (season === 'winter') {
+        const style = document.createElement('link');
+        style.rel = 'stylesheet';
+        style.href = '/assets/css/seasons/winter.css';
+        
+        document.head.appendChild(style);
+    }
+}
+
+// loadSeasonsTheme(); // sorry i didn't finish it in time :( - mpax235

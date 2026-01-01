@@ -1,0 +1,21 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+p,
+span {
+    color: white;
+}
+
+body {
+    background-image: url('/assets/images/seasons/winter.png');
+}
+
+.version,
+.announcements {
+    background-color: #ffffff5e;
+    border: 1px rgba(255, 255, 255, 0.18);
+}
