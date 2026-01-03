@@ -28,9 +28,10 @@ SOFTWARE.
 
 const season = 'winter';
 
+/*
 function updateCountdown() {
     const now = new Date();
-    const targetDate = new Date('January 1 2026 00:00:00');
+    const targetDate = new Date('January 1 2027 00:00:00');
     const timeDifference = targetDate - now;
 
     if (timeDifference <= 0) {
@@ -56,6 +57,7 @@ function updateCountdown() {
 
 const interval = setInterval(updateCountdown, 100);
 updateCountdown();
+*/
 
 let version = '6.2.0';
 document.getElementById('versioncounter').innerHTML = version;
