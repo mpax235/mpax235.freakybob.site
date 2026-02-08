@@ -204,7 +204,6 @@ td, th {
 code {
     font-family: "Source Code Pro", monospace;
     background-color: #0000005e;
-    backdrop-filter: blur(7px);
     border-radius: 12px;
     padding: 0 5px 0 5px;
 }
