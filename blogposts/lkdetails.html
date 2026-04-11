@@ -1,0 +1,112 @@
+<!--
+MIT License
+
+Copyright (c) 2025 mpax235
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="The official website of mpax235!">
+        <meta content="mpax235" property="og:title" />
+        <meta content="The official website of mpax235!" property="og:description" />
+        <meta content="https://mpax235.freakybob.site" property="og:url" />
+        <meta content="/assets/images/favicon.gif" property="og:image" />
+        <meta content="#006666" data-react-helmet="true" name="theme-color" />
+        <title>mpax235 - Blog Post</title>
+        <link rel="stylesheet" href="/assets/css/classic/core.css">
+        <link rel="stylesheet" href="/assets/css/classic/header.css">
+        <link rel="stylesheet" href="/assets/css/classic/footer.css">
+        <link rel="stylesheet" href="/assets/css/classic/main.css">
+        <link rel="stylesheet" href="/assets/css/classic/pages.css">
+        <link rel="manifest" href="/manifest.json">
+        <link rel="icon" href="../assets/images/favicon.gif">
+        <style>
+            .partition img {
+              width: 75%;
+              border-radius: 12px;
+            }
+
+            .partition {
+              display: flex;
+              justify-content: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div id="menu">
+                <div id="menucontainer">
+                    <a href="#" onclick="onclosebuttonpressed()"><img id="closeicon" class="icon" src="../assets/images/icons/close.png"></a>
+                    <div class="menubuttoncontainer">
+                        <a href="../home.html"><button>Home</button></a>
+                        <a href="../blog.html"><button>Blog</button></a>
+                        <a href="../projects.html"><button>Projects</button></a>
+                        <a href="../stats.html"><button>Stats</button></a>
+                        <a href="../live.html"><button>Live</button></a>
+                        <a href="../versions.html"><button>Versions</button></a>
+                        <a href="../wiki/index.html"><button>Wiki</button></a>
+                    </div>
+                </div>
+            </div>
+            <!--header insert-->
+            <iframe id="header-iframe" src="../assets/iframes/header.html"></iframe>
+            <!--header end-->
+            
+            <div class="homepage">
+                <!--### BLOG POST HEADER GOES HERE ####-->
+                <h1>MediaTek Details: Preloader</h1>
+                <!--###################################-->
+                <!--### BLOG POST CONTENT GOES HERE ###-->
+                <!--###################################-->
+                <div class="code">
+                    <p id="vscodeblue">void <span id="vscodelightyellow">unlock_bootloader_warning</span><span id="vscodeyellow">() {</span></p>
+                    <p id="vscodelightyellow">&nbsp;&nbsp;&nbsp;&nbsp;video_clean_screen<span id="vscodepurple">()</span><span id="vscodewhite">;</span></p>
+                    <p id="vscodelightyellow">&nbsp;&nbsp;&nbsp;&nbsp;video_set_cursor<span id="vscodepurple">(<span id="vscodelightyellow">video_get_rows<span id="vscodeblue2">()</span><span id="vscodewhite"> / </span><span id="vscodelightgreen">2</span><span id="vscodewhite">,</span><span id="vscodelightgreen"> 0</span><span id="vscodepurple">)</span><span id="vscodewhite">;</span></p>
+                    <p id="vscodelightyellow">&nbsp;&nbsp;&nbsp;&nbsp;video_printf<span id="vscodepurple">(</span><span id="vscodeorange">"Unlock bootloader?</span><span id="vscodelightorange">\n\n</span><span id="vscodeorange">"</span><span id="vscodepurple">)</span><span id="vscodewhite">;</span></p>
+                    <p id="vscodelightyellow">&nbsp;&nbsp;&nbsp;&nbsp;video_printf<span id="vscodepurple">(</span><span id="vscodeorange">"If you unlock the bootloader,you will be able to install custom operating</span><span id="vscodelightorange">\n</span><span id="vscodeorange">"</span><span id="vscodepurple">)</span><span id="vscodewhite">;</span></p>
+                    <p id="vscodelightyellow">&nbsp;&nbsp;&nbsp;&nbsp;video_printf<span id="vscodepurple">(</span><span id="vscodeorange">"system software on this phone.</span><span id="vscodelightorange">\n\n</span><span id="vscodeorange">"</span><span id="vscodepurple">)</span><span id="vscodewhite">;</span></p>
+                    <p id="vscodelightyellow">&nbsp;&nbsp;&nbsp;&nbsp;video_printf<span id="vscodepurple">(</span><span id="vscodeorange">"A custom OS is not subject to the same testing as the original OS, and can</span><span id="vscodelightorange">\n</span><span id="vscodeorange">"</span><span id="vscodepurple">)</span><span id="vscodewhite">;</span></p>
+                    <p id="vscodelightyellow">&nbsp;&nbsp;&nbsp;&nbsp;video_printf<span id="vscodepurple">(</span><span id="vscodeorange">"cause your phone and installed applications to stop working properly.</span><span id="vscodelightorange">\n\n</span><span id="vscodeorange">"</span><span id="vscodepurple">)</span><span id="vscodewhite">;</span></p>
+                    <p id="vscodelightyellow">&nbsp;&nbsp;&nbsp;&nbsp;video_printf<span id="vscodepurple">(</span><span id="vscodeorange">"To prevent unauthorized access to your personal data,unlocking the bootloader</span><span id="vscodelightorange">\n</span><span id="vscodeorange">"</span><span id="vscodepurple">)</span><span id="vscodewhite">;</span></p>
+                    <p id="vscodelightyellow">&nbsp;&nbsp;&nbsp;&nbsp;video_printf<span id="vscodepurple">(</span><span id="vscodeorange">"will also delete all personal data from your phone(a \"factory data reset\").</span><span id="vscodelightorange">\n\n</span><span id="vscodeorange">"</span><span id="vscodepurple">)</span><span id="vscodewhite">;</span></p>
+                    <a><span id="vscodeyellow">}</span></a>
+                </div>
+                <a>It is put at a memory location where it survives until the next component grabs it.</a>
+                <h2>Booting the next component</h2>
+                <a>The last step the Preloader has</a>
+                <a>to do is jump to LK loaded from the UBOOT partition.</a>
+                <br></br>
+                <a>After this, the Preloader goes inactive until the BROM starts again.</a>
+                <h2>Sources</h2>
+                <p>&#9679; <a href="https://github.com/li127832919/MTK6572">MT6572 source code for PE900s and lightning72_wet_l</a></p>
+                <p>&#9679; <a href="https://wenku.baidu.com/view/d44d5cd9ad51f01dc281f129.html?_wkts_=1725153461138&needWelcomeRecommand=1">Introduction of MTK Tools</a></p>
+            </div>
+            
+            <iframe id="footer-iframe" src="../assets/iframes/footer2.html"></iframe>
+        </div>
+        <script src="../assets/js/browsercheck.js"></script>
+        <script src="../assets/js/menu.js"></script>
+        <script src="/assets/js/themeLoader.js"></script>
+    </body>
+</html>

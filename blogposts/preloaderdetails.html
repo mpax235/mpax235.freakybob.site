@@ -34,11 +34,11 @@ SOFTWARE.
         <meta content="/assets/images/favicon.gif" property="og:image" />
         <meta content="#006666" data-react-helmet="true" name="theme-color" />
         <title>mpax235 - Blog Post</title>
-        <link rel="stylesheet" href="../assets/css/core.css">
-        <link rel="stylesheet" href="../assets/css/header.css">
-        <link rel="stylesheet" href="../assets/css/footer.css">
-        <link rel="stylesheet" href="../assets/css/main.css">
-        <link rel="stylesheet" href="../assets/css/pages.css">
+        <link rel="stylesheet" href="/assets/css/classic/core.css">
+        <link rel="stylesheet" href="/assets/css/classic/header.css">
+        <link rel="stylesheet" href="/assets/css/classic/footer.css">
+        <link rel="stylesheet" href="/assets/css/classic/main.css">
+        <link rel="stylesheet" href="/assets/css/classic/pages.css">
         <link rel="manifest" href="/manifest.json">
         <link rel="icon" href="../assets/images/favicon.gif">
         <style>
@@ -79,39 +79,32 @@ SOFTWARE.
                 <!--###################################-->
                 <!--### BLOG POST CONTENT GOES HERE ###-->
                 <!--###################################-->
-                <h4>NOTE: The information was gathered through reverse engineering.</h4>
-                <a>After the Boot ROM in a SoC finishes initalizing the bare hardware, it loads the first region of the eMMC/NAND flash into the on-chip SRAM and starts executing it.</a>
-                <a>This would be the bootloader but on MediaTek devices it is not, there is a another step for loading the main Bootloader: the Preloader.</a>
-                <a>This is like a bridge between the Boot ROM and the main Bootloader and offers some features such as</a>
-                <a>entering Download Mode (in BROM) from the Preloader if enabled, boot from eMMC or NAND flash and read/write parts of the flash</a>
-                <a>via USB.</a>
+                <h4>NOTE: The information was gathered through reverse engineering and some GitHub repositories.</h4>
+                <a>After the BROM has finished initializing the bare minimum hardware, it has to load something that can initialize more stuff.</a>
+                <a>That would be the Preloader, which leads the rest of the boot process.</a>
                 <h2>The overview</h2>
-                <a>Usually when MediaTek ships a source package to a manufacturer, it also contains the entire</a>
-                <a>source code for the Preloader. It is not easy to come up with a generic description of what the Preloader does</a>
-                <a>because the manufacturer can modify it, so it does different things on different SoCs</a>
-                <a>and Devices.</a>
+                <a>When MediaTek ships a BSP (Board Source Package) to a manufacturer, it contains the source code for the Preloader. The preloader can be modified by the manufacturer, so as a result, the Preloader can do different things on different devices and SoCs (System on-a Chip).</a>
                 <br></br>
-                <a>Based on the lightning72_wet_l source code for the MT6572 SoC, the preloader is made up of the following parts:</a>
+                <a>Based on the source code for MT6572, the Preloader seems to be organized into the following parts:</a>
                 <br></br>
-                <p>&#9679; SoC-specific stuff in mediatek/platform/${platform}/preloader, this contains the core, drivers, initalizing and security code.</p>
-                <a>&#9679; Device-specific stuff in mediatek/custom/${device}/preloader, this contains the Device-specific code.</a>
+                <p>&#9679; SoC-specific stuff in mediatek/platform/${platform}/preloader, this contains the core, drivers, initialization, and security code.</p>
+                <a>&#9679; Device-specific stuff in mediatek/custom/${device}/preloader, this contains the device-specific code.</a>
                 <br></br>
-                <a>Now it's time to dive deeper!</a>
-                <h2>SoC initializing</h2>
-                <a>When the Preloader gets executed, many stuff are in a random state so to initialize them, there is some Assembly code located in</a>
-                <a>mediatek/platform/${platform}/preloader/src/init/init.s which performs the following steps:</a>
+                <a>Now it's time to dive deeper into the Preloader!</a>
+                <h2>SoC initialization</h2>
+                <a>When the Preloader gets placed into the on-chip SRAM and executed, many things are in a random state. To initialize it, there is a piece of assembly code in mediatek/platform/${platform}/preloader/src/init/init.s that does the following steps.</a>
                 <br></br>
-                <p>1. Clear all registers.</p>
-                <a>2. Switch the CPU to SVC32 mode.</a>
-                <p>3. Disable interrupts.</p>
-                <p>4. Setup the caches and stack.</p>
-                <p>5. Duplicate the CTP code to the Slave CPU and start it.</p>
+                <p>1. Clears all registers.</p>
+                <a>2. Switches the CPU to SVC32 mode.</a>
+                <p>3. Disables interrupts.</p>
+                <p>4. Setups the caches and stack.</p>
+                <p>5. Duplicates the CTP code to the Slave CPU and start it.</p>
                 <p>6. Creates a VMA-to-LMA mapping for the Slave CPU.</p>
-                <a>7. Jump to the main code in the C code.</a>
+                <a>7. Jumps to the main C code.</a>
                 <br></br>
-                <a>Execution now continues at mediatek/platform/${platform}/preloader/src/core/main.c, which calls lots of other methods</a>
-                <a>and start the rest of the Preloader code (security, drivers and the rest of the core).</a>
-                <h2>Platform initializing</h2>
+                <a>Execution continues at mediatek/platform/${platform}/preloader/src/core/main.c, which in turn calls a lot of other methods.</a>
+                <a>This file is also responsible for executing the driver and security code in the Preloader.</a>
+                <h2>Platform initialization</h2>
                 <a>The Preloader relies on some peripherials so it has to initialize them. This is mainly done with the platform_pre_init and platform_init</a>
                 <a>code. The list contains the timer, PLL clock, DDR memory controller, Watchdog, GPIO, UART, USB port and the PMC.</a>
                 <br></br>
@@ -237,7 +230,7 @@ SOFTWARE.
                       <tr>
                         <td>CMD_GET_BL_VER</td>
                         <td>0xfe</td>
-                        <td>Gets the Preloader version</td>
+                        <td>Gets the Preloader version (always returns 1)</td>
                       </tr>
                       <tr>
                         <td>CMD_LEGACY_WRITE</td>
@@ -519,5 +512,6 @@ SOFTWARE.
         </div>
         <script src="../assets/js/browsercheck.js"></script>
         <script src="../assets/js/menu.js"></script>
+        <script src="/assets/js/themeLoader.js"></script>
     </body>
 </html>

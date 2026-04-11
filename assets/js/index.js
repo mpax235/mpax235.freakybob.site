@@ -59,8 +59,10 @@ const interval = setInterval(updateCountdown, 100);
 updateCountdown();
 */
 
+/*
 let version = '6.2.0';
 document.getElementById('versioncounter').innerHTML = version;
+*/
 
 function loadSeasonsTheme() {
     if (season === 'winter') {

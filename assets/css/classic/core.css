@@ -1,0 +1,131 @@
+/*
+MIT License
+
+Copyright (c) 2025 mpax235
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
+/*
+//////////////////
+// CLASSIC CORE
+//////////////////
+*/
+
+/* MAIN CORE */
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: black;
+}
+
+/* CORE ELEMENTS */
+
+button {
+    background: #161616;
+    border: 1px solid cyan;
+    padding: 10px 15px;
+    color: cyan;
+    font-family: sans-serif;
+    text-decoration: none;
+    text-align: center;
+}
+
+button:hover {
+    background: cyan;
+    transform: scale(1.1);
+    color: black;
+    cursor: pointer;
+}
+
+input {
+    background: #161616;
+    color: cyan;
+    border: 1px solid cyan;
+    padding: 10px 15px;
+    font-family: sans-serif;
+    text-decoration: none;
+    text-align: left;
+}
+
+input::placeholder {
+    color: cyan;
+}
+
+input:hover {
+    background-color: cyan;
+    color: black;
+}
+
+input:hover::placeholder {
+    color: black;
+}
+
+input:focus-visible {
+    border-color: cyan;
+    outline: none;
+}
+
+a, span {
+    color: cyan;
+    text-decoration: none;
+}
+
+p {
+    color: cyan;
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6, table {
+    color: cyan;
+    font-weight: normal;
+}
+
+table {
+    text-align: left;
+    color: cyan;
+    width: 100%;
+    font-size: 14px;
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 4px;
+    border: 1px solid cyan;
+    background-color: #111111;
+}
+
+code {
+    font-family: monospace;
+    background-color: black;
+    padding: 0 5px 0 5px;
+}
+
+ol {
+    color: cyan;
+}
+
+hr {
+    border: 1px solid cyan;
+}
