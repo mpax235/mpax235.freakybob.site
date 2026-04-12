@@ -1,0 +1,84 @@
+<!--
+MIT License
+
+Copyright (c) 2025 mpax235
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="The official website of mpax235!">
+        <meta content="mpax235" property="og:title" />
+        <meta content="The official website of mpax235!" property="og:description" />
+        <meta content="https://mpax235.freakybob.site" property="og:url" />
+        <meta content="/assets/images/favicon.gif" property="og:image" />
+        <meta content="#006666" data-react-helmet="true" name="theme-color" />
+        <title>mpax235 - Cool SItes</title>
+        <link rel="stylesheet" href="/assets/css/classic/core.css">
+        <link rel="stylesheet" href="/assets/css/classic/header.css">
+        <link rel="stylesheet" href="/assets/css/classic/footer.css">
+        <link rel="stylesheet" href="/assets/css/classic/main.css">
+        <link rel="stylesheet" href="/assets/css/classic/pages.css">
+        <link rel="manifest" href="/manifest.json">
+        <link rel="icon" href="/assets/images/favicon.gif">
+    </head>
+    <body>
+        <div class="container">
+            <!--header insert-->
+            <div id="menu">
+                <div id="menucontainer">
+                    <a href="#" onclick="onclosebuttonpressed()"><img id="closeicon" class="icon" src="assets/images/icons/close.png"></a>
+                    <div class="menubuttoncontainer">
+                        <a href="/home.html"><button>Home</button></a>
+                        <a href="/blog.html"><button>Blog</button></a>
+                        <a href="/projects.html"><button>Projects</button></a>
+                        <a href="/stats.html"><button>Stats</button></a>
+                        <a href="/live.html"><button>Live</button></a>
+                        <a href="/versions.html"><button>Versions</button></a>
+                        <a href="wiki/index.html"><button>Wiki</button></a>
+                    </div>
+                </div>
+            </div>
+            <iframe id="header-iframe" src="../assets/iframes/header.html"></iframe>
+            <!--header end-->
+
+            <div class="homepage">
+                <h1>Guestbook</h1><hr>
+                <span>Please be respectful when signing the guestbook.</span><br><br>
+                <form id="guestbookForm">
+                    <input id="name" placeholder="Name" required><br>
+                    <textarea id="message" placeholder="Message" required></textarea><br>
+                    <input id="site" placeholder="Site (optional)"><br> 
+                    <button type="submit">Submit message</button>
+                </form>
+                <div class="posts"></div>
+            </div>
+            
+            <iframe id="footer-iframe" src="../assets/iframes/footer.html"></iframe>
+        </div>
+        <script src="../assets/js/browsercheck.js"></script>
+        <script src="../assets/js/menu.js"></script>
+        <script src="/assets/js/themeLoader.js"></script>
+        <script src="/assets/js/pages/guestbook.js"></script>
+    </body>
+</html>

@@ -278,7 +278,7 @@ SOFTWARE.
     color: #ffff00;
 }
 
-#hotlinkTextarea {
+#hotlinkTextarea, #message {
     resize: none;
     background-color: #0000005e;
     border-radius: 12px;
@@ -299,6 +299,22 @@ SOFTWARE.
 
 #coolsiteButton {
     image-rendering: pixelated;
+}
+
+#guestbookForm {
+    background-color: #1616165e;
+    backdrop-filter: blur(7px);
+    border-radius: 12px;
+    border: 1px solid rgba(0, 255, 255, 0.18);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+#guestbookUsername {
+    font-size: 21px;
 }
 
 /* CLASSES */
@@ -664,6 +680,20 @@ SOFTWARE.
     flex-wrap: wrap;
     gap: 8px;
     justify-content: center;
+}
+
+.post, .reply {
+    padding: 10px;
+    background-color: #1616165e;
+    backdrop-filter: blur(7px);
+    border: 1px solid rgba(0, 255, 255, 0.18);
+    border-radius: 12px;
+}
+
+.posts {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 /* DISPLAY PATCHES */

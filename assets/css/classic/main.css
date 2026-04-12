@@ -216,7 +216,7 @@ SOFTWARE.
     color: yellow;
 }
 
-#hotlinkTextarea {
+#hotlinkTextarea, #message {
     resize: none;
     background: #000000;
     border: 1px solid cyan;
@@ -232,6 +232,16 @@ SOFTWARE.
 
 #blogTitle {
     font-weight: normal;
+}
+
+#guestbookForm {
+    background: #161616;
+    border: 1px solid #00ffff;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 10px;
 }
 
 /* CLASSES */
@@ -524,7 +534,7 @@ SOFTWARE.
 }
 
 .warning {
-    background-color: #797900;
+    background: #797900;
     padding: 10px;
     border: 1px solid yellow;
 }
@@ -542,6 +552,21 @@ SOFTWARE.
 
 .rightintroduction {
     margin-left: auto;
+}
+
+.post, .reply {
+    padding: 10px;
+    background: #161616;
+    border: 1px solid cyan;
+}
+
+.post {
+    margin-bottom: 10px;
+}
+
+.posts {
+    display: flex;
+    flex-direction: column;
 }
 
 /* ANIMATIONS */
