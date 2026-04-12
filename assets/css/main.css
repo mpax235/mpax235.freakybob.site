@@ -297,6 +297,10 @@ SOFTWARE.
     font-weight: normal;
 }
 
+#coolsiteButton {
+    image-rendering: pixelated;
+}
+
 /* CLASSES */
 
 .gallerystuff {
